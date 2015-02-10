@@ -1,0 +1,163 @@
+{
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Heroku Critical",
+            "description": "Heroku Critical event",
+            "labels": [
+                {
+                    "name": "Heroku Critical",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "Error R14",
+                "code=H11",
+                "code=H12",
+                "code=H13",
+                "code=H15"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Heroku Fatal",
+            "description": "Heroku Fatal event",
+            "labels": [
+                {
+                    "name": "Heroku Fatal",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "Error R10",
+                "Error R11",
+                "Error R15",
+                "code=H10",
+                "code=H14",
+                "code=H99"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Heroku Warning",
+            "description": "Heroku Warning Event",
+            "labels": [
+                {
+                    "name": "Heroku Warning",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "DEPRECATION WARNING",
+                "Error L10",
+                "Error L11",
+                "Error R12",
+                "Error R13",
+                "Error R16",
+                "code=H16",
+                "code=H17",
+                "code=H18",
+                "code=H19",
+                "code=H20",
+                "code=H21",
+                "code=H22",
+                "code=H80"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Heroku SLA Warn",
+            "description": "Heroku High response times",
+            "labels": [
+                {
+                    "name": "SLA Warn",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "service>2000",
+                "connect>2000"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "searches": [
+        {
+            "name": "service_time",
+            "query": "service>0 | AVERAGE"
+        },
+        {
+            "name": "connect_time",
+            "query": "connect>0 | AVERAGE"
+        },
+        {
+            "name": "service_time_by_dyno",
+            "query": "service>0 | groupby(dyno) | AVERAGE(service)"
+        },
+        {
+            "name": "connect_time_by_dyno",
+            "query": "connect>0 | groupby(dyno) | AVERAGE(connect)"
+        },
+        {
+            "name": "request_size",
+            "query": "bytes>0 | AVERAGE"
+        }
+    ],
+    "widgets": [
+        {
+            "name": "ConnectServiceTime",
+            "description": "Total time for pageload",
+            "searches_names": [
+                "service_time",
+                "connect_time"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        },
+        {
+            "name": "ServiceByDyno",
+            "description": "Service Time Per Dyno",
+            "search_name": "service_time_by_dyno",
+            "type": "BarChart"
+        },
+        {
+            "name": "ConnectByDyno",
+            "description": "Connect Time Per Dyno",
+            "search_name": "connect_time_by_dyno",
+            "type": "BarChart"
+        },
+        {
+            "name": "RequestSize",
+            "description": "Avg Size of Requests",
+            "search_name": "request_size",
+            "type": "BarChart"
+        }
+    ]
+}

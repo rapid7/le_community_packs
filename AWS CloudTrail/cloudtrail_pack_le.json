@@ -1,0 +1,187 @@
+{
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "AWS Security Group Actions",
+            "description": "AWS Security Group Actions",
+            "labels": [
+                {
+                    "name": "AWS Security",
+                    "color": "c90707"
+                }
+            ],
+            "patterns": [
+                "CreateSecurityGroup",
+                "DeleteSecurityGroup"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "AWS EC2 Instance Actions",
+            "description": "AWS EC2 Instance Actions",
+            "labels": [
+                {
+                    "name": "AWS EC2",
+                    "color": "00dd2f"
+                }
+            ],
+            "patterns": [
+                "RebootInstances",
+                "StartInstances",
+                "StopInstances",
+                "TerminateInstances"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "AWS Policy Actions",
+            "description": "AWS Policy Actions",
+            "labels": [
+                {
+                    "name": "AWS Policy",
+                    "color": "ff9305"
+                }
+            ],
+            "patterns": [
+                "PutRolePolicy",
+                "PutUserPolicy"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "AWS User Actions",
+            "description": "AWS User Actions",
+            "labels": [
+                {
+                    "name": "AWS User",
+                    "color": "ff9305"
+                }
+            ],
+            "patterns": [
+                "CreateUser",
+                "CreateUserProfile",
+                "DeleteUser"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "AWS Group Actions",
+            "description": "AWS Group Actions",
+            "labels": [
+                {
+                    "name": "AWS Group",
+                    "color": "ff9305"
+                }
+            ],
+            "patterns": [
+                "CreateGroup",
+                "DeleteGroup"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "AWS PWD Update",
+            "description": "AWS PWD Update",
+            "labels": [
+                {
+                    "name": "AWS PWD Update",
+                    "color": "ff9305"
+                }
+            ],
+            "patterns": [
+                "UpdateAccountPasswordPolicy"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "searches": [
+        {
+            "name": "startinstances",
+            "query": "StartInstances calculate(COUNT)"
+        },
+        {
+            "name": "stopinstances",
+            "query": "StopInstances calculate(COUNT)"
+        },
+        {
+            "name": "event_type_breakdown",
+            "query": "eventName groupby(eventName) calculate(COUNT)"
+        },
+        {
+            "name": "event_type_by_iamuser",
+            "query": "eventName AND IAMUser groupby(eventName) calculate(COUNT)"
+        },
+        {
+            "name": "event_count_by_iamuser",
+            "query": "eventName AND IAMUser groupby(userName) calculate(COUNT)"
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Event Type Breakdown",
+            "search_name": "event_type_breakdown",
+            "type": "BarChart"
+        },
+        {
+            "name": "Event Type Breakdown By IAMUser",
+            "search_name": "event_type_by_iamuser",
+            "type": "BarChart"
+        },
+        {
+            "name": "Event Count Breakdown By IAMUser",
+            "search_name": "event_count_by_iamuser",
+            "type": "BarChart"
+        },
+        {
+            "name": "Number of Instance Stops",
+            "search_name": "stopinstances",
+            "type": "Count"
+        },
+        {
+            "name": "Number of Instance Starts",
+            "search_name": "startinstances",
+            "type": "Count"
+        }
+    ]
+}

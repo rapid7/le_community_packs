@@ -1,0 +1,173 @@
+{
+    "searches": [
+        {
+            "name": "Unique_Visitors_Count",
+            "description": "A count of the unique visitors over a specified time period",
+            "query": "where(sc-status>0) Calculate(unique:c-ip)"
+        },
+        {
+            "name": "Page_View_Distribution",
+            "description": "A quick view of the distribution of page requests",
+            "query": "where(sc-status!=404) GroupBy(c-ip) Calculate(count)"
+        },
+        {
+            "name": "Status_Type_Distribution",
+            "description": "A view of the distribution of  status types",
+            "query": "where(sc-status>0) groupby(sc-status) calculate(count)"
+        },
+        {
+            "name": "Average_Response_Time",
+            "description": "The average respsone time over a period of time",
+            "query": "where(sc-status>0) calculate(average:time-taken)"
+        },
+        {
+            "name": "AverageResponse_Time_PerPage",
+            "description": "The average respsone time over a period of time per page",
+            "query": "where(sc-status>0) groupby(c-ip) calculate(average:time-taken)"
+        },
+        {
+            "name": "404Errors",
+            "description": "Total amount of 404 errors for a specific time period",
+            "query": "where(sc-status=404) Calculate(count)"
+        },
+        {
+            "name": "404_URL_Distribution",
+            "description": "Distribution of 404 errors over requests",
+            "query": "where(sc-status=404) Groupby(cs-uri-stem) Calculate(count)"
+        },
+        {
+            "name": "404_Requests_IPs",
+            "description": "Distribution of 404 errors by IP Address",
+            "query": "where(sc-status=404) Groupby(c-ip) Calculate(count)"
+        },
+        {
+            "name": "UserAgentsDistribution",
+            "description": "Distribution of user agents",
+            "query": "where(sc-status > 0) groupby(csUser-Agent) calculate(COUNT)"
+        }
+    ],
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Excessive 404's",
+            "description": "excesive amount of 404 errors",
+            "labels": [
+                {
+                    "name": "404 Error",
+                    "color": "123456"
+                }
+            ],
+            "patterns": [
+                "sc-status=404"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Slow Respsone Times",
+            "description": "response times for applications are slow",
+            "labels": [
+                {
+                    "name": "Slow Respsonse",
+                    "color": "123456"
+                }
+            ],
+            "patterns": [
+                "time-taken>1000"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 15,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "AlertNotify",
+            "sub_type": "InactivityAlert",
+            "name": "Web Log Not Sending",
+            "description": "Inactivity of server stats log for 20 mins",
+            "patterns": [
+                ""
+            ],
+            "timeframe_value": 1,
+            "timeframe_period": "Hour",
+            "action": {
+                "type": "Alert",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "AlertNotify",
+            "sub_type": "AnomalyAlert",
+            "name": "Basic Web Anomaly Acticvity",
+            "description": "Number requested pages for the current hour vs same time last week",
+            "scheduled_query": {
+                "query": "where(sc-status>0)",
+                "function": "COUNT",
+                "threshold_value": "+30",
+                "threshold_type": "%",
+                "time_period": "Week",
+                "time_value": 60
+            },
+            "action": {
+                "type": "Alert",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Unique User Count",
+            "description": "A counter for unique user count",
+            "search_name": "Unique_Visitors_Count",
+            "type": "Count"
+        },
+        {
+            "name": "Average Respsone Time",
+            "description": "Time line Line Chart key by second",
+            "search_name": "Average_Response_Time",
+            "type": "TimelineLineChart",
+            "show_tooltip": true
+        },
+        {
+            "name": "Requested Page Distribution",
+            "description": "Requested Page Distribution",
+            "search_name": "Page_View_Distribution",
+            "type": "BarChart"
+        },
+        {
+            "name": "Status Type Distribution",
+            "description": "Status distribution",
+            "search_name": "Status_Type_Distribution",
+            "type": "BarChart"
+        },
+        {
+            "name": "User Agent Distribution",
+            "description": "The distribution of user agents",
+            "search_name": "UserAgentsDistribution",
+            "type": "PieChart"
+        },
+        {
+            "name": "404 Error Count",
+            "description": "A counter for 404 errors",
+            "search_name": "404Errors",
+            "type": "Count"
+        },
+        {
+            "name": "404 Distribution",
+            "description": "The distribution of 404 errors over requests",
+            "search_name": "404_URL_Distribution",
+            "type": "BarChart"
+        }
+    ]
+}

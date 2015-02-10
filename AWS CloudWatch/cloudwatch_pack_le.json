@@ -1,0 +1,165 @@
+{
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Failed Login",
+            "description": "failed login attempt",
+            "labels": [
+                {
+                    "name": "Failed Login",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "invalid user"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "CPU Threshold Breach",
+            "description": "high cpu utilization",
+            "labels": [
+                {
+                    "name": "High CPU",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "CPUUtilization AND average>90"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "AlertNotify",
+            "sub_type": "InactivityAlert",
+            "name": "No CloudWatch Stats",
+            "description": "No stats received",
+            "patterns": [
+                "target"
+            ],
+            "timeframe_value": 5,
+            "timeframe_period": "Hour",
+            "action": {
+                "type": "Alert",
+                "min_report_count": 10,
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "searches": [
+        {
+            "name": "cpuutilization",
+            "query": "CPUUtilization AND average>0 calculate(AVERAGE)"
+        },
+        {
+            "name": "cpuutilization_server",
+            "query": "CPUUtilization AND average>0 | GroupBy(target) | AVERAGE(average)"
+        },
+        {
+            "name": "networkin",
+            "query": "NetworkIn AND average>0 calculate(AVERAGE)"
+        },
+        {
+            "name": "networkout",
+            "query": "NetworkOut AND average>0 calculate(AVERAGE)"
+        },
+        {
+            "name": "networkin_server",
+            "query": "NetworkIn AND average>0 | GroupBy(target) | AVERAGE(average)"
+        },
+        {
+            "name": "networkout_server",
+            "query": "NetworkOut AND average>0 | GroupBy(target) | AVERAGE(average)"
+        },
+        {
+            "name": "diskreadbytes",
+            "query": "DiskReadBytes AND average>0 calculate(AVERAGE)"
+        },
+        {
+            "name": "diskreadbytes_server",
+            "query": "DiskReadBytes AND average>0 | GroupBy(target) | AVERAGE(average)"
+        },
+        {
+            "name": "diskwritebytes",
+            "query": "DiskWriteBytes AND average>0 calculate(AVERAGE)"
+        },
+        {
+            "name": "diskwritesbytes_server",
+            "query": "DiskWriteBytes AND average>0 | GroupBy(target) | AVERAGE(average)"
+        },
+        {
+            "name": "logins",
+            "query": "session opened for user calculate(COUNT)"
+        },
+        {
+            "name": "failed_logins",
+            "query": "invalid user calculate(COUNT)"
+        }
+    ],
+    "widgets": [
+        {
+            "name": "CPU Load",
+            "description": "Avg System CPU",
+            "search_name": "cpuutilization",
+            "type": "TimelineLineChart",
+            "show_tooltip": true
+        },
+        {
+            "name": "CPU Load per Instance",
+            "description": "CPU per Server",
+            "search_name": "cpuutilization_server",
+            "type": "BarChart"
+        },
+        {
+            "name": "NetworkInOut",
+            "description": "Network Activity",
+            "searches_names": [
+                "networkin",
+                "networkout"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        },
+        {
+            "name": "NetworkOut Per Instance",
+            "description": "NetworkOut per Server",
+            "search_name": "networkout_server",
+            "type": "BarChart"
+        },
+        {
+            "name": "Disk Activity",
+            "description": "Disk Read and Writes",
+            "searches_names": [
+                "diskreadbytes",
+                "diskwritebytes"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        },
+        {
+            "name": "Number of Logins",
+            "description": "SSH access",
+            "search_name": "logins",
+            "type": "Count"
+        },
+        {
+            "name": "Number of Failed Logins",
+            "description": "Failed SSH access",
+            "search_name": "failed_logins",
+            "type": "Count"
+        }
+    ]
+}

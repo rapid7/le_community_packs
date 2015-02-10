@@ -1,0 +1,98 @@
+{
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "SF Login Event",
+            "description": "SalesForce login event",
+            "labels": [
+                {
+                    "name": "SF Login Event",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "LOGIN_EVENT"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SF LogOut Event",
+            "description": "SalesForce logout event",
+            "labels": [
+                {
+                    "name": "SF LogOut Event",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "LOGOUT_EVENT"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SF LoginAs Event",
+            "description": "SalesForce login as event",
+            "labels": [
+                {
+                    "name": "SF LoginAs",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "LOGIN_AS_EVENT"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "searches": [
+        {
+            "name": "logins",
+            "query": "LOGIN_EVENT calculate(COUNT)"
+        },
+        {
+            "name": "logouts",
+            "query": "LOGOUT_EVENT calculate(COUNT)"
+        },
+        {
+            "name": "login_as",
+            "query": "LOGIN_AS_EVENT calculate(COUNT)"
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Number of Logins",
+            "search_name": "logins",
+            "type": "Count"
+        },
+        {
+            "name": "Number of Failed Logins",
+            "search_name": "logouts",
+            "type": "Count"
+        },
+        {
+            "name": "Number of LoginAs Events",
+            "search_name": "login_as",
+            "type": "Count"
+        }
+    ]
+}

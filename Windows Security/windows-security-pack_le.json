@@ -1,0 +1,549 @@
+{
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Failed Login",
+            "description": "Failed login",
+            "labels": [
+                {
+                    "name": "Failed Login",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "invalid user"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Account Changed",
+            "description": "Win Account Changed",
+            "labels": [
+                {
+                    "name": "Win Account Changed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "642",
+                "4738"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Account Failed",
+            "description": "Win Account Failed",
+            "labels": [
+                {
+                    "name": "Win Account Failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "675",
+                "681",
+                "4771"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Account Locked Out",
+            "description": "Win Account Locked Out",
+            "labels": [
+                {
+                    "name": "Win Acc Locked",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "644",
+                "4740"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Account PWD Set",
+            "description": "Win Account PWD Set",
+            "labels": [
+                {
+                    "name": "Win Acc PWD Set",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "628",
+                "4724"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Account Success",
+            "description": "Win Account Success",
+            "labels": [
+                {
+                    "name": "Win Acc Success",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "672",
+                "680",
+                "4772",
+                "4768"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Audit Log Cleared",
+            "description": "Win Audit Log Cleared",
+            "labels": [
+                {
+                    "name": "Win Audit Log Cleared",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "517",
+                "1102"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Audit Policy Change",
+            "description": "Win Audit Policy Change",
+            "labels": [
+                {
+                    "name": "Win Audit Policy Change",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "612",
+                "4719"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Change PWD",
+            "description": "Win Change PWD",
+            "labels": [
+                {
+                    "name": "Win Change PWD",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "627",
+                "4723"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Computer Account Created",
+            "description": "Win Change PWD",
+            "labels": [
+                {
+                    "name": "Win Acc Created",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "645",
+                "4741"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Computer Account Deleted",
+            "description": "Win Computer Account Deleted",
+            "labels": [
+                {
+                    "name": "Win Acc Deleted",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "647",
+                "4743"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Domain Policy Change",
+            "description": "Win Domain Policy Change",
+            "labels": [
+                {
+                    "name": "Win Domain Policy Change",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "643",
+                "4739"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Logoff",
+            "description": "Win Logoff",
+            "labels": [
+                {
+                    "name": "Win Logoff",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "538",
+                "4634"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Logon",
+            "description": "Win Logon",
+            "labels": [
+                {
+                    "name": "Win Logon",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "528",
+                "4624",
+                "540"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Logon Failure",
+            "description": "Win Logon Failure",
+            "labels": [
+                {
+                    "name": "Win Logon Failure",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "529",
+                "531",
+                "532",
+                "533",
+                "534",
+                "535",
+                "536",
+                "537",
+                "539",
+                "4625"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Object Access",
+            "description": "Win Object Access",
+            "labels": [
+                {
+                    "name": "Win Object Access",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "560",
+                "563",
+                "565",
+                "566",
+                "4656",
+                "4659",
+                "4661",
+                "4662"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Session Disconnected",
+            "description": "Win Session Disconnected",
+            "labels": [
+                {
+                    "name": "Win Session Disconnected",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "683",
+                "4779"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Session Reconnected",
+            "description": "Win Session Reconnected",
+            "labels": [
+                {
+                    "name": "Win Session Reconnected",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "682",
+                "4778"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Shutdown",
+            "description": "Win Shutdown",
+            "labels": [
+                {
+                    "name": "Win Shutdown",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "513",
+                "4608"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win Startup",
+            "description": "Win Startup",
+            "labels": [
+                {
+                    "name": "Win Startup",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "512",
+                "4608"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win User Created",
+            "description": "Win User Created",
+            "labels": [
+                {
+                    "name": "Win User Created",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "624",
+                "4720"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win User Deleted",
+            "description": "Win User Deleted",
+            "labels": [
+                {
+                    "name": "Win User Deleted",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "630",
+                "4726"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win User Disabled",
+            "description": "Win User Disabled",
+            "labels": [
+                {
+                    "name": "Win User Disabled",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "629",
+                "4725"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Win User Enabled",
+            "description": "Win User Enabled",
+            "labels": [
+                {
+                    "name": "Win User Enabled",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "626",
+                "4722"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ]
+}

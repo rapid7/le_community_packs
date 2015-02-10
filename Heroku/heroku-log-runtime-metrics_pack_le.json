@@ -1,0 +1,86 @@
+{
+    "searches": [
+        {
+            "name": "memory_total",
+            "query": "memory_total>0 | average"
+        },
+        {
+            "name": "memory_rss",
+            "query": "memory_rss>0 | average"
+        },
+        {
+            "name": "memory_cache",
+            "query": "memory_cache>0 | average"
+        },
+        {
+            "name": "memory_swap",
+            "query": "memory_swap>0 | average"
+        },
+        {
+            "name": "memory_pgpgin",
+            "query": "memory_pgpgin>0 | average"
+        },
+        {
+            "name": "memory_pgpgout",
+            "query": "memory_pgpgout>0 | average"
+        },
+        {
+            "name": "load_avg_1m",
+            "query": "load_avg_1m>0 | average"
+        },
+        {
+            "name": "load_avg_5m",
+            "query": "load_avg_5m>0 | average"
+        },
+        {
+            "name": "load_avg_15m",
+            "query": "load_avg_15m>0 | average"
+        },
+        {
+            "name": "load_avg_1m_per_dyno",
+            "query": "load_avg_1m>0 | groupby(dyno)| average(memory_total)"
+        },
+        {
+            "name": "memory_total_per_dyno",
+            "query": "memory_total>0 | groupby(dyno)| average(memory_total)"
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Memory Usage",
+            "description": "Breakdown of Memory Usage",
+            "searches_names": [
+                "memory_total",
+                "memory_cache",
+                "memory_swap",
+                "memory_pgpgin",
+                "memory_pgpgout"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        },
+        {
+            "name": "CPU Load Average",
+            "description": "1m 5m and 15m",
+            "searches_names": [
+                "load_avg_1m",
+                "load_avg_5m",
+                "load_avg_15m"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        },
+        {
+            "name": "Load AVG by Dyno",
+            "description": "load_avg_1m Per Dyno",
+            "search_name": "load_avg_1m_per_dyno",
+            "type": "BarChart"
+        },
+        {
+            "name": "Total Memory by Dyno",
+            "description": "Total Mem Per Dyno",
+            "search_name": "memory_total_per_dyno",
+            "type": "BarChart"
+        }
+    ]
+}

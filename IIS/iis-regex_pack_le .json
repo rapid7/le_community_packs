@@ -1,0 +1,165 @@
+{
+	"name": "IIS powered by RE2",
+	"description": "For Logentries account subscribers",
+   
+    "searches": [
+        {
+            "name": "TimeTaken",
+            "description": "Time Taken in milliseconds",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ calculate(AVERAGE:time)"
+        },
+        {
+            "name": "AverageBytes",
+            "description": "The average number of bytes sent from the client to the server",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/ calculate(AVERAGE:bytes)"
+        },
+        {
+            "name": "StatusCodes",
+            "description": "Distribution of status codes",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/ groupby(status) calculate(COUNT)"
+        },
+        {
+            "name": "WindowsStatus",
+            "description": "Distribution of Windows Status Codes – zero means that the request was fulfilled successfully",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, (?P<windows_status>\\d{1,})/ groupby(windows_status) calculate(COUNT)"
+        },
+        {
+            "name": "RequestTypes",
+            "description": "Distribution of Request Types – GET or POST ",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, (?P<request_type>\\w{1,4})/ groupby(request_type) calculate(COUNT)"
+        },
+        {
+            "name": "UrlsAccessed",
+            "description": "Distribution of URLs accessed",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, \\w{1,4}, (?P<url>\\D{1,}),/ groupby(url) calculate(COUNT)"
+        },
+        {
+            "name": "TimeTakenForJPG",
+            "description": "The average time taken for JPG file",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg calculate(AVERAGE:time) "
+        },
+        {
+            "name": "TimeTakenForGIF",
+            "description": "The average time taken for GIF file",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif calculate(AVERAGE:time) "
+        },
+        {
+            "name": "TimeTakenForPDF",
+            "description": "The average time taken for GIF file",
+            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf calculate(AVERAGE:time) "
+        }
+        
+        
+        
+        
+    ],
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "404 - Not Found",
+            "description": "404 Error",
+            "labels": [
+                {
+                    "name": "404 - Not Found",
+                    "color": "FF0000"
+                }
+            ],
+            "patterns": [
+                "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/ status=404"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 5,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "OK Pass",
+            "description": "Correct Pass",
+            "labels": [
+                {
+                    "name": "200-OK",
+                    "color": "33CC33"
+                }
+            ],
+            "patterns": [
+                "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/ status=200"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 0,
+                "min_matches_period": "Day",
+                "min_report_count": 0,
+                "min_report_period": "Day"
+            }
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Average Time Taken",
+            "description": "Average Time Taken in milliseconds",
+            "search_name":"TimeTaken",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "Average Bytes",
+            "description": "The average number of bytes sent from the client to the server",
+            "search_name":"AverageBytes",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "Status Codes",
+            "description": "Distribution of status codes",
+            "search_name":"StatusCodes",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Windows Status Codes",
+            "description": "Distribution of Windows Status Codes – zero means that the request was fulfilled successfully",
+            "search_name":"WindowsStatus",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Request Types",
+            "description": "Distribution of Request Types – GET or POST",
+            "search_name":"RequestTypes",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Urls Accessed",
+            "description": "Distribution of URLs accessed",
+            "search_name":"UrlsAccessed",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+         {
+            "name": "The average time taken for JPG file",
+            "description": "The average time taken for JPG file",
+            "search_name":"TimeTakenForJPG",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "The average time taken for GIF file",
+            "description": "The average time taken for GIF file",
+            "search_name":"TimeTakenForGIF",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "The average time taken for PDF file",
+            "description": "The average time taken for PDF file",
+            "search_name":"TimeTakenForPDF",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        }
+    ]
+}

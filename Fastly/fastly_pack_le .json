@@ -1,0 +1,242 @@
+{
+	"name": "Fastly Logs Monitoring",
+	"description": "For Logentries account subscribers",
+   
+    "searches": [
+        {
+            "name": "Device Detection",
+            "description": "Detection of different devices used for requests",
+            "query": "devicetype groupby(devicetype)"
+        },
+        {
+            "name": "Unique IP count",
+            "description": "Count of unique IPs",
+            "query": "client_ip calculate(UNIQUE:client_ip)"
+        },
+        {
+            "name": "Requests by country",
+            "description": "Requests sorted by country",
+            "query": "country groupby(country) calculate(COUNT)"
+        },
+        {
+            "name": "Fastly Datacenters",
+            "description": "Requests by Fastly datacenters",
+            "query": "POP groupby(POP) calculate(COUNT)"
+        },
+        {
+            "name": "Requests by region",
+            "description": "Requests by regions of the world",
+            "query": "region groupby(region) calculate(COUNT)"
+        },
+        {
+            "name": "Requests by country code",
+            "description": "Requests by country code",
+            "query": "country_code groupby(country_code) calculate(COUNT)"
+        },
+        {
+            "name": "Requests by country name",
+            "description": "Requests by country name",
+            "query": "country_name groupby(country_name) calculate(COUNT)"
+        },
+        {
+            "name": "Status codes",
+            "description": "Status codes received",
+            "query": "status groupby(status)"
+        },      
+        {
+            "name": "Hits over time",
+            "description": "Number of hits over time",
+            "query": "numberOfHits | SUM"
+        },
+        {
+            "name": "Average Request Size",
+            "description": "Average Request Size",
+            "query": "size>=0 AND size|AVERAGE"
+        },
+        {
+            "name": "Total Downloaded",
+            "description": "Total Data Downloaded",
+            "query": "size | SUM"
+        }
+    ],
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "404 - Not Found",
+            "description": "404 Error",
+            "labels": [
+                {
+                    "name": "404 - Not Found",
+                    "color": "FF0000"
+                }
+            ],
+            "patterns": [
+                "status=404"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 5,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Desktop Device",
+            "description": "Desktop Device Recognized",
+            "labels": [
+                {
+                    "name": "Desktop Device",
+                    "color": "3366FF"
+                }
+            ],
+            "patterns": [
+                "desktop"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 0,
+                "min_matches_period": "Day",
+                "min_report_count": 0,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Mobile Device",
+            "description": "Mobile Device Recognized",
+            "labels": [
+                {
+                    "name": "Mobile Device",
+                    "color": "00CC99"
+                }
+            ],
+            "patterns": [
+                "iPad","iPhone","Android"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 0,
+                "min_matches_period": "Day",
+                "min_report_count": 0,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "OK Pass",
+            "description": "Correct Pass",
+            "labels": [
+                {
+                    "name": "200-OK",
+                    "color": "33CC33"
+                }
+            ],
+            "patterns": [
+                "status=200"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 0,
+                "min_matches_period": "Day",
+                "min_report_count": 0,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "AlertNotify",
+            "sub_type": "InactivityAlert",
+            "name": "24h inactivity",
+            "description": "Application Not Accessed for 24h",
+            "patterns": [
+                "status=200"
+            ],
+            "timeframe_value": 24,
+            "timeframe_period": "Hour",
+            "action": {
+                "type": "Alert",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "AlertNotify",
+            "sub_type": "AnomalyAlert",
+            "name": "Larger than 1MB",
+            "description": "20 percent increase in a download of files larger than 1MB",
+            "action": {
+                "type": "Alert",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            },
+            "scheduled_query": {
+                "query": "size>1000000",
+                "function": "COUNT",
+                "threshold_value": "+20",
+                "threshold_type": "%",
+                "time_period": "Hour",
+                "time_value": 1
+            }
+        }
+       
+    ],
+    "widgets": [
+        {
+            "name": "Device Detection",
+            "description": "Detection of different devices used for requests",
+            "search_name":"Device Detection",
+            "show_tooltip": true,
+            "type": "PieChart"
+        },
+        {
+            "name": "Unique IP count",
+            "description": "Count of unique IPs",
+            "search_name":"Unique IP count",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Requests by country",
+            "description": "Requests sorted by country",
+            "search_name":"Requests by country",
+            "show_tooltip": true,
+            "type": "PieChart"
+        },
+        {
+            "name": "Status codes received",
+            "description": "Status codes received",
+            "search_name":"Status codes",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Requests by Fastly datacenters",
+            "description": "Requests by Fastly datacenters",
+            "search_name":"Fastly Datacenters",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Number of hits over time",
+            "description": "Number of hits over time",
+            "search_name":"Hits over time",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "Average Request Size",
+            "description": "Average Request Size",
+            "search_name":"Average Request Size",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "Total Downloaded",
+            "description": "Total Data Downloaded",
+            "search_name":"Total Downloaded",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        }
+    ]
+}
