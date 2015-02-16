@@ -1,7 +1,7 @@
 {
-	"name": "NGINX powered by RE2",
-	"description": "For Logentries account subscribers",
-   
+    "name": "Apache Server Monitoring Pack RegEx",
+    "description": "For Logentries account subscribers",
+
     "searches": [
         {
             "name": "HTTPcodes",
@@ -19,23 +19,23 @@
             "query": "/\\b (?P<bytes>\\d{1,})/ calculate(AVERAGE:bytes)"
         },
         {
-        	"name": "url401",
+            "name": "url401",
             "description": "List of all URLs that yield 401 error",
             "query": "/\" (?P<httpcode>\\b\\d{3})/ httpcode=401 AND /\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
         },
         {
-        	"name": "url200",
+            "name": "url200",
             "description": "List of all URLs that yield 200 OK",
             "query": "/\" (?P<httpcode>\\b\\d{3})/ httpcode=200 AND /\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
         },
         {
-        	"name": "url404",
+            "name": "url404",
             "description": "List of all URLs that yield 404 error",
             "query": "/\" (?P<httpcode>\\b\\d{3})/ httpcode=404 AND /\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
         }
-        
-        
-        
+
+
+
     ],
     "tags": [
     {
@@ -60,7 +60,7 @@
             }
     },
     {
-        
+
             "type": "Alert",
             "name": "OK Pass",
             "description": "Correct Pass",
@@ -102,7 +102,7 @@
                 "min_report_period": "Day"
             }
         }
-       
+
     ],
     "widgets": [
         {
@@ -147,7 +147,7 @@
             "show_tooltip": true,
             "type": "BarChart"
         }
-        
-        
+
+
     ]
 }

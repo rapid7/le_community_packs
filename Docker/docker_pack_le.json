@@ -1,0 +1,203 @@
+{
+	"name": "Nearform/Logentries Docker Pack ",
+	"description": "For Logentries account subscribers",
+   
+    "searches": [
+        {
+            "name": "AverageMemory",
+            "description": "Average Memory Usage by Contained ID",
+            "query": "usage!=null | groupby(id) | average(usage)"
+        },
+        {
+            "name": "AverageMemory2",
+            "description": "Average Memory Usage by Image ID",
+            "query": "usage!=null | groupby(image) | average(usage)"
+        },      
+        {
+            "name": "RX_Packets",
+            "description": "Incoming Packets by Container ID",
+            "query": "usage!=null | groupby(id) | sum(rx_packets)"
+        },
+        {
+            "name": "TX_Packets",
+            "description": "Outgoing Packets by Container ID",
+            "query": "usage!=null | groupby(id) | sum(tx_packets)"
+        },
+        {
+            "name": "CPU_by_container",
+            "description": "CPU Usage by Container ID",
+            "query": "cpu_percent!=null | groupby(id) | average(cpu_percent)"
+        },
+        {
+            "name": "Overall_CPU",
+            "description": "Overall CPU usage over all containers",
+            "query": "cpu_percent!=null calculate(AVERAGE:cpu_percent)"
+        },
+        {
+            "name": "Overall_Memory",
+            "description": "Overall Memory usage over all containers",
+            "query": "usage!=null calculate(AVERAGE:usage)"
+        },
+         {
+            "name": "Cache_by_container",
+            "description": "Average cache by container",
+            "query": "cache!=null groupby(id) calculate(AVERAGE:cache)"
+        }
+        
+        
+    ],
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "CPU_max",
+            "description": "CPU MAX",
+            "labels": [
+                {
+                    "name": "CPU max usage",
+                    "color": "FF003F"
+                }
+            ],
+            "patterns": [
+                "cpu_percent>99"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 100,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Over 1GB memory usage",
+            "description": "Container is using between 1Gb-2Gb of memory",
+            "labels": [
+                {
+                    "name": "1Gb+ Mem Usage",
+                    "color": "00FF9F"
+                }
+            ],
+            "patterns": [
+                "usage>1073741824 AND usage<2147483648"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Over 2GB memory usage",
+            "description": "Container is using between 2Gb-3Gb of memory",
+            "labels": [
+                {
+                    "name": "2Gb+ Mem Usage",
+                    "color": "0002FF"
+                }
+            ],
+            "patterns": [
+                "usage>2147483648 AND usage<3221225472"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Over 3GB memory usage",
+            "description": "Container is using between 3Gb-4Gb of memory",
+            "labels": [
+                {
+                    "name": "3Gb+ Mem Usage",
+                    "color": "FF00DB"
+                }
+            ],
+            "patterns": [
+                "usage>3221225472 AND usage<4294967296"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Over 4GB memory usage",
+            "description": "Container is using between 4Gb of memory",
+            "labels": [
+                {
+                    "name": "4Gb+ Mem Usage",
+                    "color": "FF6200"
+                }
+            ],
+            "patterns": [
+                "usage>4294967296"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        }
+
+        
+    ],
+    
+    "widgets": [
+        {
+            "name": "Memory by Container ID",
+            "description": "Average Memory Usage by Contained ID",
+            "search_name":"AverageMemory",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Memory by Image Name",
+            "description": "Average Memory Usage by Image Name",
+            "search_name":"AverageMemory2",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Incoming Packets by Container",
+            "description": "Incoming Packets by Container ID",
+            "search_name":"RX_Packets",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Outgoing Packets by Container",
+            "description": "Outgoing Packets by Container ID",
+            "search_name":"TX_Packets",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },  
+        {
+            "name": "CPU Usage by Container ID",
+            "description": "CPU Usage by Container ID",
+            "search_name":"CPU_by_container",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+		{
+    		"name": "Cache by Container ID",
+    		"description": "Read/Writes to disk by container",
+    		"search_name":"Cache_by_container",
+    		"show_tooltip": true,
+    		"type": "BarChart"
+		}
+    ]
+}
