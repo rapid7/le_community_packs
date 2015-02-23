@@ -1,4 +1,4 @@
-Linux Server Monitoring Pack
+Docker Containers Monitoring Pack
 ----------------------------
 
 The Docker Community Pack provides out-of-the-box Tags, Alerts, Saved queries and Visualizations for stats and log data collected from your Docker containers. The pack is designed to be used with the Docker Logentries container which uses the Docker Stats API (available with Docker 1.5) to stream container level metrics (e.g. CPU, Memory, Network) as well as your container log data into Logentries.
