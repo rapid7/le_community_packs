@@ -1,0 +1,441 @@
+{
+	"name": "KeyCDN powered by RE2",
+	"description": "For Logentries account subscribers",
+   
+    "searches": [
+        {
+            "name": "HTTPcodes",
+            "description": "HTTP Codes Distribution",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ groupby(status) calculate(COUNT)"
+        },
+         {
+            "name": "ZoneURLStatus200",
+            "description": "All zone for which the status returned 200",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|(?P<ZoneUrl>\\S*)\\|MISS|HIT/ AND /\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=200 groupby(ZoneUrl) calculate(COUNT) "
+        },
+        {
+            "name": "BytesDelivered",
+            "description": "Bytes Delivered",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/ calculate(COUNT)"
+        },
+        
+    
+        {
+            "name": "UniqueUserID",
+            "description": "Count of unique user IDs",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/ calculate(UNIQUE:userID)"
+        },
+        {
+            "name": "UserIDs",
+            "description": "Distribution of user IDs",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/ groupby(userID) calculate(COUNT)"
+        },
+        {
+            "name": "UniqueZoneID",
+            "description": "Count of unique zone IDs",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID>\\d*)/ calculate(UNIQUE:zoneID)"
+        },
+        {
+            "name": "ZoneID",
+            "description": "Count of unique zone IDs",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID\\d*)/ groupby(zoneID) calculate(COUNT)"
+        },
+        {
+            "name": "ZoneURL",
+            "description": "Distribution of zones URLs accessed",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|(?P<ZoneUrl>\\S*)\\|MISS|HIT/ groupby(ZoneUrl) calculate(COUNT)"
+        },
+        {
+            "name": "CacheStatus",
+            "description": "Distribution of cache status codes",
+            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|\\S*\\|(?P<CacheStatus>MISS|HIT)/ groupby(CacheStatus) calculate(COUNT)"
+        },
+        {
+            "name": "Referrer",
+            "description": "Distribution of referrer URLs",
+            "query": "/\\[.*\\]\\|\"(?P<referrer>\\S*)\"\\|/ groupby(referrer) calculate(COUNT)"
+        }, 
+        {
+            "name": "UserAgent",
+            "description": "Distribution of user agents",
+            "query": "/\\[.*\\]\\|\"\\S*\"\\|\"(?P<userAgent>.*)\"\\|/ groupby(userAgent) calculate(COUNT)"
+        },
+        {
+            "name": "Scheme",
+            "description": "Schemes (eg HTTP or HTTPS)",
+            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|(?P<scheme>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|/ groupby(scheme) calculate(COUNT)"
+        },
+        {
+            "name": "CountryCode",
+            "description": "Country Code",
+            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|(?P<CountryCode>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|/ groupby(CountryCode) calculate(COUNT)"
+        },
+        {
+            "name": "CountryName",
+            "description": "Country Name",
+            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|(?P<CountryName>.*)\\|.*\\|.*\\|.*\\|.*\\|/ groupby(CountryName) calculate(COUNT)"
+        },
+       	{
+            "name": "CityName",
+            "description": "City Name",
+            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|(?P<CityName>.*)\\|.*\\|.*\\|.*\\|/ groupby(CityName) calculate(COUNT)"
+        }, 
+        {
+            "name": "Organization",
+            "description": "Organization (eg Amazon)",
+            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|\"(?P<organization>.*)/ groupby(organization) calculate(COUNT)"
+        },
+        {
+            "name": "IPLookUp",
+            "description": "Look for specific IP",
+            "query": "/(?P<IP>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})/ IP=" 
+        },
+        {
+            "name": "POPLookUp",
+            "description": "Distribution of POP",
+            "query": "/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/ groupby(POP)" 
+        }
+
+
+    ],
+    "tags": [
+    {
+            "type": "Alert",
+            "name": "404 Not Found",
+            "description": "404 Not Found",
+            "labels": [
+                {
+                    "name": "404 Not Found",
+                    "color": "FF0000"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=404" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 10,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+        {
+    
+            "type": "Alert",
+            "name": "206 Partial Content",
+            "description": "206 Partial Content",
+            "labels": [
+                {
+                    "name": "204 Partial Content",
+                    "color": "51C7FF"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=206" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+    
+    
+   
+    
+    
+    {
+    
+            "type": "Alert",
+            "name": "400 Bad Request",
+            "description": "400 Bad Request",
+            "labels": [
+                {
+                    "name": "400 Bad Request",
+                    "color": "688992"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=400" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    {
+    
+            "type": "Alert",
+            "name": "401 Unauthorized",
+            "description": "401 Unauthorized",
+            "labels": [
+                {
+                    "name": "401 Unauthorized",
+                    "color": "688992"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=401" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+    
+            "type": "Alert",
+            "name": "403 Forbidden",
+            "description": "403 Forbidden",
+            "labels": [
+                {
+                    "name": "403 Forbidden",
+                    "color": "FF4E3F"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=403" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+    {
+    
+            "type": "Alert",
+            "name": "404 File Not Found",
+            "description": "404 File Not Found",
+            "labels": [
+                {
+                    "name": "404 File Not Found",
+                    "color": "FF4E3F"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=404" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+    {
+    
+            "type": "Alert",
+            "name": "410 Gone",
+            "description": "The secure token has expired.",
+            "labels": [
+                {
+                    "name": "410 Gone",
+                    "color": "FF4F79"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=410" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+     {
+    
+            "type": "Alert",
+            "name": "500 Not Reachable",
+            "description": "500 Origin Not Reachable",
+            "labels": [
+                {
+                    "name": "500 Not Reachable",
+                    "color": "A971FF"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=500" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+    
+            "type": "Alert",
+            "name": "503 Zone Not Found",
+            "description": "503 Zone Not Found",
+            "labels": [
+                {
+                    "name": "503 Zone not found",
+                    "color": "0070FF"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=503" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+    
+    
+    
+    {
+    
+            "type": "Alert",
+            "name": "502 Bad Gateway",
+            "description": "502 Bad Gateway",
+            "labels": [
+                {
+                    "name": "502 Bad Gateway",
+                    "color": "FF6B99"
+                }
+            ],
+            "patterns": [
+                "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=502" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 10,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    }
+    ],
+    "widgets": [
+       {
+    	"name": "Bytes Delivered by Day",
+    	"description": "Bytes Deivered per Day",
+    	"search_name": "BytesDelivered",
+    	"type": "Radial",
+    	"high_threshold": 10000,
+    	"high_threshold_rate": "Day" 
+    	},
+    	{
+            "name": "Request Size Distribution",
+            "description": "Request Size Distribution",
+            "search_name":"BytesDelivered",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        
+		{
+            "name": "HTTP Status Codes",
+            "description": "HTTP Codes Distribution",
+            "search_name":"HTTPcodes",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        
+        {
+            "name": "Unique User IDs",
+            "description": "Number of unique user IDs",
+            "search_name":"UniqueUserID",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Unique Zone IDs",
+            "description": "Number of unique zone IDs",
+            "search_name":"UniqueZoneID",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Cache Status Codes",
+            "description": "Distribution of cache status code",
+            "search_name":"CacheStatus",
+            "show_tooltip": true,
+            "type": "PieChart"
+        },
+        {
+            "name": "Referrers",
+            "description": "Distribution of referrers",
+            "search_name":"Referrer",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "User agents",
+            "description": "User agent distribution",
+            "search_name":"UserAgent",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "POP distribution",
+            "description": "POP distribution",
+            "search_name":"POPLookUp",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Requests by Country Code",
+            "description": "Requests by Country Code",
+            "search_name":"CountryCode",
+            "show_tooltip": true,
+            "type": "PieChart"
+        },
+        {
+            "name": "Requests by Country Name",
+            "description": "Requests by Country Name",
+            "search_name":"CountryName",
+            "show_tooltip": true,
+            "type": "PieChart"
+        },
+        {
+            "name": "Requests by City Name",
+            "description": "Requests by City Name",
+            "search_name":"CityName",
+            "show_tooltip": true,
+            "type": "PieChart"
+        }
+        
+    	
+    	
+    ]
+}
