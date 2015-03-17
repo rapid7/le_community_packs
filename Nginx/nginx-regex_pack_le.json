@@ -27,11 +27,18 @@
             "name": "Totaljpg",
             "description": "Total number of .jpg request",
             "query": "/\"GET .{1,}\\.jpg/ calculate(COUNT)"
+        },        
+        {
+            "name": "Referer",
+            "description": "Referer Distribution",
+            "query": "/\\d{3} \\d* \"(?P<referer>\\S*)\" / groupby(referer) calculate(COUNT)"
+        },
+         {
+            "name": "UserAgent",
+            "description": "User Agent Distribution",
+            "query": "/\\d{3} \\d* \"\\S{1,}\" \"(?P<useragent>.*)\" \"/ groupby(useragent) calculate(COUNT)"      
         }
-        
-        
-        
-        
+          
     ],
     "tags": [
        
@@ -71,6 +78,20 @@
             "search_name":"Totaljpg",
             "show_tooltip": true,
             "type": "Count"
+        },
+        {
+            "name": "Distribution of referers",
+            "description": "Distribution of referers",
+            "search_name":"Referer",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "User-Agent Distribution",
+            "description": "User-Agent Distribution",
+            "search_name":"UserAgent",
+            "show_tooltip": true,
+            "type": "BarChart"
         }
         
         
