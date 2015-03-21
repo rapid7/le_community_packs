@@ -1,0 +1,332 @@
+{
+	"name": "MongoDB powered by RE2",
+	"description": "For Logentries account subscribers",
+   
+    "searches": [
+        {
+            "name": "CommandType",
+            "description": "Command vs Query",
+            "query": "/\\[\\w+\\] (?P<databaseCommand>\\w+)/i databaseCommand=query OR databaseCommand=command groupby(databaseCommand) calculate(COUNT)"
+        },
+        {
+            "name": "DatabaseCommand",
+            "description": "Command or Query Executed",
+            "query": "/command: (?P<command>\\w+)/i AND command!=isMaster AND command!=whatsmyuri groupby(command) calculate(COUNT)" 
+        },
+        {
+            "name": "ResLen",
+            "description": "Query Result Length in Bytes",
+            "query": "reslen calculate(AVERAGE)" 
+        },
+        {
+            "name": "Component",
+            "description": "Distribution of MongoDB Components",
+            "query": "/(?P<component>[A-Z]{3,8})/ groupby(component) calculate(COUNT)" 
+        },
+        {
+            "name": "Severity",
+            "description": "Distribution of Severity Levels",
+            "query": "/(?P<sl> F | E | W | I | D )/ groupby(sl) calculate(COUNT)" 
+        }
+        
+        
+            
+    ],
+    "tags": [
+    {
+            "type": "Alert",
+            "name": "Server Restarted",
+            "description": "Triggers when MongoDB server restarts",
+            "labels": [
+                {
+                    "name": "Server Restarted",
+                    "color": "53ACFF"
+                }
+            ],
+            "patterns": [
+                "SERVER RESTARTED" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    
+    {
+            "type": "Alert",
+            "name": "Connection Accepted",
+            "description": "Connection Accepted",
+            "labels": [
+                {
+                    "name": "Connection Accepted",
+                    "color": "50FF20"
+                }
+            ],
+            "patterns": [
+                "connection accepted" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+            "type": "Alert",
+            "name": "DR102",
+            "description": "Too much data written uncommitted",
+            "labels": [
+                {
+                    "name": "Journal flush exceeded 256MB",
+                    "color": "FFA582"
+                }
+            ],
+            "patterns": [
+                "DR102" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+     {
+            "type": "Alert",
+            "name": "Server Slow",
+            "description": "Server Status was very slow",
+            "labels": [
+                {
+                    "name": "Server Slow",
+                    "color": "FF521C"
+                }
+            ],
+            "patterns": [
+                "serverStatus was very slow" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "Write Operation Tag",
+            "description": "Tags for insert, update and delete operations",
+            "labels": [
+                {
+                    "name": "Write Operation",
+                    "color": "DE00FF"
+                }
+            ],
+            "patterns": [
+                "command: insert",
+                "command: update",
+                "command: delete"
+                 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "Aggregation Command Tag",
+            "description": "Tags for aggregate, count, distinct, group and mapReduce",
+            "labels": [
+                {
+                    "name": "Aggregation Command",
+                    "color": "4100FF"
+                }
+            ],
+            "patterns": [
+                "command: aggregate",
+                "command: count",
+                "command: distinct",
+                "command: group",
+                "command: mapReduce"
+                 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "Geospatial Command",
+            "description": "Tags for geoNear, geoSearch and geoWalk",
+            "labels": [
+                {
+                    "name": "Geospatial Command",
+                    "color": "FF6D00"
+                }
+            ],
+            "patterns": [
+                "command: geoNear",
+                "command: geoSearch",
+                "command: geoWalk"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "Query Operation",
+            "description": "Tag for findAndModify",
+            "labels": [
+                {
+                    "name": "Find Query",
+                    "color": "9A8DFF"
+                }
+            ],
+            "patterns": [
+                "command: findAndModify"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "Authentication Command",
+            "description": "Tags for logout and authenticate",
+            "labels": [
+                {
+                    "name": "Authentication Command",
+                    "color": "0005FC"
+                }
+            ],
+            "patterns": [
+                "command: logout",
+                "command: authenticate"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "User Management Command",
+            "description": "Tags for createUser, updateUser, dropUser, dropAllUsersFromDatabase, grantRolesToUser and revokeRolesFromUser",
+            "labels": [
+                {
+                    "name": "User Management Command",
+                    "color": "00FC8F"
+                }
+            ],
+            "patterns": [
+                "command: createUser",
+                "command: updateUser",
+                "command: dropUser",
+                "command: dropAllUsersFromDatabase",
+                "command: grantRolesToUser",
+                "command: revokeRolesFromUser"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    
+    {
+            "type": "Alert",
+            "name": "Role Management Command",
+            "description": "Tags for createRole, updateRole and dropRole",
+            "labels": [
+                {
+                    "name": "Role Management Command",
+                    "color": "FC6C74"
+                }
+            ],
+            "patterns": [
+                "command: createRole",
+                "command: updateRole",
+                "command: dropRole"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    }
+    
+
+    ],
+    "widgets": [
+    {
+    	"name": "Command vs Query",
+    	"description": "Command and Query Separation",
+    	"search_name": "CommandType",
+    	"type": "PieChart"
+	},
+	{
+		"name": "Database Commands Executed",
+		"description": "Database Command Executed",
+		"search_name": "DatabaseCommand",
+		"type": "BarChart"
+	},
+	{
+    	"name": "Average Query Result Length in Bytes",
+    	"description": "Average Query Result Length in Bytes",
+    	"search_name": "ResLen",
+    	"type": "TimelineLineChart",
+    	"show_tooltip": true
+	},
+	{
+		"name": "Component",
+		"description": "Components for functional categorization of the messages",
+		"search_name": "Component",
+		"type": "BarChart"
+	},
+	{
+    	"name": "Severity Levels",
+    	"description": "Severity Levels",
+    	"search_name": "Severity",
+    	"type": "PieChart"
+	}
+
+    ]
+}
