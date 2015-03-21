@@ -10,7 +10,7 @@ This Pack contains the following:
 * Tags and Alerts:
 
 
-
+![MongoDB3.0.1 Dashboard]()
 
 MongoDB 3.0.1 Database Server Monitoring Pack
 ------------------------------------
