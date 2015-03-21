@@ -17,6 +17,11 @@
             "name": "ResLen",
             "description": "Query Result Length in Bytes",
             "query": "reslen calculate(AVERAGE)" 
+        },
+        {
+            "name": "Module",
+            "description": "Distribution of MongoDB modules",
+            "query": "/\\[(?P<module>\\w+)\\]/i groupby(module) calculate(COUNT)" 
         }
             
     ],
@@ -302,6 +307,12 @@
     	"search_name": "ResLen",
     	"type": "TimelineLineChart",
     	"show_tooltip": true
+	},
+	{
+		"name": "Module",
+		"description": "Distribution of MongoDB Modules",
+		"search_name": "Module",
+		"type": "BarChart"
 	}
 
     ]
