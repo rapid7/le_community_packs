@@ -1,7 +1,9 @@
-MongoDB 2.6.7 Database Server Monitoring Pack
+MongoDB 2.6.7 Database Monitoring Pack
 ------------------------------------
 
-**This Community Pack for MongoDB Database Server Version 2.6**
+**This is a Community Pack for MongoDB Database Version 2.6**
+
+The user is now able to take an advantage of MongoDB database logging capabilities and dashboard designed to give you an overview of activity within your entire database.
 
 This Pack contains the following:
 
@@ -16,10 +18,10 @@ This Pack contains the following:
 
 `2015-03-20T22:27:23.371+0000 [TTLMonitor] query admin.system.indexes query: { expireAfterSeconds: { $exists: true } } planSummary: EOF ntoreturn:0 ntoskip:0 nscanned:0 nscannedObjects:0 keyUpdates:0 numYields:0 locks(micros) r:38 nreturned:0 reslen:20 0ms`
 
-MongoDB 3.0.1 Database Server Monitoring Pack
+MongoDB 3.0.1 Database Monitoring Pack
 ------------------------------------
 
-**This Community Pack for MongoDB Database Server Version 3.0**
+**This is a Community Pack for MongoDB Database Version 3.0**
 
 Starting in MongoDB 3.0, MongoDB includes the severity level and component associated with each log message. These are some of the new logging features added in the new release of MongoDB. We take the advantage of every feature to provide you with tools to aid your database activity analytics. 
 
