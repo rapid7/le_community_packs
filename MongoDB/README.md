@@ -21,7 +21,7 @@ MongoDB 3.0.1 Database Server Monitoring Pack
 
 **This Community Pack for MongoDB Database Server Version 3.0**
 
-Starting in MongoDB 3.0, MongoDB includes the severity level and component associated with each log message as well as a year added to the timestamp. These are all new logging features added in the new release of MongoDB. We take the advantage of every feature to provide you with tools to aid your database activity analytics. 
+Starting in MongoDB 3.0, MongoDB includes the severity level and component associated with each log message. These are some of the new logging features added in the new release of MongoDB. We take the advantage of every feature to provide you with tools to aid your database activity analytics. 
 
 This Pack contains the following:
 
