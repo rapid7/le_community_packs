@@ -5,9 +5,9 @@ MongoDB 2.6.7 Database Server Monitoring Pack
 
 This Pack contains the following:
 
-* Saved Queries: The user is able to graph the distribution of database modules, commands and average query result lengths. 
+* **Saved Queries:** The user is able to graph the distribution of database modules, commands and average query result lengths. 
 
-* Tags and Alerts: The user is able to tag all commands in the database such as: insert, delete, updateRole, etc. This functionality allows the user to understand the processes in their database. We included some performance alerting in this pack by including tags such as: Server Slow, Server Restarted, Connection Accepted or Journal flush exceeded 256MB.
+* **Tags and Alerts:** The user is able to tag all commands in the database such as: insert, delete, updateRole, etc. This functionality allows the user to understand the processes in their database. We included some performance alerting in this pack by including tags such as: Server Slow, Server Restarted, Connection Accepted or Journal flush exceeded 256MB.
 
 
 ![MongoDB3.0.1 Dashboard](https://raw.githubusercontent.com/siniar1990/le_community_packs/master/MongoDB/v2_6_7.png)
