@@ -1,6 +1,6 @@
 {
-	"name": "MongoDB powered by RE2",
-	"description": "For Logentries account subscribers",
+	"name": "MongoDB Version 3.0",
+	"description": "For Logentries account subscribers, tested on MongoDB Version 3.0.1",
    
     "searches": [
         {
@@ -28,9 +28,7 @@
             "description": "Distribution of Severity Levels",
             "query": "/(?P<sl> F | E | W | I | D )/ groupby(sl) calculate(COUNT)" 
         }
-        
-        
-            
+
     ],
     "tags": [
     {
