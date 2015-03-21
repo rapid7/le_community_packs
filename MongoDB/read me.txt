@@ -77,14 +77,43 @@ TAG: Number of opened connections
 
 
 TODO:
+
+WRITE OPERATION
 command: insert
 command: update
 command: delete
+
+AGGREGATION COMMAND
+command: aggregate
 command: count
-command: group
 command: distinct
+command: group
+command: mapReduce
+
+GEOSPATIAL COMMAND
+command: geoNear
+command: geoSearch
+command: geoWalk
+
+QUERY OPERATION
 command: findAndModify
 
+AUTHENTICATION COMMAND
+command: logout						Terminates the current authenticated session.
+command: authenticate				Starts an authenticated session using a username and password.
+
+USER MANAGEMENT COMMAND
+command: createUser					Creates a new user.
+command: updateUser					Updates a user’s data.
+command: dropUser					Removes a single user.
+command: dropAllUsersFromDatabase	Deletes all users associated with a database.
+command: grantRolesToUser			Grants a role and its privileges to a user.
+command: revokeRolesFromUser		Removes a role from a user.
+
+ROLE MANAGEMENT COMMAND
+command: createRole					Creates a role and specifies its privileges.
+command: updateRole					Updates a user-defined role.
+command: dropRole					Deletes the user-defined role.
 
 
-
+sudo mongod -v --logpath /var/log/mongodb/server1.log
