@@ -17,11 +17,6 @@
             "name": "ResLen",
             "description": "Query Result Length in Bytes",
             "query": "reslen calculate(AVERAGE)" 
-        },
-        {
-            "name": "Component",
-            "description": "Distribution of MongoDB components",
-            "query": "/\\[(?P<component>\\w+)\\]/i groupby(component) calculate(COUNT)" 
         }
             
     ],
@@ -307,12 +302,6 @@
     	"search_name": "ResLen",
     	"type": "TimelineLineChart",
     	"show_tooltip": true
-	},
-	{
-		"name": "Component",
-		"description": "Distribution of MongoDB Components",
-		"search_name": "Component",
-		"type": "BarChart"
 	}
 
     ]
