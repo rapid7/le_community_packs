@@ -11,7 +11,7 @@
         {
             "name": "DatabaseCommand",
             "description": "Command or Query Executed",
-            "query": "/command: (?P<command>\\w+)/i groupby(command) calculate(COUNT)" 
+            "query": "/command: (?P<command>\\w+)/i AND command!=isMaster AND command!=whatsmyuri groupby(command) calculate(COUNT)" 
         },
         {
             "name": "ResLen",
