@@ -1,6 +1,6 @@
 {
-	"name": "MongoDB powered by RE2",
-	"description": "For Logentries account subscribers",
+	"name": "MongoDB Version 2.6",
+	"description": "For Logentries account subscribers, tested on MongoDB Version 2.6.7",
    
     "searches": [
         {
@@ -285,8 +285,6 @@
                 "min_report_period": "Day"
             }
     }
-    
-
     ],
     "widgets": [
     {
@@ -314,6 +312,5 @@
 		"search_name": "Module",
 		"type": "BarChart"
 	}
-
     ]
 }
