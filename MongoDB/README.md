@@ -15,6 +15,7 @@ This Pack contains the following:
 ![MongoDB3.0.1 Dashboard](https://raw.githubusercontent.com/siniar1990/le_community_packs/master/MongoDB/v2_6_7.png)
 
 **_LOG ENTRY SAMPLE_**
+
 `2015-03-20T22:27:23.371+0000 [TTLMonitor] query admin.system.indexes query: { expireAfterSeconds: { $exists: true } } planSummary: EOF ntoreturn:0 ntoskip:0 nscanned:0 nscannedObjects:0 keyUpdates:0 numYields:0 locks(micros) r:38 nreturned:0 reslen:20 0ms`
 
 MongoDB 3.0.1 Database Monitoring Pack
@@ -33,6 +34,7 @@ This Pack contains the following:
 ![MongoDB3.0.1 Dashboard](https://github.com/siniar1990/le_community_packs/raw/master/MongoDB/v3_0_1.png)
 
 **_LOG ENTRY SAMPLE_**
+
 `21 Mar 2015 20:25:17.288  2015-03-21T20:25:17.169+0000 I WRITE    [conn1] insert test.users query: { _id: 9.0, user: "vv", status: "P" } ninserted:1 keyUpdates:0 writeConflicts:0 numYields:0 locks:{ Global: { acquireCount: { w: 1 } }, MMAPV1Journal: { acquireCount: { w: 3 } }, Database: { acquireCount: { w: 1 } }, Collection: { acquireCount: { W: 1 } } } 0ms`
 
 TODO: Graph - Command Response Time
