@@ -296,7 +296,7 @@
     	"type": "PieChart"
 	},
 	{
-		"name": "Database Command Executed",
+		"name": "Database Commands Executed",
 		"description": "Database Command Executed",
 		"search_name": "DatabaseCommand",
 		"type": "BarChart"
