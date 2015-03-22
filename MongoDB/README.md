@@ -11,7 +11,7 @@ This Pack contains the following:
 
 * **Dashboards:** There are several out-of-the-box graphs and charts included in this pack to show the distribution of operations in user database. The user is able to plot the number of write operations over time using preinstalled searches.
 
-![MongoDB3.0.1 Dashboard](./v3_0_1.png)
+![MongoDB3.0.1 Dashboard](v3_0_1.png)
 
 **_LOG ENTRY SAMPLE_**
 
@@ -30,7 +30,7 @@ This Pack contains the following:
 
 * **Dashboards:** There are several out-of-the-box graphs and charts included in this pack to show the distribution of operations in user database.
 
-![MongoDB3.0.1 Dashboard](./v2_6_7.png)
+![MongoDB3.0.1 Dashboard](v2_6_7.png)
 
 **_LOG ENTRY SAMPLE_**
 
