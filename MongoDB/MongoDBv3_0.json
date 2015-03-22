@@ -27,7 +27,14 @@
             "name": "Severity",
             "description": "Distribution of Severity Levels",
             "query": "/(?P<sl> F | E | W | I | D )/ groupby(sl) calculate(COUNT)" 
+        },
+         {
+            "name": "Write",
+            "description": "Write Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=WRITE calculate(COUNT)" 
         }
+        
+        
 
     ],
     "tags": [
@@ -324,7 +331,13 @@
     	"description": "Severity Levels",
     	"search_name": "Severity",
     	"type": "PieChart"
+	},
+	{
+    	"name": "Write Operations Over Time",
+    	"description": "Write Operations Over Time",
+    	"search_name": "Write",
+    	"type": "TimelineLineChart",
+    	"show_tooltip": true
 	}
-
     ]
 }
