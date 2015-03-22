@@ -28,13 +28,26 @@
             "description": "Distribution of Severity Levels",
             "query": "/(?P<sl> F | E | W | I | D )/ groupby(sl) calculate(COUNT)" 
         },
-         {
+        {
             "name": "Write",
             "description": "Write Operations",
             "query": "/(?P<component>[A-Z]{3,8})/ component=WRITE calculate(COUNT)" 
+        },
+        {
+            "name": "Access",
+            "description": "Access Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=ACCESS calculate(COUNT)" 
+        },
+        {
+            "name": "Network",
+            "description": "Network Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=NETWORK calculate(COUNT)" 
+        },
+        {
+            "name": "Storage",
+            "description": "Storage Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=STORAGE calculate(COUNT)" 
         }
-        
-        
 
     ],
     "tags": [
@@ -338,6 +351,13 @@
     	"search_name": "Write",
     	"type": "TimelineLineChart",
     	"show_tooltip": true
-	}
+	},
+	{
+    "name": "Messages by category",
+    "description": "Messages by category",
+    "searches_names": ["Write", "Access", "Network", "Storage"],
+    "show_tooltip": true,
+    "type": "Multiline"
+}
     ]
 }
