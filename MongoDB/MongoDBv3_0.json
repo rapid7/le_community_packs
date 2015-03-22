@@ -29,14 +29,29 @@
             "query": "/(?P<sl> F | E | W | I | D )/ groupby(sl) calculate(COUNT)" 
         },
         {
-            "name": "Write",
-            "description": "Write Operations",
-            "query": "/(?P<component>[A-Z]{3,8})/ component=WRITE calculate(COUNT)" 
-        },
-        {
             "name": "Access",
             "description": "Access Operations",
             "query": "/(?P<component>[A-Z]{3,8})/ component=ACCESS calculate(COUNT)" 
+        },
+        {
+            "name": "Command",
+            "description": "Command Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=COMMAND calculate(COUNT)" 
+        },
+        {
+            "name": "Control",
+            "description": "Control Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=CONTROL calculate(COUNT)" 
+        },
+        {
+            "name": "Geo",
+            "description": "Geo Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=GEO calculate(COUNT)" 
+        },
+        {
+            "name": "Index",
+            "description": "Index Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=INDEX calculate(COUNT)" 
         },
         {
             "name": "Network",
@@ -44,11 +59,35 @@
             "query": "/(?P<component>[A-Z]{3,8})/ component=NETWORK calculate(COUNT)" 
         },
         {
+            "name": "Query",
+            "description": "Query Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=QUERY calculate(COUNT)" 
+        },
+        {
+            "name": "Repl",
+            "description": "Replica Set Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=REPL calculate(COUNT)" 
+        },
+        {
+            "name": "Sharding",
+            "description": "Sharding Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=SHARDING calculate(COUNT)" 
+        },
+         {
             "name": "Storage",
             "description": "Storage Operations",
             "query": "/(?P<component>[A-Z]{3,8})/ component=STORAGE calculate(COUNT)" 
+        },
+         {
+            "name": "Journal",
+            "description": "Journal Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=JOURNAL calculate(COUNT)" 
+        },
+        {
+            "name": "Write",
+            "description": "Write Operations",
+            "query": "/(?P<component>[A-Z]{3,8})/ component=WRITE calculate(COUNT)" 
         }
-
     ],
     "tags": [
     {
@@ -355,7 +394,7 @@
 	{
     "name": "Messages by category",
     "description": "Messages by category",
-    "searches_names": ["Write", "Access", "Network", "Storage"],
+    "searches_names": ["Command","Network", "Query", "Storage", "Write" ],
     "show_tooltip": true,
     "type": "Multiline"
 }
