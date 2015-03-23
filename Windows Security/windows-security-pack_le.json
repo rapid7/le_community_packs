@@ -32,8 +32,8 @@
                 }
             ],
             "patterns": [
-                "642",
-                "4738"
+                "/642 EVENT/",
+                "/4738 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -54,9 +54,9 @@
                 }
             ],
             "patterns": [
-                "675",
-                "681",
-                "4771"
+                "/675 EVENT/",
+                "/681 EVENT/",
+                "/4771 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -77,8 +77,8 @@
                 }
             ],
             "patterns": [
-                "644",
-                "4740"
+                "/644 EVENT/",
+                "/4740 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -99,8 +99,8 @@
                 }
             ],
             "patterns": [
-                "628",
-                "4724"
+                "/628 EVENT/",
+                "/4724 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -121,10 +121,10 @@
                 }
             ],
             "patterns": [
-                "672",
-                "680",
-                "4772",
-                "4768"
+                "/672 EVENT/",
+                "/680 EVENT/",
+                "/4772 EVENT/",
+                "/4768 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -145,8 +145,8 @@
                 }
             ],
             "patterns": [
-                "517",
-                "1102"
+                "/517 EVENT/",
+                "/1102 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -167,8 +167,8 @@
                 }
             ],
             "patterns": [
-                "612",
-                "4719"
+                "/612 EVENT/",
+                "/4719 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -189,8 +189,8 @@
                 }
             ],
             "patterns": [
-                "627",
-                "4723"
+                "/627 EVENT/",
+                "/4723 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -211,8 +211,8 @@
                 }
             ],
             "patterns": [
-                "645",
-                "4741"
+                "/645 EVENT/",
+                "/4741 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -233,8 +233,8 @@
                 }
             ],
             "patterns": [
-                "647",
-                "4743"
+                "/647 EVENT/",
+                "/4743 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -255,8 +255,8 @@
                 }
             ],
             "patterns": [
-                "643",
-                "4739"
+                "/643 EVENT/",
+                "/4739 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -277,8 +277,8 @@
                 }
             ],
             "patterns": [
-                "538",
-                "4634"
+                "/538 EVENT/",
+                "/4634 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -299,9 +299,9 @@
                 }
             ],
             "patterns": [
-                "528",
-                "4624",
-                "540"
+                "/528 EVENT/",
+                "/4624 EVENT/",
+                "/540 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -322,16 +322,16 @@
                 }
             ],
             "patterns": [
-                "529",
-                "531",
-                "532",
-                "533",
-                "534",
-                "535",
-                "536",
-                "537",
-                "539",
-                "4625"
+                "/529 EVENT/",
+                "/531 EVENT/",
+                "/532 EVENT/",
+                "/533 EVENT/",
+                "/534 EVENT/",
+                "/535 EVENT/",
+                "/536 EVENT/",
+                "/537 EVENT/",
+                "/539 EVENT/",
+                "/4625 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -352,14 +352,14 @@
                 }
             ],
             "patterns": [
-                "560",
-                "563",
-                "565",
-                "566",
-                "4656",
-                "4659",
-                "4661",
-                "4662"
+                "/560 EVENT/",
+                "/563 EVENT/",
+                "/565 EVENT/",
+                "/566 EVENT/",
+                "/4656 EVENT/",
+                "/4659 EVENT/",
+                "/4661 EVENT/",
+                "/4662 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -380,8 +380,8 @@
                 }
             ],
             "patterns": [
-                "683",
-                "4779"
+                "/683 EVENT/",
+                "/4779 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -402,8 +402,8 @@
                 }
             ],
             "patterns": [
-                "682",
-                "4778"
+                "/682 EVENT/",
+                "/4778 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -424,8 +424,8 @@
                 }
             ],
             "patterns": [
-                "513",
-                "4608"
+                "/513 EVENT/",
+                "/4608 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -446,8 +446,8 @@
                 }
             ],
             "patterns": [
-                "512",
-                "4608"
+                "/512 EVENT/",
+                "/4608 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -468,8 +468,8 @@
                 }
             ],
             "patterns": [
-                "624",
-                "4720"
+                "/624  EVENT/",
+                "/4720 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -490,8 +490,8 @@
                 }
             ],
             "patterns": [
-                "630",
-                "4726"
+                "/630 EVENT/",
+                "/4726 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -512,8 +512,8 @@
                 }
             ],
             "patterns": [
-                "629",
-                "4725"
+                "/629 EVENT/",
+                "/4725 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -534,8 +534,8 @@
                 }
             ],
             "patterns": [
-                "626",
-                "4722"
+                "/626 EVENT/",
+                "/4722 EVENT/"
             ],
             "action": {
                 "type": "Alert",
