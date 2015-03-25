@@ -22,6 +22,11 @@
             "name": "Module",
             "description": "Distribution of MongoDB modules",
             "query": "/\\[(?P<module>\\w+)\\]/i groupby(module) calculate(COUNT)" 
+        },
+         {
+            "name": "ResponseTime",
+            "description": "Command Response Time",
+            "query": "/(?P<time>\\d)ms/ calculate(AVERAGE:time)" 
         }
             
     ],
@@ -311,6 +316,12 @@
 		"description": "Distribution of MongoDB Modules",
 		"search_name": "Module",
 		"type": "BarChart"
+	},
+	{
+		"name": "Command Response Time",
+		"description": "Command Response Time",
+		"search_name": "ResponseTime",
+		"type": "TimelineLineChart"
 	}
     ]
 }

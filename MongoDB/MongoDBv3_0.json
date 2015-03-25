@@ -87,6 +87,11 @@
             "name": "Write",
             "description": "Write Operations",
             "query": "/(?P<component>[A-Z]{3,8})/ component=WRITE calculate(COUNT)" 
+        },
+        {
+            "name": "ResponseTime",
+            "description": "Command Response Time",
+            "query": "/(?P<time>\\d)ms/ calculate(AVERAGE:time)" 
         }
     ],
     "tags": [
@@ -397,6 +402,12 @@
     "searches_names": ["Command","Network", "Query", "Storage", "Write" ],
     "show_tooltip": true,
     "type": "Multiline"
-}
+},
+{
+		"name": "Command Response Time",
+		"description": "Command Response Time",
+		"search_name": "ResponseTime",
+		"type": "TimelineLineChart"
+	}
     ]
 }
