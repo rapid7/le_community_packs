@@ -10,4 +10,4 @@ This Pack contains the following:
 
 * **Dashboards:** There are few out-of-the-box graphs pre-installed in the pack. The user is able to track the actual and estimated memory usage or compare the two using multiline chart included in the pack. 
 
-![Cassandra Dashboard](Cassandra.png)
+![Cassandra Dashboard](Cassandra2.png)
