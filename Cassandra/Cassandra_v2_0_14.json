@@ -1,0 +1,164 @@
+{
+	"name": "Cassandra Version 2.0.14",
+	"description": "For Logentries account subscribers, tested on Cassandra Version 2.0.14",
+   
+    "searches": [
+        {
+            "name": "SeverityLevel",
+            "description": "Severity Level",
+            "query": "/(?P<level>[A-Z]{4,5}) \\[/ groupby(level) calculate(COUNT)"
+        },
+        {
+            "name": "EstimatedMemory",
+            "description": "Average Estimated Memory Usage",
+            "query": "/memory usage is (?P<MemUsage>\\d*)/ calculate(AVERAGE:MemUsage)"
+        },
+        {
+            "name": "ActualMemory",
+            "description": "Average Actual Memory Usage",
+            "query": "/actual usage (?P<MemUsage>\\d*)/ calculate(AVERAGE:MemUsage)"
+        }
+    ],
+    
+    
+    
+    
+    
+    "tags": [
+    {
+            "type": "Alert",
+            "name": "Warning",
+            "description": "Cassandra Warning Message",
+            "labels": [
+                {
+                    "name": "WARN",
+                    "color": "FC007F"
+                }
+            ],
+            "patterns": [
+                "/(?P<level>[A-Z]{4,5})/ level=WARN" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+            "type": "Alert",
+            "name": "Fatal",
+            "description": "Cassandra Fatal Message",
+            "labels": [
+                {
+                    "name": "FATAL",
+                    "color": "000000"
+                }
+            ],
+            "patterns": [
+                "/(?P<level>[A-Z]{4,5})/ level=FATAL" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+            "type": "Alert",
+            "name": "MessageDropped",
+            "description": "System might be under stress",
+            "labels": [
+                {
+                    "name": "Message Dropped",
+                    "color": "0000FF"
+                }
+            ],
+            "patterns": [
+                "messages dropped" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+            "type": "Alert",
+            "name": "New Column Family",
+            "description": "New Column Family Created",
+            "labels": [
+                {
+                    "name": "New Column Family",
+                    "color": "00A500"
+                }
+            ],
+            "patterns": [
+                "Create new ColumnFamily" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+            "type": "Alert",
+            "name": "New Key Space",
+            "description": "New Key Space Created",
+            "labels": [
+                {
+                    "name": "New Keyspace",
+                    "color": "6F66A5"
+                }
+            ],
+            "patterns": [
+                "Create new Key Space" 
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    }
+    
+    
+    ],
+    
+    "widgets": [
+    {
+    	"name": "Severity Level",
+    	"description": "Distribution of severity levels: DEBUG, TRACE, WARN, INFO, FATAL",
+    	"search_name": "SeverityLevel",
+    	"type": "BarChart"
+	},
+	{
+		"name": "Estimated Memory Usage",
+		"description": "Average Estimated Memory Usage",
+		"search_name": "EstimatedMemory",
+		"type": "TimelineLineChart"
+	},
+	{
+		"name": "Actual Memory Usage",
+		"description": "Average Actual Memory Usage",
+		"search_name": "ActualMemory",
+		"type": "TimelineLineChart"
+	},
+	{
+    "name": "Actual vs Estimated Memory",
+    "description": "Actual vs Estimated Memory",
+    "searches_names": ["EstimatedMemory","ActualMemory"],
+    "show_tooltip": true,
+    "type": "Multiline"
+	}
+    ]
+}
