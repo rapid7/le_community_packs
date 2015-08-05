@@ -6,42 +6,42 @@
         {
             "name": "AverageMemory",
             "description": "Average Memory Usage by Contained ID",
-            "query": "usage!=null | groupby(id) | average(usage)"
+            "query": "where(usage!=null) groupby(id) calculate(average:usage)"
         },
         {
             "name": "AverageMemory2",
             "description": "Average Memory Usage by Image ID",
-            "query": "usage!=null | groupby(image) | average(usage)"
+            "query": "where(usage!=null) groupby(image) calcualte(average:usage)"
         },      
         {
             "name": "RX_Packets",
             "description": "Incoming Packets by Container ID",
-            "query": "usage!=null | groupby(id) | sum(rx_packets)"
+            "query": "where(usage!=null) groupby(id) calculate(sum:rx_packets)"
         },
         {
             "name": "TX_Packets",
             "description": "Outgoing Packets by Container ID",
-            "query": "usage!=null | groupby(id) | sum(tx_packets)"
+            "query": "where(usage!=null) groupby(id) calculate(sum:tx_packets)"
         },
         {
             "name": "CPU_by_container",
             "description": "CPU Usage by Container ID",
-            "query": "cpu_percent!=null | groupby(id) | average(cpu_percent)"
+            "query": "where(cpu_percent!=null) groupby(id) calculate(average:cpu_percent)"
         },
         {
             "name": "Overall_CPU",
             "description": "Overall CPU usage over all containers",
-            "query": "cpu_percent!=null calculate(AVERAGE:cpu_percent)"
+            "query": "where(cpu_percent!=null) calculate(AVERAGE:cpu_percent)"
         },
         {
             "name": "Overall_Memory",
             "description": "Overall Memory usage over all containers",
-            "query": "usage!=null calculate(AVERAGE:usage)"
+            "query": "where(usage!=null) calculate(AVERAGE:usage)"
         },
          {
             "name": "Cache_by_container",
             "description": "Average cache by container",
-            "query": "cache!=null groupby(id) calculate(AVERAGE:cache)"
+            "query": "where(cache!=null) groupby(id) calculate(AVERAGE:cache)"
         }
         
         
