@@ -6,57 +6,57 @@
         {
             "name": "Device Detection",
             "description": "Detection of different devices used for requests",
-            "query": "devicetype groupby(devicetype)"
+            "query": "where (devicetype) groupby(devicetype)"
         },
         {
             "name": "Unique IP count",
             "description": "Count of unique IPs",
-            "query": "client_ip calculate(UNIQUE:client_ip)"
+            "query": "where (client_ip) calculate(UNIQUE:client_ip)"
         },
         {
             "name": "Requests by country",
             "description": "Requests sorted by country",
-            "query": "country groupby(country) calculate(COUNT)"
+            "query": "where (country) groupby(country) calculate(COUNT)"
         },
         {
             "name": "Fastly Datacenters",
             "description": "Requests by Fastly datacenters",
-            "query": "POP groupby(POP) calculate(COUNT)"
+            "query": "where (POP) groupby(POP) calculate(COUNT)"
         },
         {
             "name": "Requests by region",
             "description": "Requests by regions of the world",
-            "query": "region groupby(region) calculate(COUNT)"
+            "query": "where (region) groupby(region) calculate(COUNT)"
         },
         {
             "name": "Requests by country code",
             "description": "Requests by country code",
-            "query": "country_code groupby(country_code) calculate(COUNT)"
+            "query": "where (country_code) groupby(country_code) calculate(COUNT)"
         },
         {
             "name": "Requests by country name",
             "description": "Requests by country name",
-            "query": "country_name groupby(country_name) calculate(COUNT)"
+            "query": "where (country_name) groupby(country_name) calculate(COUNT)"
         },
         {
             "name": "Status codes",
             "description": "Status codes received",
-            "query": "status groupby(status)"
+            "query": "where (status) groupby(status)"
         },      
         {
             "name": "Hits over time",
             "description": "Number of hits over time",
-            "query": "numberOfHits | SUM"
+            "query": "where (numberOfHits) calculate(SUM:numberOfHits)"
         },
         {
             "name": "Average Request Size",
             "description": "Average Request Size",
-            "query": "size>=0 AND size|AVERAGE"
+            "query": "where (size>=0 AND size) calculate(AVERAGE:size)"
         },
         {
             "name": "Total Downloaded",
             "description": "Total Data Downloaded",
-            "query": "size | SUM"
+            "query": "where (size) calculate(SUM:size)"
         }
     ],
     "tags": [
@@ -171,7 +171,7 @@
                 "min_report_period": "Hour"
             },
             "scheduled_query": {
-                "query": "size>1000000",
+                "query": "where size>1000000",
                 "function": "COUNT",
                 "threshold_value": "+20",
                 "threshold_type": "%",
