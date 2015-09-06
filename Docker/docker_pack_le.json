@@ -11,7 +11,7 @@
         {
             "name": "AverageMemory2",
             "description": "Average Memory Usage by Image ID",
-            "query": "where(usage!=null) groupby(image) calcualte(average:usage)"
+            "query": "where(usage!=null) groupby(image) calculate(average:usage)"
         },      
         {
             "name": "RX_Packets",
