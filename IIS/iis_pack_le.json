@@ -3,54 +3,54 @@
         {
             "name": "Unique_Visitors_Count",
             "description": "A count of the unique visitors over a specified time period",
-            "query": "where(sc-status>0) Calculate(unique:c-ip)"
+            "query": "where(sc_status>0) Calculate(unique:c_ip)"
         },
         {
             "name": "Page_View_Distribution",
             "description": "A quick view of the distribution of page requests",
-            "query": "where(sc-status!=404) GroupBy(c-ip) Calculate(count)"
+            "query": "where(sc_status!=404) GroupBy(c_ip) Calculate(count)"
         },
         {
             "name": "Status_Type_Distribution",
             "description": "A view of the distribution of  status types",
-            "query": "where(sc-status>0) groupby(sc-status) calculate(count)"
+            "query": "where(sc_status>0) groupby(sc_status) calculate(count)"
         },
         {
             "name": "Average_Response_Time",
-            "description": "The average respsone time over a period of time",
-            "query": "where(sc-status>0) calculate(average:time-taken)"
+            "description": "The average response time over a period of time",
+            "query": "where(sc_status>0) calculate(average:time_taken)"
         },
         {
             "name": "AverageResponse_Time_PerPage",
-            "description": "The average respsone time over a period of time per page",
-            "query": "where(sc-status>0) groupby(c-ip) calculate(average:time-taken)"
+            "description": "The average response time over a period of time per page",
+            "query": "where(sc_status>0) groupby(c_ip) calculate(average:time_taken)"
         },
         {
             "name": "404Errors",
             "description": "Total amount of 404 errors for a specific time period",
-            "query": "where(sc-status=404) Calculate(count)"
+            "query": "where(sc_status=404) Calculate(count)"
         },
         {
             "name": "404_URL_Distribution",
             "description": "Distribution of 404 errors over requests",
-            "query": "where(sc-status=404) Groupby(cs-uri-stem) Calculate(count)"
+            "query": "where(sc_status=404) Groupby(cs_uri_stem) Calculate(count)"
         },
         {
             "name": "404_Requests_IPs",
             "description": "Distribution of 404 errors by IP Address",
-            "query": "where(sc-status=404) Groupby(c-ip) Calculate(count)"
+            "query": "where(sc_status=404) Groupby(c_ip) Calculate(count)"
         },
         {
             "name": "UserAgentsDistribution",
             "description": "Distribution of user agents",
-            "query": "where(sc-status > 0) groupby(csUser-Agent) calculate(COUNT)"
+            "query": "where(sc_status > 0) groupby(cs_User_Agent) calculate(COUNT)"
         }
     ],
     "tags": [
         {
             "type": "Alert",
             "name": "Excessive 404's",
-            "description": "excesive amount of 404 errors",
+            "description": "excessive amount of 404 errors",
             "labels": [
                 {
                     "name": "404 Error",
@@ -58,7 +58,7 @@
                 }
             ],
             "patterns": [
-                "sc-status=404"
+                "sc_status=404"
             ],
             "action": {
                 "type": "Alert",
@@ -70,16 +70,16 @@
         },
         {
             "type": "Alert",
-            "name": "Slow Respsone Times",
+            "name": "Slow Response Times",
             "description": "response times for applications are slow",
             "labels": [
                 {
-                    "name": "Slow Respsonse",
+                    "name": "Slow Response",
                     "color": "123456"
                 }
             ],
             "patterns": [
-                "time-taken>1000"
+                "time_taken>1000"
             ],
             "action": {
                 "type": "Alert",
@@ -108,10 +108,10 @@
         {
             "type": "AlertNotify",
             "sub_type": "AnomalyAlert",
-            "name": "Basic Web Anomaly Acticvity",
+            "name": "Basic Web Anomaly Activity",
             "description": "Number requested pages for the current hour vs same time last week",
             "scheduled_query": {
-                "query": "where(sc-status>0)",
+                "query": "where(sc_status>0)",
                 "function": "COUNT",
                 "threshold_value": "+30",
                 "threshold_type": "%",
@@ -133,7 +133,7 @@
             "type": "Count"
         },
         {
-            "name": "Average Respsone Time",
+            "name": "Average Response Time",
             "description": "Time line Line Chart key by second",
             "search_name": "Average_Response_Time",
             "type": "TimelineLineChart",
