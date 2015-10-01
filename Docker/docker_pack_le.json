@@ -1,52 +1,199 @@
 {
-	"name": "Nearform/Logentries Docker Pack ",
-	"description": "For Logentries account subscribers",
-   
+"name": "Logentries Docker Pack",
+"description": "For Logentries account subscribers",
     "searches": [
         {
-            "name": "AverageMemory",
-            "description": "Average Memory Usage by Contained ID",
-            "query": "where(usage!=null) groupby(id) calculate(average:usage)"
+            "name": "Docker: Most Memory By Image",
+            "description": "Docker:  Most intensive memory by image",
+            "query": "where(usage) groupby(image) calculate(average:usage) sort(desc)"
         },
         {
-            "name": "AverageMemory2",
-            "description": "Average Memory Usage by Image ID",
-            "query": "where(usage!=null) groupby(image) calculate(average:usage)"
+            "name": "Docker: Most CPU By Image",
+            "description": "Docker:  Most intensive CPU by image",
+            "query": "where(total_usage) groupby(image) calculate(average:total_usage) sort(desc)"
         },      
         {
-            "name": "RX_Packets",
-            "description": "Incoming Packets by Container ID",
-            "query": "where(usage!=null) groupby(id) calculate(sum:rx_packets)"
+            "name": "Docker: Most Memory By Container",
+            "description": "Docker:  Most intensive memory by container",
+            "query": "where(usage) groupby(name) calculate(average:usage) sort(desc)"
         },
         {
-            "name": "TX_Packets",
-            "description": "Outgoing Packets by Container ID",
-            "query": "where(usage!=null) groupby(id) calculate(sum:tx_packets)"
+            "name": "Docker: Most CPU By Container",
+            "description": "Docker:  Most intensive CPU by container",
+            "query": "where(total_usage) groupby(name) calculate(average:total_usage) sort(desc) "
         },
         {
-            "name": "CPU_by_container",
-            "description": "CPU Usage by Container ID",
-            "query": "where(cpu_percent!=null) groupby(id) calculate(average:cpu_percent)"
+            "name": "Docker: Total memory",
+            "description": "Docker:  Total memory",
+            "query": "where(usage) calculate(average:usage) "
         },
         {
-            "name": "Overall_CPU",
-            "description": "Overall CPU usage over all containers",
-            "query": "where(cpu_percent!=null) calculate(AVERAGE:cpu_percent)"
+            "name": "Docker: Total CPU",
+            "description": "Docker:  Total cpu",
+            "query": "where(total_usage) calculate(average:total_usage) "
         },
         {
-            "name": "Overall_Memory",
-            "description": "Overall Memory usage over all containers",
-            "query": "where(usage!=null) calculate(AVERAGE:usage)"
+            "name": "Docker: Create events",
+            "description": "Docker:  Create events",
+            "query": "where(type='create') calculate(count) "
         },
-         {
-            "name": "Cache_by_container",
-            "description": "Average cache by container",
-            "query": "where(cache!=null) groupby(id) calculate(AVERAGE:cache)"
+        {
+            "name": "Docker: Start events",
+            "description": "Docker:  Start events",
+            "query": "where(type='start') calculate(count) "
+        },       
+        {
+            "name": "Docker: Stop events",
+            "description": "Docker:  Stop events",
+            "query": "where(type='stop') calculate(count)"
+        },
+        {
+            "name": "Docker: Die events",
+            "description": "Docker:  Die events",
+            "query": "where(type='die') calculate(count) "
+        },
+        {
+            "name": "Docker: Attach events",
+            "description": "Docker:  Attach events",
+            "query": "where(type='attach') calculate(count) "
+        },        
+        {
+            "name": "Docker: Kill events",
+            "description": "Docker:  Kill events",
+            "query": "where(type='Kill') calculate(count) "
+        },                
+        {
+            "name": "Docker: Container events",
+            "description": "Docker:  Container events",
+            "query": "where(type) groupby(type) calculate(count)"
+        },        
+        {
+            "name": "Docker: Traffic - rx_bytes",
+            "description": "Docker:  Traffic: rx_bytes",
+            "query": "where(rx_bytes) calculate(average:rx_bytes)  "
+        },
+        {
+            "name": "Docker: Traffic - rx_packets",
+            "description": "Docker:  Traffic: rx_packets",
+            "query": "where(rx_packets) calculate(average:rx_packets) "
+        },
+        {
+            "name": "Docker: Traffic - rx_errors",
+            "description": "Docker:  Traffic: rx_errors",
+            "query": "where(rx_errors) calculate(average:rx_errors)  "
+        },
+        {
+            "name": "Docker: Traffic - rx_dropped",
+            "description": "Docker:  Traffic: rx_dropped",
+            "query": "where(rx_dropped) calculate(average:rx_dropped) "
+        },  
+        {
+            "name": "Docker: Traffic - tx_bytes",
+            "description": "Docker:  Traffic: rx_bytes",
+            "query": "where(tx_bytes) calculate(average:tx_bytes)  "
+        },
+        {
+            "name": "Docker: Traffic - tx_packets",
+            "description": "Docker:  Traffic: tx_packets",
+            "query": "where(tx_packets) calculate(average:tx_packets) "
+        },
+        {
+            "name": "Docker: Traffic - tx_errors",
+            "description": "Docker:  Traffic: tx_errors",
+            "query": "where(tx_errors) calculate(average:tx_errors)  "
+        },
+        {
+            "name": "Docker: Traffic - tx_dropped",
+            "description": "Docker:  Traffic: tx_dropped",
+            "query": "where(tx_dropped) calculate(average:tx_dropped) "
         }
-        
-        
     ],
     "tags": [
+     	{
+            "type": "Alert",
+            "name": "Container created",
+            "description": "Docker container created",
+            "labels": [
+                {
+                    "name": "Container created",
+                    "color": "3498DB"
+                }
+            ],
+            "patterns": [
+                "\"type\":\"create\""
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 100,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+
+        },
+     	{
+            "type": "Alert",
+            "name": "Container Started",
+            "description": "Docker container started",
+            "labels": [
+                {
+                    "name": "Container started",
+                    "color": "2ECC71"
+                }
+            ],
+            "patterns": [
+                "\"type\":\"start\""
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 100,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+     	{
+            "type": "Alert",
+            "name": "Container Died",
+            "description": "Docker container died",
+            "labels": [
+                {
+                    "name": "Container died",
+                    "color": "FF0000"
+                }
+            ],
+            "patterns": [
+                "\"type\":\"die\""
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 100,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+     	{
+            "type": "Alert",
+            "name": "Container Killed",
+            "description": "Docker container killed",
+            "labels": [
+                {
+                    "name": "Container killed",
+                    "color": "FF7202"
+                }
+            ],
+            "patterns": [
+                "\"type\":\"kill\""
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 100,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },                        
         {
             "type": "Alert",
             "name": "CPU_max",
@@ -151,53 +298,110 @@
                 "min_report_count": 1,
                 "min_report_period": "Day"
             }
-        }
-
-        
+        }   
     ],
     
     "widgets": [
+     {
+            "name": "Docker: Create events",
+            "description": "Docker: Create events",
+            "search_name":"Docker: Create events",
+            "show_tooltip": true,
+            "type": "Count"
+        },                                    
         {
-            "name": "Memory by Container ID",
-            "description": "Average Memory Usage by Contained ID",
-            "search_name":"AverageMemory",
+            "name": "Docker: Start events",
+            "description": "Docker: Start events",
+            "search_name":"Docker: Start events",
+            "show_tooltip": true,
+            "type": "Count"
+        },                 
+        {
+            "name": "Docker: Stop events",
+            "description": "Docker: Stop events",
+            "search_name":"Docker: Stop events",
+            "show_tooltip": true,
+            "type": "Count"
+        },                 
+        {
+            "name": "Docker: Die events",
+            "description": "Docker: Die events",
+            "search_name":"Docker: Die events",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Most intensive memory by image",
+            "description": "Most intensive memory by image",
+            "search_name":"Docker: Most Memory By Image",
             "show_tooltip": true,
             "type": "BarChart"
         },
         {
-            "name": "Memory by Image Name",
-            "description": "Average Memory Usage by Image Name",
-            "search_name":"AverageMemory2",
+            "name": "Most intensive CPU by image",
+            "description": "Most intensive CPU by image",
+            "search_name":"Docker: Most CPU By Image",
             "show_tooltip": true,
             "type": "BarChart"
         },
         {
-            "name": "Incoming Packets by Container",
-            "description": "Incoming Packets by Container ID",
-            "search_name":"RX_Packets",
+            "name": "Most intensive memory by container",
+            "description": "Most intensive memory by container",
+            "search_name":"Docker: Most Memory By Container",
             "show_tooltip": true,
             "type": "BarChart"
         },
         {
-            "name": "Outgoing Packets by Container",
-            "description": "Outgoing Packets by Container ID",
-            "search_name":"TX_Packets",
+            "name": "Most intensive CPU by container",
+            "description": "Most intensive CPU by container",
+            "search_name":"Docker: Most CPU By Container",
             "show_tooltip": true,
             "type": "BarChart"
         },  
         {
-            "name": "CPU Usage by Container ID",
-            "description": "CPU Usage by Container ID",
-            "search_name":"CPU_by_container",
+            "name": "Total memory",
+            "description": "Total average memory",
+            "search_name" : "Docker: Total memory",
             "show_tooltip": true,
-            "type": "BarChart"
+            "type": "TimelineBarChart"
+        },
+        {
+            "name": "Total CPU",
+            "description": "Total average CPU",
+            "search_name":"Docker: Total CPU",
+            "show_tooltip": true,
+            "type": "TimelineBarChart"
         },
 		{
-    		"name": "Cache by Container ID",
-    		"description": "Read/Writes to disk by container",
-    		"search_name":"Cache_by_container",
-    		"show_tooltip": true,
-    		"type": "BarChart"
-		}
+            "name": "Container events by type",
+            "description": "Container events by type",
+			"search_name": "Docker: Container events",
+            "show_tooltip": true,
+            "type": "PieChart"
+        },            
+		{
+            "name": "Traffic received",
+            "description": "Traffic received",
+			"searches_names": [
+				"Docker: Traffic - rx_bytes",         
+				"Docker: Traffic - rx_packets",
+				"Docker: Traffic - rx_errors",
+				"Docker: Traffic - rx_dropped"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        },  
+		{
+            "name": "Traffic transferred",
+            "description": "Traffic transferred",
+			"searches_names": [
+				"Docker: Traffic - tx_bytes",
+				"Docker: Traffic - tx_packets",
+				"Docker: Traffic - tx_errors",
+				"Docker: Traffic - tx_dropped"
+            ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        }       
     ]
 }
