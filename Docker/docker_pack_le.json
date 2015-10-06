@@ -25,12 +25,12 @@
         {
             "name": "Docker: Total memory",
             "description": "Docker:  Total memory",
-            "query": "where(usage) calculate(average:usage) "
+            "query": "where(usage) calculate(average:usage) timeSlice(50)"
         },
         {
             "name": "Docker: Total CPU",
             "description": "Docker:  Total cpu",
-            "query": "where(total_usage) calculate(average:total_usage) "
+            "query": "where(total_usage) calculate(average:total_usage) timeSlice(50)"
         },
         {
             "name": "Docker: Create events",
