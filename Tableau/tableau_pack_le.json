@@ -1,0 +1,234 @@
+{
+    "searches": [
+        {
+            "name": "Running jobs",
+            "description": "Running jobs",
+            "query": "where(/Running job of type :(?P<TsJob>\\w+)/) groupby(TsJob)"
+        },
+        {
+            "name": "Slow response time",
+            "description": "Slow response time",
+            "query": "where(k=end-query AND elapsed>10) groupby(site) calculate(count)"
+        },
+         {
+            "name": "CSV",
+            "description": "CSV",
+            "query": "where((/csv/i)) calculate(count)"
+        },
+        {
+            "name": "Slow response time",
+            "description": "Slow response time",
+            "query": "where(k=end-query AND elapsed >=10) groupby(site)"
+        },
+        {
+            "name": "404 error",
+            "description": "404 error",
+            "query": "where(/HTTP\\/1\\.1\" \"-\" (?P<status>\\d{3})/ status=404)"
+        },
+        {
+            "name": "Severity level = INFO",
+            "description": "Severity level = INFO",
+            "query": "where(-(\"sev\"=\"info\"))"
+        },
+        {
+            "name": "Elapsed time",
+            "description": "Elapsed time",
+            "query": "where(k=\"end-update-sheet\") groupby(site) calculate(average:elapsed) sort(asc)"
+        },
+        {
+            "name": "Active memory",
+            "description": "Active memory",
+            "query": "where(Mem.active) calculate(average:Mem.active)"
+        },
+        {
+            "name": "CPU usage",
+            "description": "CPU usage",
+            "query": "where(CPU.system) calculate(average:CPU.system)"
+        },
+        {
+            "name": "Invalid user sorted",
+            "description": "Invalid user sorted in descending order",
+            "query": "where(/Invalid user: (?P<Invalid>(\\w*\\W*)+)/) groupby(Invalid) sort(desc)"
+        }
+
+    ],
+    "tags": [
+        {
+             "type":"Alert",
+             "name":"Imported",
+             "labels":[
+                {
+                   "name":"Imported",
+                   "color":"00FF75"
+                }
+             ],
+             "patterns":[
+                "/successfully imported/i"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":10,
+                    "min_report_count":10,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        },
+        {
+             "type":"Alert",
+             "name":"Invalid User",
+             "labels":[
+                {
+                   "name":"Invalid User",
+                   "color":"FF7200"
+                }
+             ],
+             "patterns":[
+                "/Invalid user:/i"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":10,
+                    "min_report_count":10,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        },
+        {
+             "type":"Alert",
+             "name":"Time consuming query",
+             "labels":[
+                {
+                   "name":"Query took more than 60 second",
+                   "color":"B200FF"
+                }
+             ],
+             "patterns":[
+                "k=end-query AND elapsed>60"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":10,
+                    "min_report_count":10,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        },
+        {
+             "type":"Alert",
+             "name":"Uptime tag",
+             "labels":[
+                {
+                   "name":"Uptime stamp",
+                   "color":"FFCE00"
+                }
+             ],
+             "patterns":[
+                "/uptime/i"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":1,
+                    "min_report_count":1,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        },
+        {
+             "type":"Alert",
+             "name":"Single download",
+             "labels":[
+                {
+                   "name":"Single download",
+                   "color":"00FFC3"
+                }
+             ],
+             "patterns":[
+                "where(/download=true/i)"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":10,
+                    "min_report_count":10,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        },
+        {
+             "type":"Alert",
+             "name":"High memory usage",
+             "labels":[
+                {
+                   "name":"High memory usage",
+                   "color":"00A8FF"
+                }
+             ],
+             "patterns":[
+                "Mem.active>=50"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":1,
+                    "min_report_count":1,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        },
+        {
+             "type":"Alert",
+             "name":"Very High memory usage",
+             "labels":[
+                {
+                   "name":"Vert High memory usage",
+                   "color":"E28EFF"
+                }
+             ],
+             "patterns":[
+                "Mem.active>=70"
+             ],
+             "action": {
+                    "type": "Alert",
+                    "min_matches_count":1,
+                    "min_report_count":1,
+                    "min_matches_period":"Day",
+                    "min_report_period":"Day"
+            }
+        }
+
+
+
+
+
+    ],
+    "widgets": [
+        {
+            "name": "Running Jobs",
+            "description": "Running jobs",
+            "search_name": "Running jobs",
+            "type": "BarChart"
+        },
+        {
+            "name": "Slow response time",
+            "description": "Slow response time",
+            "search_name": "Slow response time",
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "Elapsed time by site",
+            "description": "Elapsed time by site",
+            "search_name": "Elapsed time",
+            "type": "BarChart"
+        },
+        {
+            "name": "Active memory",
+            "description": "Active memory",
+            "search_name": "Active memory",
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "CPU usage",
+            "description": "CPU usage",
+            "search_name": "CPU usage",
+            "type": "TimelineLineChart"
+        }
+    ]
+}
