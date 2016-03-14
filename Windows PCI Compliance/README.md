@@ -7,6 +7,6 @@ P.S. - I found this [blog](http://blog.jakeeliasz.com/2014/04/03/part-1-audit-tr
 
 This Community Pack contains the following:
 
-*Dashboards: High level dashboards counting the number of invalid logins, admin accounts created, accounts locked out, Windows Audit Logs cleared, and changes to the Windows Auditing Policy within your entire environment.
+* Dashboards: High level dashboards counting the number of invalid logins, admin accounts created, accounts locked out, Windows Audit Logs cleared, and changes to the Windows Auditing Policy within your entire environment.
 
-*Saved Searches: The searches which are powering the dashboards, and searches to help you investigate the sources of invalid logins, admin accounts created, accounts locked out, Audit Logs cleared, and changes to the Windows Audit Policy.
+* Saved Searches: The searches which are powering the dashboards, and searches to help you investigate the sources of invalid logins, admin accounts created, accounts locked out, Audit Logs cleared, and changes to the Windows Audit Policy.
