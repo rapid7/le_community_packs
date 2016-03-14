@@ -1,0 +1,185 @@
+{
+    "name": "Windows PCI Compliance Pack",
+    "description": "For Logentries account subscribers",
+    "searches": [
+        {
+            "name": "Invalid Logins",
+            "description": "Logins with incorrect credentials",
+            "query": "where(/4625 EVENT/ OR /\\s529 EVENT/)"
+        },
+        {
+            "name": "Admin Account Created",
+            "description": "A user was added to the local Administrators group",
+            "query": "where(/4732 EVENT/ OR /\\s636 EVENT/)"
+        },
+        {
+            "name": "Account Locked Out",
+            "description": "Too many invalid logins attempts occurred",
+            "query": "where(/4740 EVENT/ OR /\\s644 EVENT/)"
+        },
+        {
+            "name": "Audit Log Cleared",
+            "description": "The Winodws Audit Log was cleared",
+            "query": "where(/1102 EVENT/ OR /\\s517 EVENT/)"
+        },
+        {
+            "name": "Audit Policy Changed",
+            "description": "The Windows Audit Policy was modified",
+            "query": "where(/4719 EVENT/ OR /\\s612 EVENT/)"
+        },
+        {
+            "name": "Invalid Logins By Host",
+            "description": "Provides a bar chart of the invalid logins, broken down by each host",
+            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /4625 EVENT/ OR /\\s529 EVENT/) groupby(host))"
+        },
+        {
+            "name": "Admin Account Created by Host",
+            "description": "Provides a bar chart of the Administrator accounts created, broken down by each host",
+            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /4732 EVENT/ OR /\\s636 EVENT/) groupby(host)"
+        },
+        {
+            "name": "Accounts Locked Out by Host",
+            "description": "Provides a bar chart of the number of accounts locked out, broken down by each host",
+            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /4740 EVENT/ OR /\\s644 EVENT/) groupby(host)"
+        },
+        {
+            "name": "Audit Log Cleared by Host",
+            "description": "Provides a bar chart of the Windows Audit Log Cleared events, broken down by each host",
+            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /1102 EVENT/ OR /\\s517 EVENT/) groupby(host)"
+        },
+        {
+            "name": "Audit Policy Changed by Host",
+            "description": "Provides a bar chart of the Windows Audit Policy Changed events, broken down by each host",
+            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /4719 EVENT/ OR /\\s612 EVENT/) groupby(host)"
+        }
+    ],
+    "tags": [{
+        "type": "Alert",
+        "name": "Windows Failed Login",
+        "description": "Windows Failed Login",
+        "labels": [{
+            "name": "Failed Login",
+            "color": "660066"
+        }],
+        "patterns": [
+            "/4625 EVENT/ OR /\\s529/"
+        ],
+        "action": {
+            "type": "Alert",
+            "min_matches_count": 1,
+            "min_report_count": 1,
+            "min_matches_period": "Hour",
+            "min_report_period": "Hour"
+        }
+    }, {
+        "type": "Alert",
+        "name": "Admin Account Created",
+        "description": "Admin Account Created",
+        "labels": [{
+            "name": "Admin Created",
+            "color": "660066"
+        }],
+        "patterns": [
+            "/4732 EVENT/ OR /\\s636 EVENT/"
+        ],
+        "action": {
+            "type": "Alert",
+            "min_matches_count": 1,
+            "min_report_count": 1,
+            "min_matches_period": "Hour",
+            "min_report_period": "Hour"
+        }
+    }, {
+        "type": "Alert",
+        "name": "Account Locked Out",
+        "description": "Account Locked Out",
+        "labels": [{
+            "name": "Account Locked Out",
+            "color": "660066"
+        }],
+        "patterns": [
+            "/4740 EVENT/ OR /\\s644 EVENT/"
+        ],
+        "action": {
+            "type": "Alert",
+            "min_matches_count": 1,
+            "min_report_count": 1,
+            "min_matches_period": "Hour",
+            "min_report_period": "Hour"
+        }
+    }, {
+        "type": "Alert",
+        "name": "Audit Log Cleared",
+        "description": "Audit Log Cleared",
+        "labels": [{
+            "name": "Audit Log Cleared",
+            "color": "660066"
+        }],
+        "patterns": [
+            "/1102 EVENT/ OR /\\s517 EVENT/"
+        ],
+        "action": {
+            "type": "Alert",
+            "min_matches_count": 1,
+            "min_report_count": 1,
+            "min_matches_period": "Hour",
+            "min_report_period": "Hour"
+        }
+    }, {
+        "type": "Alert",
+        "name": "Audit Policy Changed",
+        "description": "Audit Policy Changed",
+        "labels": [{
+            "name": "Admin Created",
+            "color": "660066"
+        }],
+        "patterns": [
+            "/4719 EVENT/ OR /\\s612 EVENT/"
+        ],
+        "action": {
+            "type": "Alert",
+            "min_matches_count": 1,
+            "min_report_count": 1,
+            "min_matches_period": "Hour",
+            "min_report_period": "Hour"
+        }
+    }
+    ],
+    "widgets": [
+        {
+            "name": "Invalid Logins",
+            "description":"Invalid Logins",
+            "search_name":"Invalid Logins",
+            "show_tooltip": true,
+            "type": "Count"
+        },                                    
+        {
+            "name": "Admin Account Created",
+            "description": "Admin Account Created",
+            "search_name":"Admin Account Created",
+            "show_tooltip": true,
+            "type": "Count"
+        },                 
+        {
+            "name": "Account Locked Out",
+            "description": "Account Locked Out",
+            "search_name":"Account Locked Out",
+            "show_tooltip": true,
+            "type": "Count"
+        },                 
+        {
+            "name": "Audit Policy Changed",
+            "description": "Audit Policy Changed",
+            "search_name":"Audit Policy Changed",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Audit Log Cleared",
+            "description": "Audit Log Cleared",
+            "search_name":"Audit Log Cleared",
+            "show_tooltip": true,
+            "type": "Count"
+        }
+    ]
+}
