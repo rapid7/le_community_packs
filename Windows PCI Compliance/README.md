@@ -11,4 +11,4 @@ This Community Pack contains the following:
 
 * Saved Searches: The searches which are powering the dashboards, and the searches to help you investigate the sources of invalid logins, admin accounts created, accounts locked out, Audit Logs cleared, and changes to the Windows Audit Policy. [Here](http://take.ms/1NP9k "Here") is what the saved searches look like, the "by host" saved searches are the searches you would use to investigate the source of Invalid Logins, Accounts Locked Out, etc.
 
-*Tags and Alerts: Tags highlight instances of important Windows PCI events. These tags can quickly be configured as basic alerts, anomaly alerts and inactivity alerts to highlight spikes in important security events, password updates, and policy related events.
+* Tags and Alerts: Tags highlight instances of important Windows PCI events. These tags can quickly be configured as basic alerts, anomaly alerts and inactivity alerts to highlight spikes in important security events, password updates, and policy related events.
