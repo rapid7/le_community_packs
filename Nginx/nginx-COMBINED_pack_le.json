@@ -1,41 +1,44 @@
 {
-	"name": "Apache Server Monitoring Pack",
+	"name": "NGINX powered by RE2",
 	"description": "For Logentries account subscribers",
    
     "searches": [
         {
             "name": "HTTPcodes",
             "description": "HTTP Codes Distribution",
-            "query": "/\" (?P<httpcode>\\b\\d{3})/ groupby(httpcode) calculate(COUNT)"
+            "query": "groupby(http.status) calculate(COUNT:http.status)"
         },
          {
             "name": "URLDistribution",
             "description": "Individual URLs accessed",
-            "query": "/\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
+            "query": "groupby(http.path) calculate(COUNT:http.path)"
         },
         {
             "name": "TotalBytes",
             "description": "Total bytes requested in average",
-            "query": "/\\b (?P<bytes>\\d{1,})/ calculate(AVERAGE:bytes)"
+            "query": "calculate(AVERAGE:http.bytes)"
         },
         {
-        	"name": "url401",
-            "description": "List of all URLs that yield 401 error",
-            "query": "/\" (?P<httpcode>\\b\\d{3})/ httpcode=401 AND /\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
+            "name": "Totalphp",
+            "description": "Total number of .php request",
+            "query": "where(/\"GET .{1,}\\.php/) calculate(COUNT)"
         },
         {
-        	"name": "url200",
-            "description": "List of all URLs that yield 200 OK",
-            "query": "/\" (?P<httpcode>\\b\\d{3})/ httpcode=200 AND /\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
-        },
+            "name": "Totaljpg",
+            "description": "Total number of .jpg request",
+            "query": "where(/\"GET .{1,}\\.jpg/) calculate(COUNT)"
+        },        
         {
-        	"name": "url404",
-            "description": "List of all URLs that yield 404 error",
-            "query": "/\" (?P<httpcode>\\b\\d{3})/ httpcode=404 AND /\"(?P<url>.{1,})\" \\d{3}/ groupby(url) calculate(COUNT)"
+            "name": "Referer",
+            "description": "Referer Distribution",
+            "query": "where(http.status) groupby(http.referer) calculate(COUNT:http.referer)"
+        },
+         {
+            "name": "UserAgent",
+            "description": "User Agent Distribution",
+            "query": "groupby(http.agent) calculate(COUNT:http.agent)"
         }
-        
-        
-        
+          
     ],
     "tags": [
     {
@@ -49,7 +52,7 @@
                 }
             ],
             "patterns": [
-                "/\" (?P<httpcode>\\b\\d{3})/ httpcode=404"
+                "http.status=404"
             ],
             "action": {
                 "type": "Alert",
@@ -71,7 +74,7 @@
                 }
             ],
             "patterns": [
-                "/\" (?P<httpcode>\\b\\d{3})/ httpcode=200"
+                "http.status=200"
             ],
             "action": {
                 "type": "Alert",
@@ -92,7 +95,7 @@
                 }
             ],
             "patterns": [
-                "/\" (?P<httpcode>\\b\\d{3})/ httpcode=401"
+                "http.status=401"
             ],
             "action": {
                 "type": "Alert",
@@ -127,23 +130,30 @@
             "type": "TimelineLineChart"
         },
         {
-            "name": "URLs vs 401 errors",
-            "description": "List of all URLs that yield 401 error",
-            "search_name":"url401",
+            "name": "Total number of .php request",
+            "description": "Number of request for php pages",
+            "search_name":"Totalphp",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Total number of .jpg request",
+            "description": "Number of request for jpg pages",
+            "search_name":"Totaljpg",
+            "show_tooltip": true,
+            "type": "Count"
+        },
+        {
+            "name": "Distribution of referers",
+            "description": "Distribution of referers",
+            "search_name":"Referer",
             "show_tooltip": true,
             "type": "BarChart"
         },
         {
-            "name": "URLs vs 404 errors",
-            "description": "List of all URLs that yield 404 error",
-            "search_name":"url404",
-            "show_tooltip": true,
-            "type": "BarChart"
-        },
-        {
-            "name": "URLs vs 200 http codes",
-            "description": "List of all URLs that yield 401 error",
-            "search_name":"url200",
+            "name": "User-Agent Distribution",
+            "description": "User-Agent Distribution",
+            "search_name":"UserAgent",
             "show_tooltip": true,
             "type": "BarChart"
         }

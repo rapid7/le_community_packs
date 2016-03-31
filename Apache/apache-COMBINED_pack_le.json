@@ -1,0 +1,153 @@
+{
+	"name": "Apache Server Monitoring Pack",
+	"description": "For Logentries account subscribers",
+   
+    "searches": [
+        {
+            "name": "HTTPcodes",
+            "description": "HTTP Codes Distribution",
+            "query": "groupby(http.status) calculate(COUNT:http.status)"
+        },
+         {
+            "name": "URLDistribution",
+            "description": "Individual URLs accessed",
+            "query": "groupby(http.path) calculate(COUNT:http.path)"
+        },
+        {
+            "name": "TotalBytes",
+            "description": "Total bytes requested in average",
+            "query": "calculate(AVERAGE:http.bytes)"
+        },
+        {
+        	"name": "url401",
+            "description": "List of all URLs that yield 401 error",
+            "query": "where(http.status=401) groupby(http.path) calculate(COUNT:http.status)"
+        },
+        {
+        	"name": "url200",
+            "description": "List of all URLs that yield 200 OK",
+            "query": "where(http.status=200) groupby(http.path) calculate(COUNT:http.status)"
+        },
+        {
+        	"name": "url404",
+            "description": "List of all URLs that yield 404 error",
+            "query": "where(http.status=404) groupby(http.path) calculate(COUNT:http.status)"
+        }
+        
+        
+        
+    ],
+    "tags": [
+    {
+            "type": "Alert",
+            "name": "404 - Not Found",
+            "description": "404 Error",
+            "labels": [
+                {
+                    "name": "404 - Not Found",
+                    "color": "FF0000"
+                }
+            ],
+            "patterns": [
+                "http.status=404"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 5,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+    },
+    {
+        
+            "type": "Alert",
+            "name": "OK Pass",
+            "description": "Correct Pass",
+            "labels": [
+                {
+                    "name": "200-OK",
+                    "color": "33CC33"
+                }
+            ],
+            "patterns": [
+                "http.status=200"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 0,
+                "min_matches_period": "Day",
+                "min_report_count": 0,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "401 - unauthorized",
+            "description": "401 unauthorized",
+            "labels": [
+                {
+                    "name": "401 - unauthorized",
+                    "color": "FF0000"
+                }
+            ],
+            "patterns": [
+                "http.status=401"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 5,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        }
+       
+    ],
+    "widgets": [
+        {
+            "name": "HTTP Codes",
+            "description": "HTTP Codes Distribution",
+            "search_name":"HTTPcodes",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "URLs Distribution",
+            "description": "Individual URLs accessed",
+            "search_name":"URLDistribution",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "Total Bytes Requested",
+            "description": "Total bytes requested in average",
+            "search_name":"TotalBytes",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+            "name": "URLs vs 401 errors",
+            "description": "List of all URLs that yield 401 error",
+            "search_name":"url401",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "URLs vs 404 errors",
+            "description": "List of all URLs that yield 404 error",
+            "search_name":"url404",
+            "show_tooltip": true,
+            "type": "BarChart"
+        },
+        {
+            "name": "URLs vs 200 http codes",
+            "description": "List of all URLs that yield 401 error",
+            "search_name":"url200",
+            "show_tooltip": true,
+            "type": "BarChart"
+        }
+        
+        
+    ]
+}
