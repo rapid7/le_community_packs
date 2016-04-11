@@ -30,7 +30,7 @@
         {
             "name": "Invalid Logins By Host",
             "description": "Provides a bar chart of the invalid logins, broken down by each host",
-            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /4625 EVENT/ OR /\\s529 EVENT/) groupby(host))"
+            "query": "where(/:\\d{2} (?P<host>\\w+)./ AND /4625 EVENT/ OR /\\s529 EVENT/) groupby(host)"
         },
         {
             "name": "Admin Account Created by Host",
