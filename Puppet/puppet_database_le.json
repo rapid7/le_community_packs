@@ -1,0 +1,63 @@
+{
+        "searches": [
+        {
+            "name": "DatabaseErrors",
+            "description": "Puppet Database Errors",
+            "query": "where(Could not retrieve catalog OR OutOfMemoryError) calculate(count)"
+        }
+
+        ],
+
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "SSL Error",
+            "description": "SSL Error",
+            "labels": [
+                {
+                    "name": "SSL Error",
+                    "color": "F179FF"
+                }
+            ],
+            "patterns": [
+                "Could not retrieve catalog"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Out of memory",
+            "description": "Out of memory",
+            "labels": [
+                {
+                    "name": "Out of memory",
+                    "color": "00B1FF"
+                }
+            ],
+            "patterns": [
+                "OutOfMemoryError"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Database Errors ",
+            "description": "Puppet Database Errors",
+            "search_name": "DatabaseErrors",
+            "type": "Count"
+        }
+    ]
+}

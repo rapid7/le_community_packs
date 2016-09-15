@@ -1,0 +1,133 @@
+{
+    "searches": [
+        {
+            "name": "MasterErrors",
+            "description": "Puppet Master Errors",
+            "query": "where(Failed to generate additional resources OR Could not retrieve plugin OR Could not request certificate OR Name or service not known OR already initialized constant argv) calculate(count)"
+        }
+
+        ],
+
+        "tags": [
+        {
+            "type": "Alert",
+            "name": "Failed to generate resources",
+            "description": "Failed to generate resources",
+            "labels": [
+                {
+                    "name": "No resources",
+                    "color": "00FF45"
+                }
+            ],
+            "patterns": [
+                "Failed to generate additional resources"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Failed retrieval",
+            "description": "Could not retrieve plugin",
+            "labels": [
+                {
+                    "name": "Retrieval fail",
+                    "color": "FFB000"
+                }
+            ],
+            "patterns": [
+                "Could not retrieve plugin"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Certificate error",
+            "description": "Could not retrieve certificate",
+            "labels": [
+                {
+                    "name": "Certificate error",
+                    "color": "A865FF"
+                }
+            ],
+            "patterns": [
+                "Could not request certificate"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Nodes to Master issue",
+            "description": "Nodes are not reaching a master",
+            "labels": [
+                {
+                    "name": "Nodes/Master issue",
+                    "color": "ADC3FF"
+                }
+            ],
+            "patterns": [
+                "Name or service not known"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Warning-ruby reset variable",
+            "description": "Harmless log ",
+            "labels": [
+                {
+                    "name": "Warning-ruby",
+                    "color": "7FFFC1"
+                }
+            ],
+            "patterns": [
+                "already initialized constant argv"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Master Errors ",
+            "description": "Puppet Master Errors",
+            "search_name": "MasterErrors",
+            "type": "Count"
+        },
+        {
+            "name": "Master Errors Timeline",
+            "description": "Master Errors Timeline",
+            "search_name": "MasterErrors",
+            "type": "TimelineBarChart",
+            "show_tooltip": true
+        }
+    ]
+}

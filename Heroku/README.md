@@ -1,3 +1,15 @@
+Heroku Postgres Pack
+-------------------------------
+
+This Pack for the Heroku Postgres Add-on helps database administrators and application developers to better understand their application behavior and analyze important processes occurring between the app and database.
+
+The Heroku Postgres Add-on Community Pack contains the following:
+
+* Saved Queries: Automatically look for FATAL, WARNING and ERROR type log events and to reveal interesting behaviors across the database.
+* Tags and Alerts: Access an extensive collection of pre-installed tags that can be used to understand the messages produced by Postgres. Use real-time alerts to help uncover, for example, the maximum number of connections allowed for your applications. There are more than 15 Tags that come pre-configured in the Community Pack.
+* Dashboards: Pre-configured dashboards offer a real-time view of log event distribution by severity level. The user is able to graph an average execution time for slow events that are logged by Heroku Postgres.
+
+
 Heroku Log Runtime Metrics Pack
 -------------------------------
 

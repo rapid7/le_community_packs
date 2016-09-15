@@ -1,0 +1,66 @@
+{
+    "searches": [
+        {
+            "name": "ConsoleErrors",
+            "description": "Puppet Console Errors",
+            "query": "where(Invalid credentials OR Certificate Verification: Error) calculate(count)"
+        }
+
+        ],
+
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "No Facts Listed",
+            "description": "No Facts Listed For Nodes",
+            "labels": [
+                {
+                    "name": "Certificate problem",
+                    "color": "98C8FF"
+                }
+            ],
+            "patterns": [
+                "Certificate Verification: Error"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Cannot Log In",
+            "description": "Authentication Problem",
+            "labels": [
+                {
+                    "name": "Authentication failure",
+                    "color": "FF0026"
+                }
+            ],
+            "patterns": [
+                "Invalid credentials"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Console Errors ",
+            "description": "Puppet Console Errors",
+            "search_name": "ConsoleErrors",
+            "type": "Count"
+        }
+    ]
+
+
+
+}
