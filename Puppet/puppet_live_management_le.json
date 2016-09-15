@@ -1,0 +1,83 @@
+{
+    "searches": [
+        {
+            "name": "LiveManagementErrors",
+            "description": "Live Management Errors",
+            "query": "where(No MCollective servers responded OR password is invalid OR Remote host closed connection) calculate(count)"
+        }
+
+        ],
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Mcollective Failed",
+            "description": "Mcollective doesn't respond",
+            "labels": [
+                {
+                    "name": "Mcollective error",
+                    "color": "FF6BB9"
+                }
+            ],
+            "patterns": [
+                "No MCollective servers responded"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Invalid Password",
+            "description": "Password is invalid",
+            "labels": [
+                {
+                    "name": "Invalid password",
+                    "color": "61C7FF"
+                }
+            ],
+            "patterns": [
+                "password is invalid"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Possible firewall",
+            "description": "Possible firewall - connection dropped",
+            "labels": [
+                {
+                    "name": "Possible firewall",
+                    "color": "E6FF65"
+                }
+            ],
+            "patterns": [
+                "Remote host closed connection"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 20,
+                "min_matches_period": "Hour",
+                "min_report_count": 1,
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "widgets": [
+        {
+            "name": "Live Management Errors",
+            "description": "Puppet Live Management Errors",
+            "search_name": "LiveManagementErrors",
+            "type": "Count"
+        }
+    ]
+}
