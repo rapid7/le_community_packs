@@ -1,0 +1,361 @@
+{
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Slow Query",
+            "description": "Query took longer than 50ms or 2 seconds on Postgres 9.2+",
+            "labels": [
+                {
+                    "name": "Slow Query",
+                    "color": "2000E2"
+                }
+            ],
+            "patterns": [
+                "duration"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Unexpected EOF",
+            "description": "Unexpected EOF on client connection",
+            "labels": [
+                {
+                    "name": "Unexpected EOF",
+                    "color": "E20071"
+                }
+            ],
+            "patterns": [
+                "unexpected EOF on client connection"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Data not received",
+            "description": "Could not receive data from client: Connection reset by peer",
+            "labels": [
+                {
+                    "name": "Data not received",
+                    "color": "E24800"
+                }
+            ],
+            "patterns": [
+                "could not receive data from client"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Too many connections",
+            "description": "FATAL: too many connections for role",
+            "labels": [
+                {
+                    "name": "Too many connections",
+                    "color": "E20300"
+                }
+            ],
+            "patterns": [
+                "too many connections for role"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Possible SSL problem",
+            "description": "Could not receive data from WAL stream",
+            "labels": [
+                {
+                    "name": "Possible SSL problem",
+                    "color": "6F72E2"
+                }
+            ],
+            "patterns": [
+                "could not receive data from WAL"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+         ,
+        {
+            "type": "Alert",
+            "name": "Role name not permitted",
+            "description": "Role name not permitted to log in",
+            "labels": [
+                {
+                    "name": "Role unable to log in",
+                    "color": "0081E2"
+                }
+            ],
+            "patterns": [
+                "is not permitted to log in"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Terminating connection",
+            "description": "Terminating connection due to administrator command",
+            "labels": [
+                {
+                    "name": "Terminating connection",
+                    "color": "B8A4E2"
+                }
+            ],
+            "patterns": [
+                "terminating connection due to administrator command"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "No more connections",
+            "description": "No more connections available - upgrade your plan",
+            "labels": [
+                {
+                    "name": "No more connections",
+                    "color": "00E255"
+                }
+            ],
+            "patterns": [
+                "remaining connection slots are reserved"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+         ,
+        {
+            "type": "Alert",
+            "name": "Temporary file > 10240 kilobytes",
+            "description": "Temporary file exceeds 10240 kilobytes",
+            "labels": [
+                {
+                    "name": "Temp file exceeds 10240kb",
+                    "color": "3F4091"
+                }
+            ],
+            "patterns": [
+                "temporary file"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+         ,
+        {
+            "type": "Alert",
+            "name": "Row Limit Reached",
+            "description": "Row Limit Reached - consider upgrading your plan",
+            "labels": [
+                {
+                    "name": "Row Limit Reached",
+                    "color": "60914B"
+                }
+            ],
+            "patterns": [
+                "permission denied for relation"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Operator does not exist",
+            "description": "Operator is not adequate for the data type",
+            "labels": [
+                {
+                    "name": "Operator invalid",
+                    "color": "910023"
+                }
+            ],
+            "patterns": [
+                "operator does not exist"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Table does not exist",
+            "description": "Query is referencing a table that is not on the database",
+            "labels": [
+                {
+                    "name": "Table does not exist",
+                    "color": "CEA1A8"
+                }
+            ],
+            "patterns": [
+                "relation AND does not exist"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Cannot cast",
+            "description": "Postgres does not know how to cast the value",
+            "labels": [
+                {
+                    "name": "Cannot cast to type",
+                    "color": "CECC54"
+                }
+            ],
+            "patterns": [
+                "cannot be cast to type"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "No connection to the server",
+            "description": "No connection to the server",
+            "labels": [
+                {
+                    "name": "No Server Connection",
+                    "color": "CE0051"
+                }
+            ],
+            "patterns": [
+                "no connection to the server"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+        ,
+        {
+            "type": "Alert",
+            "name": "Value too long",
+            "description": "Value too long for type character",
+            "labels": [
+                {
+                    "name": "Value too long",
+                    "color": "00B2CE"
+                }
+            ],
+            "patterns": [
+                "value too long for type character"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+    "searches": [
+        {
+            "name": "slow_query_average",
+            "query": "where(/duration: (?P<time>\\d+\\.\\d+) ms/) calculate(AVERAGE:time)"
+        },
+        {
+            "name": "severity_levels",
+            "query": "where(/(?P<severity>LOG|DEBUG|INFO|NOTICE|WARNING|FATAL|ERROR|PANIC)/) groupby(severity) calculate(COUNT)"
+        }
+        
+        
+    ],
+    "widgets": [
+        {
+            "name": "Slow Query Average Time",
+            "description": "Average time of slow queries",
+            "search_name": "slow_query_average",
+            "type": "TimelineLineChart",
+            "show_tooltip": true
+        },
+        {
+            "name": "Log Severity Levels",
+            "description": "Distribution of Log Severity Levels",
+            "search_name": "severity_levels",
+            "type": "BarChart",
+            "show_tooltip": true
+        }
+    ]
+}
