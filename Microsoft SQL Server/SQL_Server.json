@@ -1,0 +1,298 @@
+{
+    "name": "Microsoft SQL Server Pack",
+    "description": "For Logentries account subscribers using Microsoft SQL Server",        
+		
+		"searches": [
+        {
+            "name": "Could not allocate space for object",
+            "description": "Insufficient disk space in filegroup",
+            "query": "where /1105 EVENT/"
+        },
+        {
+            "name": "Backup Failed",
+            "description": "A backup failed to complete",
+            "query": "where /3041 EVENT/"
+        },
+        {
+            "name": "Tranaction Log Full",
+            "description": "Transaction Log Full",
+            "query": "where /9002 EVENT/"
+        },
+        {
+            "name": "Log Scan Number Invalid",
+            "description": "Possible database corruption",
+            "query": "where /9003 EVENT/"
+        },
+        {
+            "name": "Replication agent failed",
+            "description": "Replication agent failed",
+            "query": "where /14151 EVENT/"
+        },
+        {
+            "name": "Operating System Error",
+            "description": "Operating System Error",
+            "query": "where /17053 EVENT/"
+        },
+        {
+            "name": "File Open Error",
+            "description": "Error occurred while opening file",
+            "query": "where /17113 EVENT/"
+        },
+        {
+            "name": "Operating System Error",
+            "description": "Error occurred while creating or opening file",
+            "query": "where /17207 EVENT/"
+        },
+        {
+            "name": "Login Failed",
+            "description": "Login attempt from untrusted domain",
+            "query": "where /18452 EVENT/"
+        },
+        {
+            "name": "Login Failed for User",
+            "description": "Login failed for user",
+            "query": "where /18456 EVENT/"
+        },
+        {
+            "name": "Could not connect to server",
+            "description": "Login is not defined as remote at server",
+            "query": "where /18483 EVENT/"
+        }
+		
+	],
+	
+	"tags": [
+        {
+            "type": "Alert",
+            "name": "Could not allocate space for object",
+            "description": "Insufficient disk space in filegroup",
+            "labels": [
+                {
+                    "name": "Could not allocate space for object",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/1105 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Backup Failed",
+            "description": "A backup failed to complete",
+            "labels": [
+                {
+                    "name": "Backup Failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/3041 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Tranaction Log Full",
+            "description": "Transaction Log Full",
+            "labels": [
+                {
+                    "name": "Tranaction Log Full",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/9002 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Log Scan Number Invalid",
+            "description": "Possible database corruption",
+            "labels": [
+                {
+                    "name": "Log Scan Number Invalid",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/9003 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Replication agent failed",
+            "description": "Replication agent failed",
+            "labels": [
+                {
+                    "name": "Replication agent failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/14152 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Operating System Error",
+            "description": "Operating System Error",
+            "labels": [
+                {
+                    "name": "Operating System Error",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17053 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "File Open Error",
+            "description": "Error occurred while opening file",
+            "labels": [
+                {
+                    "name": "File Open Error",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17113 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Operating System Error",
+            "description": "Error occurred while creating or opening file",
+            "labels": [
+                {
+                    "name": "Operating System Error",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17207 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Login Failed",
+            "description": "Login attempt from untrusted domain",
+            "labels": [
+                {
+                    "name": "Login Failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/18452 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Login Failed for User",
+            "description": "Login failed for user",
+            "labels": [
+                {
+                    "name": "Login Failed for User",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/18456 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Could not connect to server",
+            "description": "Login is not defined as remote at server",
+            "labels": [
+                {
+                    "name": "Could not connect to server",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/18483 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ]
+    
+}
