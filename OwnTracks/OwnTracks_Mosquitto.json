@@ -1,0 +1,289 @@
+{
+	"name": "Mosquitto Community Pack",
+	"description": "Mosquitto message broker community pack",
+   
+    "searches": [
+        {
+            "name": "Stopped",
+            "description": "Mosquitto stopped",
+            "query": "where(Stopping network daemon)"
+        },
+        {
+            "name": "Started",
+            "description": "Mosquitto started",
+            "query": "where(Starting network daemon)"
+        },
+        {
+            "name": "OpeningSocket",
+            "description": "Opening socket on specific port",
+            "query": "where(listen socket)"
+        },
+        {
+            "name": "8883inUse",
+            "description": "8883 port in use",
+            "query": "where(/on port (?P<port>\\d{4})/ port=8883)"
+        },
+        {
+            "name": "8883NotiInUse",
+            "description": "Other than 8883 port is in use",
+            "query": "where(/on port (?P<port>\\d{4})/ port!=8883)"
+        },
+        {
+            "name": "CannotAssignAddress",
+            "description": "Cannot assign address",
+            "query": "Cannot assign requested address"
+        },
+        {
+            "name": "NewConnection",
+            "description": "New connection request",
+            "query": "where(New Connection)"
+        },
+        {
+            "name": "NewClient",
+            "description": "New client connected",
+            "query": "where(New client connected)"
+        },
+        
+        {
+            "name": "GraphNewConnection",
+            "description": "New client connected",
+            "query": "where(New connection) calculate(count)"
+        },
+        {
+            "name": "publish",
+            "description": "New publish message",
+            "query": "where(PUBLISH) calculate(count)"
+        },
+        {
+            "name": "subscribe",
+            "description": "New subscribe message",
+            "query": "where(SUBSCRIBE) calculate(count)"
+        },
+        {
+            "name": "publishByDeviceID",
+            "description": "Publish messages by device ID",
+            "query": "where(/(Sending|Received) PUBLISH \\w* \\w*\\/(?P<deviceID>\\S*)/) groupby(deviceID) calculate(count)"
+        },
+        {
+            "name": "subscribeByDeviceID",
+            "description": "Subscribe messages by device ID",
+            "query": "where(/(Sending|Received) SUBSCRIBE \\w* \\w*\\/(?P<deviceID>\\S*)/) groupby(deviceID) calculate(count)"
+        },
+        {
+            "name": "publishByTopic",
+            "description": "Publish messages by topic",
+            "query": "where(/PUBLISH \\S{2,4} \\S* \\(\\S*, \\S*, \\S*, \\S*, '(?P<topic>.*)'/) groupby(topic) calculate(count)"
+        }
+    ],
+    "tags": [
+        {
+            "type": "Alert",
+            "name": "Stopped",
+            "description": "Mosquitto stopped",
+            "labels": [
+                {
+                    "name": "Stopped",
+                    "color": "DA6600"
+                }
+            ],
+            "patterns": [
+                "Stopping network daemon"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        
+        {
+            "type": "Alert",
+            "name": "Started",
+            "description": "Mosquitto started",
+            "labels": [
+                {
+                    "name": "Started",
+                    "color": "00DA13"
+                }
+            ],
+            "patterns": [
+                "Starting network daemon"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        
+        {
+            "type": "Alert",
+            "name": "Opening Socket",
+            "description": "Opening specific socket",
+            "labels": [
+                {
+                    "name": "Socket Opened",
+                    "color": "0054DA"
+                }
+            ],
+            "patterns": [
+                "listen socket"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        
+        {
+            "type": "Alert",
+            "name": "8883 Port Opened",
+            "description": "Opening default port",
+            "labels": [
+                {
+                    "name": "8883 opened",
+                    "color": "00B2DA"
+                }
+            ],
+            "patterns": [
+                "/on port (?P<port>\\d{4})/ port=8883"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        
+        {
+            "type": "Alert",
+            "name": "Not 8883",
+            "description": "Opening other than default MQTT port",
+            "labels": [
+                {
+                    "name": "Non MQTT port",
+                    "color": "DA0040"
+                }
+            ],
+            "patterns": [
+                "/on port (?P<port>\\d{4})/ port!=8883"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        
+        {
+            "type": "Alert",
+            "name": "Cannot assign address",
+            "description": "Cannot assign address",
+            "labels": [
+                {
+                    "name": "Address not assigned",
+                    "color": "DA00B5"
+                }
+            ],
+            "patterns": [
+                "Cannot assign requested address"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        
+        {
+            "type": "Alert",
+            "name": "New connection",
+            "description": "New connection",
+            "labels": [
+                {
+                    "name": "New connection request",
+                    "color": "00DA1F"
+                }
+            ],
+            "patterns": [
+                "New connection"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "New client",
+            "description": "New client connected",
+            "labels": [
+                {
+                    "name": "New client connected",
+                    "color": "41DABE"
+                }
+            ],
+            "patterns": [
+                "New client connected"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_matches_period": "Day",
+                "min_report_count": 1,
+                "min_report_period": "Day"
+            }
+        }
+        
+    ],
+    "widgets": [
+        {
+            "name": "New connections over time",
+            "description": "New connections over time",
+            "search_name":"GraphNewConnection",
+            "show_tooltip": true,
+            "type": "TimelineLineChart"
+        },
+        {
+			"name": "PUBLISH and SUBSCRIBE",
+			"description": "Multiline Graph for PUBLISH and SUBSCRIBE",
+			"searches_names": ["publish", "subscribe"],
+			"show_tooltip": true,
+			"type": "Multiline"
+		},
+		{
+			"name": "Publish messages by device ID",
+			"description": "Publish messages by device ID",
+			"search_name": "publishByDeviceID",
+			"type": "BarChart"
+		},
+		{
+			"name": "Subscribe messages by device ID",
+			"description": "Subscribe messages by device ID",
+			"search_name": "subscribeByDeviceID",
+			"type": "BarChart"
+		},
+		{
+			"name": "Publish by topic",
+			"description": "Publish by topic",
+			"search_name": "publishByTopic",
+			"type": "BarChart"
+		}		
+        ]
+}
