@@ -4,59 +4,74 @@
 		
 		"searches": [
         {
-            "name": "Could not allocate space for object",
-            "description": "Insufficient disk space in filegroup",
-            "query": "where /1105 EVENT/"
+            "name": "Most Frequent Event Codes",
+            "description": "The most commonly occuring event codes",
+            "query": "where(/\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\s(?P<hostname>.{1,15})\\s\\d{1}\\s(?P<eventcode>\\d{5})\\s/) groupby(eventcode)"
+        },
+        {
+            "name": "Most Active Hosts",
+            "description": "The most commonly occuring event codes",
+            "query": "where(/\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\s(?P<hostname>.{1,15})\\s\\d{1}\\s(?P<eventcode>\\d{5})\\s/) groupby(hostname)"
+        },
+        {
+            "name": "Could not allocate space",
+            "description": "Insufficient disk space",
+            "query": "where(/1105 EVENT/)"
         },
         {
             "name": "Backup Failed",
             "description": "A backup failed to complete",
-            "query": "where /3041 EVENT/"
+            "query": "where(/3041 EVENT/)"
+        },
+        {
+            "name": "Count Backup Failed",
+            "description": "Count of failed backups",
+            "query": "where(/3041 EVENT/) calculate(count)"
         },
         {
             "name": "Tranaction Log Full",
             "description": "Transaction Log Full",
-            "query": "where /9002 EVENT/"
+            "query": "where(/9002 EVENT/)"
         },
         {
             "name": "Log Scan Number Invalid",
             "description": "Possible database corruption",
-            "query": "where /9003 EVENT/"
+            "query": "where(/9003 EVENT/)"
         },
         {
             "name": "Replication agent failed",
             "description": "Replication agent failed",
-            "query": "where /14151 EVENT/"
+            "query": "where(/14151 EVENT/)"
         },
         {
             "name": "Operating System Error",
             "description": "Operating System Error",
-            "query": "where /17053 EVENT/"
+            "query": "where(/17053 EVENT/)"
         },
         {
             "name": "File Open Error",
-            "description": "Error occurred while opening file",
-            "query": "where /17113 EVENT/"
+            "description": "File Open Error",
+            "query": "where(/17113 EVENT/)"
         },
         {
             "name": "Operating System Error",
-            "description": "Error occurred while creating or opening file",
-            "query": "where /17207 EVENT/"
+            "description": "File Open Error",
+            "query": "where(/17207 EVENT/)"
         },
         {
             "name": "Login Failed",
-            "description": "Login attempt from untrusted domain",
-            "query": "where /18452 EVENT/"
+            "description": "Login attempt failed",
+            "query": "where(/18452 EVENT/)"
         },
         {
             "name": "Login Failed for User",
             "description": "Login failed for user",
-            "query": "where /18456 EVENT/"
+            "query": "where(/18456 EVENT/)"
         },
         {
             "name": "Could not connect to server",
-            "description": "Login is not defined as remote at server",
-            "query": "where /18483 EVENT/"
+            "description": "Login is not defined",
+            "query": "where(/18483 EVENT/)"
         }
 		
 	],
@@ -64,11 +79,11 @@
 	"tags": [
         {
             "type": "Alert",
-            "name": "Could not allocate space for object",
-            "description": "Insufficient disk space in filegroup",
+            "name": "Could not allocate space",
+            "description": "Insufficient disk space",
             "labels": [
                 {
-                    "name": "Could not allocate space for object",
+                    "name": "Could not allocate space",
                     "color": "660066"
                 }
             ],
@@ -191,7 +206,7 @@
         {
             "type": "Alert",
             "name": "File Open Error",
-            "description": "Error occurred while opening file",
+            "description": "File Open Error",
             "labels": [
                 {
                     "name": "File Open Error",
@@ -212,7 +227,7 @@
         {
             "type": "Alert",
             "name": "Operating System Error",
-            "description": "Error occurred while creating or opening file",
+            "description": "File Open Error",
             "labels": [
                 {
                     "name": "Operating System Error",
@@ -233,7 +248,7 @@
         {
             "type": "Alert",
             "name": "Login Failed",
-            "description": "Login attempt from untrusted domain",
+            "description": "Login attempt failed",
             "labels": [
                 {
                     "name": "Login Failed",
@@ -275,7 +290,7 @@
         {
             "type": "Alert",
             "name": "Could not connect to server",
-            "description": "Login is not defined as remote at server",
+            "description": "Login is not defined",
             "labels": [
                 {
                     "name": "Could not connect to server",
@@ -293,6 +308,28 @@
                 "min_report_period": "Hour"
             }
         }
-    ]
+    ],
+    "widgets": [
+            {
+                "name": "Failed backups",
+                "description": "Count of failed backups",
+                "search_name": "Count Backup Failed",
+                "type": "Radial",
+                "high_threshold": 20,
+                "high_threshold_rate": "Day"
+            },
+            {
+                "name": "Most Frequent Event Codes",
+                "description": "Most Frequent Event Codes",
+                "search_name": "Most Frequent Event Codes",
+                "type": "BarChart"
+            },
+            {
+                "name": "Most Active Hosts",
+                "description": "Most Active Hosts",
+                "search_name": "Most Active Hosts",
+                "type": "BarChart"
+            }
+        ]
     
 }
