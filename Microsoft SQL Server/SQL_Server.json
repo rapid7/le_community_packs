@@ -5,13 +5,48 @@
 		"searches": [
         {
             "name": "Most Frequent Event Codes",
-            "description": "The most commonly occuring event codes",
+            "description": "Commonly occuring event codes",
             "query": "where(/\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\s(?P<hostname>.{1,15})\\s\\d{1}\\s(?P<eventcode>\\d{5})\\s/) groupby(eventcode)"
         },
         {
             "name": "Most Active Hosts",
-            "description": "The most commonly occuring event codes",
+            "description": "Most Active Hosts",
             "query": "where(/\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\s(?P<hostname>.{1,15})\\s\\d{1}\\s(?P<eventcode>\\d{5})\\s/) groupby(hostname)"
+        },
+        {
+            "name": "SQLVDI process aborted",
+            "description": "SQLVDI process aborted",
+            "query": "where(/1 EVENT/)"
+        },
+        {
+            "name": "SQL Server Agent svc started",
+            "description": "SQL Server Agent svc started",
+            "query": "where(/101 EVENT/)"
+        },
+        {
+            "name": "SQL Server Agent svc stopped",
+            "description": "SQL Server Agent svc stopped",
+            "query": "where(/102 EVENT/)"
+        },
+        {
+            "name": "SQL Server Agent not started",
+            "description": "SQL Server Agent not started",
+            "query": "where(/103 EVENT/)"
+        },
+        {
+            "name": "SQL Server Agent start failed",
+            "description": "SQL Server Agent start failed",
+            "query": "where(/53 EVENT/)"
+        },
+        {
+            "name": "SQL Server Scheduled Job msg",
+            "description": "SQL Server Scheduled Job msg",
+            "query": "where(/208 EVENT/)"
+        },
+        {
+            "name": "SQL Agent not allowed to run",
+            "description": "SQL Agent not allowed to run",
+            "query": "where(/324 EVENT/)"
         },
         {
             "name": "Could not allocate space",
@@ -39,6 +74,11 @@
             "query": "where(/9003 EVENT/)"
         },
         {
+            "name": "Package failed",
+            "description": "Package failed",
+            "query": "where(/12291 EVENT/)"
+        },
+        {
             "name": "Replication agent failed",
             "description": "Replication agent failed",
             "query": "where(/14151 EVENT/)"
@@ -54,9 +94,44 @@
             "query": "where(/17113 EVENT/)"
         },
         {
+            "name": "SQL Server not ready",
+            "description": "SQL Server not ready",
+            "query": "where(/17187 EVENT/)"
+        },
+        {
             "name": "Operating System Error",
             "description": "File Open Error",
             "query": "where(/17207 EVENT/)"
+        },
+        {
+            "name": "SSPI Handshake failed",
+            "description": "SSPI Handshake failed",
+            "query": "where(/17806 EVENT/)"
+        },
+        {
+            "name": "Login packet invalid",
+            "description": "Login packet invalid",
+            "query": "where(/17832 EVENT/)"
+        },
+        {
+            "name": "Unexpected payload packet size",
+            "description": "Unexpected payload packet size",
+            "query": "where(/17836 EVENT/)"
+        },
+        {
+            "name": "Client unable to reuse session",
+            "description": "Client unable to reuse session",
+            "query": "where(/18056 EVENT/)"
+        },
+        {
+            "name": "Cannot find specified path",
+            "description": "Cannot find specified path",
+            "query": "where(/18204 EVENT/)"
+        },
+        {
+            "name": "Write failure on backup device",
+            "description": "Write failure on backup device",
+            "query": "where(/18210 EVENT/)"
         },
         {
             "name": "Login Failed",
@@ -72,11 +147,162 @@
             "name": "Could not connect to server",
             "description": "Login is not defined",
             "query": "where(/18483 EVENT/)"
-        }
-		
+        },
+        {
+            "name": "MSSQLSERVER service terminated",
+            "description": "MSSQLSERVER service terminated",
+            "query": "where(/19019 EVENT/)"
+        }		
 	],
 	
 	"tags": [
+        {
+            "type": "Alert",
+            "name": "SQLVDI process aborted",
+            "description": "SQLVDI process aborted",
+            "labels": [
+                {
+                    "name": "SQLVDI process aborted",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/1 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SQL Server Agent svc started",
+            "description": "SQL Server Agent svc started",
+            "labels": [
+                {
+                    "name": "SQL Server Agent svc started",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/101 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SQL Server Agent svc stopped",
+            "description": "SQL Server Agent svc stopped",
+            "labels": [
+                {
+                    "name": "SQL Server Agent svc stopped",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/102 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SQL Server Agent not started",
+            "description": "SQL Server Agent not started",
+            "labels": [
+                {
+                    "name": "SQL Server Agent not started",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/103 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SQL Server Agent start failed",
+            "description": "SQL Server Agent start failed",
+            "labels": [
+                {
+                    "name": "SQL Server Agent start failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/53 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SQL Server Scheduled Job msg",
+            "description": "SQL Server Scheduled Job msg",
+            "labels": [
+                {
+                    "name": "SQL Server Scheduled Job msg",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/208 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SQL Agent not allowed to run",
+            "description": "SQL Agent not allowed to run",
+            "labels": [
+                {
+                    "name": "SQL Agent not allowed to run",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/324 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
         {
             "type": "Alert",
             "name": "Could not allocate space",
@@ -163,6 +389,48 @@
         },
         {
             "type": "Alert",
+            "name": "Package failed",
+            "description": "Package failed",
+            "labels": [
+                {
+                    "name": "Package failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/12291 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+		{
+            "type": "Alert",
+            "name": "Replication agent failed",
+            "description": "Replication agent failed",
+            "labels": [
+                {
+                    "name": "Replication agent failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/14151 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+		{
+            "type": "Alert",
             "name": "Replication agent failed",
             "description": "Replication agent failed",
             "labels": [
@@ -226,6 +494,27 @@
         },
         {
             "type": "Alert",
+            "name": "SQL Server not ready",
+            "description": "SQL Server not ready",
+            "labels": [
+                {
+                    "name": "SQL Server not ready",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17187 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
             "name": "Operating System Error",
             "description": "File Open Error",
             "labels": [
@@ -236,6 +525,132 @@
             ],
             "patterns": [
                 "/17207 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "SSPI Handshake failed",
+            "description": "SSPI Handshake failed",
+            "labels": [
+                {
+                    "name": "SSPI Handshake failed",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17806 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Login packet invalid",
+            "description": "Login packet invalid",
+            "labels": [
+                {
+                    "name": "Login packet invalid",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17832 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Unexpected payload packet size",
+            "description": "Unexpected payload packet size",
+            "labels": [
+                {
+                    "name": "Unexpected payload packet size",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/17836 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Client unable to reuse session",
+            "description": "Client unable to reuse session",
+            "labels": [
+                {
+                    "name": "Client unable to reuse session",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/18056 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Cannot find specified path",
+            "description": "Cannot find specified path",
+            "labels": [
+                {
+                    "name": "Cannot find specified path",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/18204 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Write failure on backup device",
+            "description": "Write failure on backup device",
+            "labels": [
+                {
+                    "name": "Write failure on backup device",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/18210 EVENT/"
             ],
             "action": {
                 "type": "Alert",
@@ -299,6 +714,27 @@
             ],
             "patterns": [
                 "/18483 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "MSSQLSERVER service terminated",
+            "description": "MSSQLSERVER service terminated",
+            "labels": [
+                {
+                    "name": "MSSQLSERVER service terminated",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/19019 EVENT/"
             ],
             "action": {
                 "type": "Alert",
