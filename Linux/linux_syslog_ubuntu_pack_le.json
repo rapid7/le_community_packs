@@ -6,27 +6,27 @@
         {
             "name": "CommandExecution",
             "description": "Commands executed over time",
-            "query": "Executing command calculate(COUNT)"
+            "query": "where(Executing command)calculate(COUNT)"
         },
         {
             "name": "UserDistribution",
             "description": "Distribution of the system users",
-            "query": "/session opened for user (?P<user>.*) by/ groupby(user) calculate(COUNT)"
+            "query": "where(/session opened for user (?P<user>.*) by/) groupby(user) calculate(COUNT)"
         },
          {
             "name": "AuthFailure",
             "description": "Authentication Failure",
-            "query": "authentication failure calculate(COUNT)"
+            "query": "where(authentication failure) calculate(COUNT)"
         },
         {
             "name": "Processes",
             "description": "Total of unique processes",
-            "query": "pid calculate(UNIQUE:pid)"
+            "query": "where(pid) calculate(UNIQUE:pid)"
         },
         {
             "name": "ProcessDistribution",
             "description": "Distribution of unique process IDs",
-            "query": " pid groupby(pid) calculate(COUNT)"
+            "query": "where(pid) groupby(pid) calculate(COUNT)"
         }
         
         
