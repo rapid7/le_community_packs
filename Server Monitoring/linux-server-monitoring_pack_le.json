@@ -3,67 +3,67 @@
         {
             "name": "Total System CPU Average",
             "description": "Total System CPU Average Over Time",
-            "query": "system>0 calculate(AVERAGE)"
+            "query": "where(system>0) calculate(AVERAGE)"
         },
         {
             "name": "Total User CPU Average",
             "description": "Total User CPU Average over Time",
-            "query": "user>0 calculate(AVERAGE)"
+            "query": "where(user>0) calculate(AVERAGE)"
         },
         {
             "name": "Total Available Memory",
             "description": "Total Available Memory Over Time",
-            "query": "total>0 calculate(AVERAGE)"
+            "query": "where(total>0) calculate(AVERAGE)"
         },
         {
             "name": "Memory Free",
             "description": "Memory Free over Time",
-            "query": "free>0 calculate(AVERAGE)"
+            "query": "where(free>0) calculate(AVERAGE)"
         },
         {
             "name": "Memory Active",
             "description": "Memory Active over Time",
-            "query": "active>0 calculate(AVERAGE)"
+            "query": "where(active>0) calculate(AVERAGE)"
         },
         {
             "name": "Memory Cached",
             "description": "Memory Cached over Time",
-            "query": "cached>0 calculate(AVERAGE)"
+            "query": "where(cached>0) calculate(AVERAGE)"
         },
         {
             "name": "Disk Reads Per Second",
             "description": "Disk Reads in Bytes Per Second",
-            "query": "reads>0 calculate(AVERAGE)"
+            "query": "where(reads>0) calculate(AVERAGE)"
         },
         {
             "name": "Disk Writes Per Second",
             "description": "Disk Writes in Bytes Per Second",
-            "query": "writes>0 calculate(AVERAGE)"
+            "query": "where(writes>0) calculate(AVERAGE)"
         },
         {
             "name": "Disk Size",
             "description": "Disk Size in Bytes",
-            "query": "size>0 calculate(AVERAGE)"
+            "query": "where( size>0) calculate(AVERAGE)"
         },
         {
             "name": "Used Disk",
             "description": "Disk Used in Bytes",
-            "query": "used>0 calculate(AVERAGE)"
+            "query": "where(used>0) calculate(AVERAGE)"
         },
         {
             "name": "Free Disk",
             "description": "Disk Free in Bytes",
-            "query": "free>0 calculate(AVERAGE)"
+            "query": "where(free>0) calculate(AVERAGE)"
         },
         {
             "name": "Logins",
             "description": "Number of SSHD Sessions Opened",
-            "query": "session opened for user calculate(COUNT)"
+            "query": "where(session opened for user) calculate(COUNT)"
         },
         {
             "name": "Failed Logins",
             "description": "Number of invalid user sshd attempts",
-            "query": "invalid user calculate(COUNT)"
+            "query": "where(invalid user) calculate(COUNT)"
         }
     ],
     "tags": [
