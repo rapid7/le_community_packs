@@ -1,7 +1,12 @@
-Fastly Monitoring Pack Powered by VCL
+Fastly Monitoring Pack
 -------------------------------------
 
 The Fastly Community Pack extracts key information from your Fastly logs. The Pack comes with preconfigured Tags, Alerts, Saved Searches and ready-to-use Visualizations.
+
+Requirements:
+This Community Pack is expecting the format of your logs to be in a KVP format, [Screenshot](http://take.ms/CC1eK)
+
+Log formatter: "client_ip" = "%{req.http.Fastly-Client-IP}V", "timestamp" = "%{now}V", "request" = "%{req.request}V", "url" = "%{req.url}V", "grace" = "%{req.grace}V", "status" = "%{resp.status}V", "response" = "%{resp.response}V", "size" = "%{req.bytes_read}V", "header_size" = "%{req.header_bytes_read}V", "body_size" = "%{req.body_bytes_read}V", "city" = "%{geoip.city}V", "continent" = "%{geoip.continent_code}V", "postalcode" = "%{geoip.postal_code}V", "POP" = "%{server.datacenter}V", "server_region" = "%{server.region}V", "region" = "%{geoip.region}V", "country" = "%{geoip.country_code}V", "countryName" = "%{geoip.country_name}V", "referrer" = "%{req.http.referer}V", "devicetype" = "%{req.http.X-Device}V", "numberOfHits" = "%{obj.hits}V", "restarts" = "%{req.restarts}", "responsetime" = "%T"
 
 Specifically, the Fastly Community Pack contains:
 
