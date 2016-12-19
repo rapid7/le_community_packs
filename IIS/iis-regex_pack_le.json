@@ -6,47 +6,47 @@
         {
             "name": "TimeTaken",
             "description": "Time Taken in milliseconds",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ calculate(AVERAGE:time)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/)calculate(AVERAGE:time)"
         },
         {
             "name": "AverageBytes",
             "description": "The average number of bytes sent from the client to the server",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/ calculate(AVERAGE:bytes)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/ )calculate(AVERAGE:bytes)"
         },
         {
             "name": "StatusCodes",
             "description": "Distribution of status codes",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/ groupby(status) calculate(COUNT)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/) groupby(status) calculate(COUNT)"
         },
         {
             "name": "WindowsStatus",
             "description": "Distribution of Windows Status Codes – zero means that the request was fulfilled successfully",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, (?P<windows_status>\\d{1,})/ groupby(windows_status) calculate(COUNT)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, (?P<windows_status>\\d{1,})/) groupby(windows_status) calculate(COUNT)"
         },
         {
             "name": "RequestTypes",
             "description": "Distribution of Request Types – GET or POST ",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, (?P<request_type>\\w{1,4})/ groupby(request_type) calculate(COUNT)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, (?P<request_type>\\w{1,4})/) groupby(request_type) calculate(COUNT)"
         },
         {
             "name": "UrlsAccessed",
             "description": "Distribution of URLs accessed",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, \\w{1,4}, (?P<url>\\D{1,}),/ groupby(url) calculate(COUNT)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, \\w{1,4}, (?P<url>\\D{1,}),/) groupby(url) calculate(COUNT)"
         },
         {
             "name": "TimeTakenForJPG",
             "description": "The average time taken for JPG file",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg calculate(AVERAGE:time) "
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg/) calculate(AVERAGE:time) "
         },
         {
             "name": "TimeTakenForGIF",
             "description": "The average time taken for GIF file",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif calculate(AVERAGE:time) "
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif/) calculate(AVERAGE:time) "
         },
         {
             "name": "TimeTakenForPDF",
             "description": "The average time taken for GIF file",
-            "query": "/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf calculate(AVERAGE:time) "
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf/) calculate(AVERAGE:time) "
         }
         
         
