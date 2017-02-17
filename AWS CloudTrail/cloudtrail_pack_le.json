@@ -138,23 +138,23 @@
     "searches": [
         {
             "name": "startinstances",
-            "query": "StartInstances calculate(COUNT)"
+            "query": "where(StartInstances) calculate(COUNT)"
         },
         {
             "name": "stopinstances",
-            "query": "StopInstances calculate(COUNT)"
+            "query": "where(StopInstances) calculate(COUNT)"
         },
         {
             "name": "event_type_breakdown",
-            "query": "eventName groupby(eventName) calculate(COUNT)"
+            "query": "where(eventName) groupby(eventName) calculate(COUNT)"
         },
         {
             "name": "event_type_by_iamuser",
-            "query": "eventName AND IAMUser groupby(eventName) calculate(COUNT)"
+            "query": "where(eventName AND IAMUser) groupby(eventName) calculate(COUNT)"
         },
         {
             "name": "event_count_by_iamuser",
-            "query": "eventName AND IAMUser groupby(userName) calculate(COUNT)"
+            "query": "where(eventName AND IAMUser) groupby(userName) calculate(COUNT)"
         }
     ],
     "widgets": [
