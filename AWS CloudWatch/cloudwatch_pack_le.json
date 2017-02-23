@@ -62,51 +62,51 @@
     "searches": [
         {
             "name": "cpuutilization",
-            "query": "CPUUtilization AND average>0 calculate(AVERAGE)"
+            "query": "where(CPUUtilization AND average>0) calculate(AVERAGE:average)"
         },
         {
             "name": "cpuutilization_server",
-            "query": "CPUUtilization AND average>0 | GroupBy(target) | AVERAGE(average)"
+            "query": "where(CPUUtilization AND average>0) GroupBy(target) calculate(AVERAGE:average)"
         },
         {
             "name": "networkin",
-            "query": "NetworkIn AND average>0 calculate(AVERAGE)"
+            "query": "where(NetworkIn AND average>0) calculate(AVERAGE:average)"
         },
         {
             "name": "networkout",
-            "query": "NetworkOut AND average>0 calculate(AVERAGE)"
+            "query": "where(NetworkOut AND average>0) calculate(AVERAGE:average)"
         },
         {
             "name": "networkin_server",
-            "query": "NetworkIn AND average>0 | GroupBy(target) | AVERAGE(average)"
+            "query": "where(NetworkIn AND average>0) GroupBy(target) calculate(AVERAGE:average)"
         },
         {
             "name": "networkout_server",
-            "query": "NetworkOut AND average>0 | GroupBy(target) | AVERAGE(average)"
+            "query": "where(NetworkOut AND average>0) GroupBy(target) calculate(AVERAGE:average)"
         },
         {
             "name": "diskreadbytes",
-            "query": "DiskReadBytes AND average>0 calculate(AVERAGE)"
+            "query": "where(DiskReadBytes AND average>0) calculate(AVERAGE:average)"
         },
         {
             "name": "diskreadbytes_server",
-            "query": "DiskReadBytes AND average>0 | GroupBy(target) | AVERAGE(average)"
+            "query": "where(DiskReadBytes AND average>0) GroupBy(target) calculate(AVERAGE:average)"
         },
         {
             "name": "diskwritebytes",
-            "query": "DiskWriteBytes AND average>0 calculate(AVERAGE)"
+            "query": "where(DiskWriteBytes AND average>0) calculate(AVERAGE)"
         },
         {
             "name": "diskwritesbytes_server",
-            "query": "DiskWriteBytes AND average>0 | GroupBy(target) | AVERAGE(average)"
+            "query": "where(DiskWriteBytes AND average>0) GroupBy(target) calculate(AVERAGE:average)"
         },
         {
             "name": "logins",
-            "query": "session opened for user calculate(COUNT)"
+            "query": "where(session opened for user) calculate(COUNT)"
         },
         {
             "name": "failed_logins",
-            "query": "invalid user calculate(COUNT)"
+            "query": "where(invalid user) calculate(COUNT)"
         }
     ],
     "widgets": [

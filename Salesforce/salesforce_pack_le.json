@@ -67,15 +67,15 @@
     "searches": [
         {
             "name": "logins",
-            "query": "LOGIN_EVENT calculate(COUNT)"
+            "query": "where(LOGIN_EVENT) calculate(COUNT)"
         },
         {
             "name": "logouts",
-            "query": "LOGOUT_EVENT calculate(COUNT)"
+            "query": "where(LOGOUT_EVENT) calculate(COUNT)"
         },
         {
             "name": "login_as",
-            "query": "LOGIN_AS_EVENT calculate(COUNT)"
+            "query": "where(LOGIN_AS_EVENT) calculate(COUNT)"
         }
     ],
     "widgets": [

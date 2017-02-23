@@ -6,94 +6,94 @@
         {
             "name": "HTTPcodes",
             "description": "HTTP Codes Distribution",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ groupby(status) calculate(COUNT)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/) groupby(status) calculate(COUNT)"
         },
          {
             "name": "ZoneURLStatus200",
             "description": "All zone for which the status returned 200",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|(?P<ZoneUrl>\\S*)\\|MISS|HIT/ AND /\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=200 groupby(ZoneUrl) calculate(COUNT) "
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|(?P<ZoneUrl>\\S*)\\|MISS|HIT/ AND /\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=200) groupby(ZoneUrl) calculate(COUNT) "
         },
         {
             "name": "BytesDelivered",
             "description": "Bytes Delivered",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/ calculate(COUNT)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"
         },
         
     
         {
             "name": "UniqueUserID",
             "description": "Count of unique user IDs",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/ calculate(UNIQUE:userID)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/) calculate(UNIQUE:userID)"
         },
         {
             "name": "UserIDs",
             "description": "Distribution of user IDs",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/ groupby(userID) calculate(COUNT)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/) groupby(userID) calculate(COUNT)"
         },
         {
             "name": "UniqueZoneID",
             "description": "Count of unique zone IDs",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID>\\d*)/ calculate(UNIQUE:zoneID)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID>\\d*)/) calculate(UNIQUE:zoneID)"
         },
         {
             "name": "ZoneID",
             "description": "Count of unique zone IDs",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID\\d*)/ groupby(zoneID) calculate(COUNT)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID\\d*)/) groupby(zoneID) calculate(COUNT)"
         },
         {
             "name": "ZoneURL",
             "description": "Distribution of zones URLs accessed",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|(?P<ZoneUrl>\\S*)\\|MISS|HIT/ groupby(ZoneUrl) calculate(COUNT)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|(?P<ZoneUrl>\\S*)\\|MISS|HIT/) groupby(ZoneUrl) calculate(COUNT)"
         },
         {
             "name": "CacheStatus",
             "description": "Distribution of cache status codes",
-            "query": "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|\\S*\\|(?P<CacheStatus>MISS|HIT)/ groupby(CacheStatus) calculate(COUNT)"
+            "query": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|\\S*\\|(?P<CacheStatus>MISS|HIT)/) groupby(CacheStatus) calculate(COUNT)"
         },
         {
             "name": "Referrer",
             "description": "Distribution of referrer URLs",
-            "query": "/\\[.*\\]\\|\"(?P<referrer>\\S*)\"\\|/ groupby(referrer) calculate(COUNT)"
+            "query": "where(/\\[.*\\]\\|\"(?P<referrer>\\S*)\"\\|/) groupby(referrer) calculate(COUNT)"
         }, 
         {
             "name": "UserAgent",
             "description": "Distribution of user agents",
-            "query": "/\\[.*\\]\\|\"\\S*\"\\|\"(?P<userAgent>.*)\"\\|/ groupby(userAgent) calculate(COUNT)"
+            "query": "where(/\\[.*\\]\\|\"\\S*\"\\|\"(?P<userAgent>.*)\"\\|/) groupby(userAgent) calculate(COUNT)"
         },
         {
             "name": "Scheme",
             "description": "Schemes (eg HTTP or HTTPS)",
-            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|(?P<scheme>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|/ groupby(scheme) calculate(COUNT)"
+            "query": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|(?P<scheme>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|/) groupby(scheme) calculate(COUNT)"
         },
         {
             "name": "CountryCode",
             "description": "Country Code",
-            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|(?P<CountryCode>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|/ groupby(CountryCode) calculate(COUNT)"
+            "query": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|(?P<CountryCode>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryCode) calculate(COUNT)"
         },
         {
             "name": "CountryName",
             "description": "Country Name",
-            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|(?P<CountryName>.*)\\|.*\\|.*\\|.*\\|.*\\|/ groupby(CountryName) calculate(COUNT)"
+            "query": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|(?P<CountryName>.*)\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryName) calculate(COUNT)"
         },
        	{
             "name": "CityName",
             "description": "City Name",
-            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|(?P<CityName>.*)\\|.*\\|.*\\|.*\\|/ groupby(CityName) calculate(COUNT)"
+            "query": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|(?P<CityName>.*)\\|.*\\|.*\\|.*\\|/) groupby(CityName) calculate(COUNT)"
         }, 
         {
             "name": "Organization",
             "description": "Organization (eg Amazon)",
-            "query": " /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|\"(?P<organization>.*)/ groupby(organization) calculate(COUNT)"
+            "query": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|.*\\|\"(?P<organization>.*)/) groupby(organization) calculate(COUNT)"
         },
         {
             "name": "IPLookUp",
             "description": "Look for specific IP",
-            "query": "/(?P<IP>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})/ IP=" 
+            "query": "where(/(?P<IP>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})/ IP=)"
         },
         {
             "name": "POPLookUp",
             "description": "Distribution of POP",
-            "query": "/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/ groupby(POP)" 
+            "query": "where(/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/) groupby(POP)" 
         }
 
 

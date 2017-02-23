@@ -6,7 +6,7 @@
         {
             "name": "CommandExecution",
             "description": "Commands executed over time",
-            "query": "where(Executing command)calculate(COUNT)"
+            "query": "where(Executing command) calculate(COUNT)"
         },
         {
             "name": "UserDistribution",
@@ -26,7 +26,7 @@
         {
             "name": "ProcessDistribution",
             "description": "Distribution of unique process IDs",
-            "query": "where(pid) groupby(pid) calculate(COUNT)"
+            "query": "where( pid) groupby(pid) calculate(COUNT)"
         }
         
         

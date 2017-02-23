@@ -6,12 +6,12 @@
         {
             "name": "TimeTaken",
             "description": "Time Taken in milliseconds",
-            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/)calculate(AVERAGE:time)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/) calculate(AVERAGE:time)"
         },
         {
             "name": "AverageBytes",
             "description": "The average number of bytes sent from the client to the server",
-            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/ )calculate(AVERAGE:bytes)"
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/) calculate(AVERAGE:bytes)"
         },
         {
             "name": "StatusCodes",
@@ -36,17 +36,17 @@
         {
             "name": "TimeTakenForJPG",
             "description": "The average time taken for JPG file",
-            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg/) calculate(AVERAGE:time) "
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg) calculate(AVERAGE:time) "
         },
         {
             "name": "TimeTakenForGIF",
             "description": "The average time taken for GIF file",
-            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif/) calculate(AVERAGE:time) "
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif) calculate(AVERAGE:time) "
         },
         {
             "name": "TimeTakenForPDF",
             "description": "The average time taken for GIF file",
-            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf/) calculate(AVERAGE:time) "
+            "query": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf) calculate(AVERAGE:time) "
         }
         
         
