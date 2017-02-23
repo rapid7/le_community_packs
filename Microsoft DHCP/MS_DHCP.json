@@ -1,0 +1,274 @@
+{
+    "name": "DHCP Pack for MS Server 2008",
+    "description": "For Logentries account subscribers using Microsoft DHCP Server under Windows Server 2008 or later",        
+		
+		"searches": [
+        {
+            "name": "Scope Configured",
+            "description": "Scope Configured",
+            "query": "where /70 EVENT/"
+        },
+        {
+            "name": "Scope Modified",
+            "description": "Scope Modified",
+            "query": "where /71 EVENT/"
+        },
+        {
+            "name": "Scope Deleted",
+            "description": "Scope Deleted",
+            "query": "where /72 EVENT/"
+        },
+        {
+            "name": "Scope Deactivated",
+            "description": "Scope Deactivated",
+            "query": "where /74 EVENT/"
+        },
+        {
+            "name": "Scope Updated",
+            "description": "Scope Updated",
+            "query": "where /75 EVENT/"
+        },
+        {
+            "name": "Scope Updated with Options",
+            "description": "Scope Updated with Options",
+            "query": "where /76 EVENT/"
+        },
+        {
+            "name": "Reservation Configured",
+            "description": "Reservation Configured",
+            "query": "where /106 EVENT/"
+        },
+        {
+            "name": "Reservation Deleted",
+            "description": "Reservation Deleted",
+            "query": "where /107 EVENT/"
+        },
+        {
+            "name": "Added Exclusion Range",
+            "description": "Added Exclusion Range",
+            "query": "where /119 EVENT/"
+        }		
+	],
+	
+	"tags": [
+        {
+            "type": "Alert",
+            "name": "Scope Configured",
+            "description": "Scope Configured",
+            "labels": [
+                {
+                    "name": "Scope Configured",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/70 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Scope Modified",
+            "description": "Scope Modified",
+            "labels": [
+                {
+                    "name": "Scope Modified",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/71 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Scope Deleted",
+            "description": "Scope Deleted",
+            "labels": [
+                {
+                    "name": "Scope Deleted",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/72 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Scope Deactivated",
+            "description": "Scope Deactivated",
+            "labels": [
+                {
+                    "name": "Scope Deactivated",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/74 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Scope Updated",
+            "description": "Scope Updated",
+            "labels": [
+                {
+                    "name": "Scope Updated",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/75 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Scope Updated with Options",
+            "description": "Scope Updated with Options",
+            "labels": [
+                {
+                    "name": "Scope Updated with Options",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/76 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Reservation Configured",
+            "description": "Reservation Configured",
+            "labels": [
+                {
+                    "name": "Reservation Configured",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/106 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Reservation Deleted",
+            "description": "Reservation Deleted",
+            "labels": [
+                {
+                    "name": "Reservation Deleted",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/107 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        },
+        {
+            "type": "Alert",
+            "name": "Added Exclusion Range",
+            "description": "Added Exclusion Range",
+            "labels": [
+                {
+                    "name": "Added Exclusion Range",
+                    "color": "660066"
+                }
+            ],
+            "patterns": [
+                "/119 EVENT/"
+            ],
+            "action": {
+                "type": "Alert",
+                "min_matches_count": 1,
+                "min_report_count": 1,
+                "min_matches_period": "Hour",
+                "min_report_period": "Hour"
+            }
+        }
+    ],
+	
+    "widgets": [
+        {
+            "name": "Scope Modified",
+            "description": "Scope Modified",
+            "search_name": "Scope Modified",
+            "type": "TimelineLineChart",
+            "show_tooltip": true
+        },
+        {
+            "name": "Scope Configured",
+            "description": "Scope Configured",
+            "search_name": "Scope Configured",
+            "type": "BarChart"
+        },
+        {
+            "name": "Reservation Deleted",
+            "description": "Reservation Deleted",
+            "search_name": "Reservation Deleted",
+            "type": "TimelineLineChart",
+            "show_tooltip": true
+        },
+        {
+            "name": "Reservation Configured",
+            "description": "Reservation Configured",
+            "search_name": "Reservation Configured",
+            "type": "Count"
+        }
+    ]	
+    
+}
