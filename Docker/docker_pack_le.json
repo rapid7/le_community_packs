@@ -401,5 +401,95 @@
       "show_tooltip": true,
       "type": "Multiline"
     }
+  ],
+  "cards": [
+    {
+      "name": "Docker: Create events",
+      "description": "Docker: Create events",
+      "leql": {
+              "statement": "where(type='create') calculate(count)"
+            },
+      "visualization": "COUNT"
+    },
+    {
+      "name": "Docker: Start events",
+      "description": "Docker: Start events",
+      "leql": {
+              "statement": "where(type='start') calculate(count)"
+            },
+      "visualization": "COUNT"
+    },
+    {
+      "name": "Docker: Stop events",
+      "description": "Docker: Stop events",
+      "leql": {
+              "statement": "where(type='stop') calculate(count)"
+            },
+      "visualization": "COUNT"
+    },
+    {
+      "name": "Docker: Die events",
+      "description": "Docker: Die events",
+      "leql": {
+              "statement": "where(type='die') calculate(count)"
+            },
+      "visualization": "COUNT"
+    },
+    {
+      "name": "Most intensive memory by image",
+      "description": "Most intensive memory by image",
+      "leql": {
+              "statement": "where(stats.memory_stats.usage!=null) groupby(image) calculate(average:stats.memory_stats.usage) sort(desc)"
+            },
+      "visualization": "BAR"
+    },
+    {
+      "name": "Most intensive CPU by image",
+      "description": "Most intensive CPU by image",
+      "leql": {
+              "statement": "where(stats.cpu_stats.cpu_usage.total_usage!=null) groupby(image) calculate(average:stats.cpu_stats.cpu_usage.total_usage) sort(desc)"
+            },
+      "visualization": "BAR"
+    },
+    {
+      "name": "Most intensive memory by container",
+      "description": "Most intensive memory by container",
+      "leql": {
+              "statement": "where(stats.memory_stats.usage!=null) groupby(name) calculate(average:stats.memory_stats.usage) sort(desc)"
+            },
+      "visualization": "BAR"
+    },
+    {
+      "name": "Most intensive CPU by container",
+      "description": "Most intensive CPU by container",
+      "leql": {
+              "statement": "where(stats.cpu_stats.cpu_usage.total_usage!=null) groupby(name) calculate(average:stats.cpu_stats.cpu_usage.total_usage) sort(desc)"
+            },
+      "visualization": "BAR"
+    },
+    {
+      "name": "Total memory",
+      "description": "Total average memory",
+      "leql": {
+              "statement": "where(stats.memory_stats.usage!=null) calculate(average:stats.memory_stats.usage) timeSlice(50)"
+            },
+      "visualization": "BAR"
+    },
+    {
+      "name": "Total CPU",
+      "description": "Total average CPU",
+      "leql": {
+              "statement": "where(stats.cpu_stats.cpu_usage.total_usage!=null) calculate(average:stats.cpu_stats.cpu_usage.total_usage) timeSlice(50)"
+            },
+      "visualization": "BAR"
+    },
+    {
+      "name": "Container events by type",
+      "description": "Container events by type",
+      "leql": {
+              "statement": "where(type) groupby(type) calculate(count)"
+            },
+      "visualization": "PIE"
+    }
   ]
 }
