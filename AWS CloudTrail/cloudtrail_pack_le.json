@@ -183,5 +183,42 @@
             "search_name": "startinstances",
             "type": "Count"
         }
+    ],
+    "cards": [
+        {
+            "name": "Event Type Breakdown",
+            "leql": {
+              "statement": "where(eventName) groupby(eventName) calculate(COUNT)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Event Type Breakdown By IAMUser",
+            "leql": {
+              "statement": "where(eventName AND IAMUser) groupby(eventName) calculate(COUNT)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Event Count Breakdown By IAMUser",
+            "leql": {
+              "statement": "where(eventName AND IAMUser) groupby(userName) calculate(COUNT)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Number of Instance Stops",
+            "leql": {
+              "statement": "where(StopInstances) calculate(COUNT)"
+            },
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Number of Instance Starts",
+            "leql": {
+              "statement": "where(StartInstances) calculate(COUNT)"
+            },
+            "visualization": "COUNT"
+        }
     ]
 }

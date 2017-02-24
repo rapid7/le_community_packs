@@ -161,5 +161,47 @@
             "search_name": "failed_logins",
             "type": "Count"
         }
+    ],
+    "cards": [
+        {
+            "name": "CPU Load",
+            "description": "Avg System CPU",
+            "leql": {
+              "statement": "where(CPUUtilization AND average>0) calculate(AVERAGE:average)"
+            },
+            "visualization": "LINE",
+        },
+        {
+            "name": "CPU Load per Instance",
+            "description": "CPU per Server",
+            "leql": {
+              "statement": "where(CPUUtilization AND average>0) GroupBy(target) calculate(AVERAGE:average)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "NetworkOut Per Instance",
+            "description": "NetworkOut per Server",
+            "leql": {
+              "statement": "where(NetworkOut AND average>0) GroupBy(target) calculate(AVERAGE:average)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Number of Logins",
+            "description": "SSH access",
+            "leql": {
+              "statement": "where(session opened for user) calculate(COUNT)"
+            },
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Number of Failed Logins",
+            "description": "Failed SSH access",
+            "leql": {
+              "statement": "where(invalid user) calculate(COUNT)"
+            },
+            "visualization": "COUNT"
+        }
     ]
 }
