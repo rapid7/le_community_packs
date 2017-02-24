@@ -6,22 +6,22 @@
         {
             "name": "CommandType",
             "description": "Command vs Query",
-            "query": "/\\[\\w+\\] (?P<databaseCommand>\\w+)/i databaseCommand=query OR databaseCommand=command groupby(databaseCommand) calculate(COUNT)"
+            "query": "where(/\\[\\w+\\] (?P<databaseCommand>\\w+)/i databaseCommand=query OR databaseCommand=command) groupby(databaseCommand) calculate(COUNT)"
         },
         {
             "name": "DatabaseCommand",
             "description": "Command or Query Executed",
-            "query": "/command: (?P<command>\\w+)/i AND command!=isMaster AND command!=whatsmyuri groupby(command) calculate(COUNT)" 
+            "query": "where(/command: (?P<command>\\w+)/i AND command!=isMaster AND command!=whatsmyuri) groupby(command) calculate(COUNT)" 
         },
         {
             "name": "ResLen",
             "description": "Query Result Length in Bytes",
-            "query": "reslen calculate(AVERAGE)" 
+            "query": "where(reslen) calculate(AVERAGE)" 
         },
         {
             "name": "Module",
             "description": "Distribution of MongoDB modules",
-            "query": "/\\[(?P<module>\\w+)\\]/i groupby(module) calculate(COUNT)" 
+            "query": "where(/\\[(?P<module>\\w+)\\]/i) groupby(module) calculate(COUNT)" 
         }
             
     ],

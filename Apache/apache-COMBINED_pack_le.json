@@ -1,7 +1,6 @@
 {
 	"name": "Apache Server Monitoring Pack",
 	"description": "For Logentries account subscribers",
-   
     "searches": [
         {
             "name": "HTTPcodes",
@@ -33,12 +32,9 @@
             "description": "List of all URLs that yield 404 error",
             "query": "where(http.status=404) groupby(http.path) calculate(COUNT:http.status)"
         }
-        
-        
-        
     ],
     "tags": [
-    {
+        {
             "type": "Alert",
             "name": "404 - Not Found",
             "description": "404 Error",
@@ -58,8 +54,8 @@
                 "min_report_count": 1,
                 "min_report_period": "Day"
             }
-    },
-    {
+        },
+        {
         
             "type": "Alert",
             "name": "OK Pass",
@@ -102,7 +98,6 @@
                 "min_report_period": "Day"
             }
         }
-       
     ],
     "widgets": [
         {
@@ -147,7 +142,49 @@
             "show_tooltip": true,
             "type": "BarChart"
         }
-        
-        
+    ],
+    "cards": [
+        {
+            "name": "HTTP Codes",
+            "leql": {
+              "statement": "groupby(http.status) calculate(COUNT:http.status)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "URLs Distribution",
+            "leql": {
+              "statement": "groupby(http.path) calculate(COUNT:http.path)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Total Bytes Requested",
+            "leql": {
+              "statement": "calculate(AVERAGE:http.bytes)"
+            },
+            "visualization": "LINE"
+        },
+        {
+            "name": "URLs vs 401 errors",
+            "leql": {
+              "statement": "where(http.status=401) groupby(http.path) calculate(COUNT:http.status)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "URLs vs 404 errors",
+            "leql": {
+              "statement": "where(http.status=404) groupby(http.path) calculate(COUNT:http.status)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "URLs vs 200 http codes",
+            "leql": {
+              "statement": "where(http.status=200) groupby(http.path) calculate(COUNT:http.status)"
+            },
+            "visualization": "BAR"
+        }
     ]
 }

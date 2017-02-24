@@ -185,5 +185,71 @@
             "search_name": "404_URL_Distribution",
             "type": "BarChart"
         }
+    ],
+        "cards": [
+        {
+            "name": "Unique User Count",
+            "description": "A counter for unique user count",
+            "leql": {
+              "statement": "where(status>0) Calculate(unique:remote_addr)"
+            },
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Average Respsone Time",
+            "description": "Time line Line Chart key by second",
+            "leql": {
+              "statement": "where(status>0) calculate(average:request_time)"
+            },
+            "visualization": "LINE"
+        },
+        {
+            "name": "Requested Page Distribution",
+            "description": "Requested Page Distribution",
+            "leql": {
+              "statement": "where(status!=404) GroupBy(request) Calculate(count)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Status type Distribution",
+            "description": "Status distribution",
+            "leql": {
+              "statement": "where(status>0) groupby(status) calculate(count)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Bytes Sent Distribution",
+            "description": "The average size of the pages being returned to the users",
+            "leql": {
+              "statement": "where(status>0) groupby(request) calculate(average:body_bytes_sent)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "User Agent Distribution",
+            "description": "The distribution of user agents",
+            "leql": {
+              "statement": "where(status>0) Groupby(http_user_agent) Calculate(count)"
+            },
+            "visualization": "PIE"
+        },
+        {
+            "name": "404 Error Count",
+            "description": "A counter for 404 errors",
+            "leql": {
+              "statement": "where(status=404) Calculate(count)"
+            },
+            "visualization": "COUNT"
+        },
+        {
+            "name": "404 Distribution",
+            "description": "The distribution of 404 errors over requests",
+            "leql": {
+              "statement": "where(status=404) Groupby(request) Calculate(count)"
+            },
+            "visualization": "BAR"
+        }
     ]
 }

@@ -138,23 +138,23 @@
     "searches": [
         {
             "name": "startinstances",
-            "query": "StartInstances calculate(COUNT)"
+            "query": "where(StartInstances) calculate(COUNT)"
         },
         {
             "name": "stopinstances",
-            "query": "StopInstances calculate(COUNT)"
+            "query": "where(StopInstances) calculate(COUNT)"
         },
         {
             "name": "event_type_breakdown",
-            "query": "eventName groupby(eventName) calculate(COUNT)"
+            "query": "where(eventName) groupby(eventName) calculate(COUNT)"
         },
         {
             "name": "event_type_by_iamuser",
-            "query": "eventName AND IAMUser groupby(eventName) calculate(COUNT)"
+            "query": "where(eventName AND IAMUser) groupby(eventName) calculate(COUNT)"
         },
         {
             "name": "event_count_by_iamuser",
-            "query": "eventName AND IAMUser groupby(userName) calculate(COUNT)"
+            "query": "where(eventName AND IAMUser) groupby(userName) calculate(COUNT)"
         }
     ],
     "widgets": [
@@ -182,6 +182,43 @@
             "name": "Number of Instance Starts",
             "search_name": "startinstances",
             "type": "Count"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Event Type Breakdown",
+            "leql": {
+              "statement": "where(eventName) groupby(eventName) calculate(COUNT)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Event Type Breakdown By IAMUser",
+            "leql": {
+              "statement": "where(eventName AND IAMUser) groupby(eventName) calculate(COUNT)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Event Count Breakdown By IAMUser",
+            "leql": {
+              "statement": "where(eventName AND IAMUser) groupby(userName) calculate(COUNT)"
+            },
+            "visualization": "BAR"
+        },
+        {
+            "name": "Number of Instance Stops",
+            "leql": {
+              "statement": "where(StopInstances) calculate(COUNT)"
+            },
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Number of Instance Starts",
+            "leql": {
+              "statement": "where(StartInstances) calculate(COUNT)"
+            },
+            "visualization": "COUNT"
         }
     ]
 }

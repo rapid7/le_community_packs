@@ -6,7 +6,7 @@
         {
             "name": "CommandExecution",
             "description": "Commands executed over time",
-            "query": "where(Executing command)calculate(COUNT)"
+            "query": "where(Executing command) calculate(COUNT)"
         },
         {
             "name": "UserDistribution",

@@ -111,23 +111,23 @@
     "searches": [
         {
             "name": "service_time",
-            "query": "service>0 | AVERAGE"
+            "query": "where(service>0) calculate(AVERAGE:service)"
         },
         {
             "name": "connect_time",
-            "query": "connect>0 | AVERAGE"
+            "query": "where(connect>0) calculate(AVERAGE:connect)"
         },
         {
             "name": "service_time_by_dyno",
-            "query": "service>0 | groupby(dyno) | AVERAGE(service)"
+            "query": "where(service>0) groupby(dyno) calculate(AVERAGE:service)"
         },
         {
             "name": "connect_time_by_dyno",
-            "query": "connect>0 | groupby(dyno) | AVERAGE(connect)"
+            "query": "where(connect>0) groupby(dyno) calculate(AVERAGE:connect)"
         },
         {
             "name": "request_size",
-            "query": "bytes>0 | AVERAGE"
+            "query": "where(bytes>0) calculate(AVERAGE:bytes)"
         }
     ],
     "widgets": [

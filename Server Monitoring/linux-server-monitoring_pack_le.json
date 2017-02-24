@@ -43,7 +43,7 @@
         {
             "name": "Disk Size",
             "description": "Disk Size in Bytes",
-            "query": "where( size>0) calculate(AVERAGE)"
+            "query": "where(size>0) calculate(AVERAGE)"
         },
         {
             "name": "Used Disk",
@@ -132,7 +132,7 @@
             "name": "Memory Average 30%  Last Week",
             "description": "Memory Increase Week on Week",
             "scheduled_query": {
-                "query": "active>0",
+                "query": "where(active>0",
                 "function": "AVERAGE",
                 "threshold_value": "+30",
                 "threshold_type": "%",
