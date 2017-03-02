@@ -73,14 +73,14 @@
             "patterns": [
                 "status=404"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 5,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
             "type": "Alert",
             "name": "Desktop Device",
@@ -94,14 +94,14 @@
             "patterns": [
                 "desktop"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 0,
                 "min_matches_period": "Day",
                 "min_report_count": 0,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
             "type": "Alert",
             "name": "Mobile Device",
@@ -115,14 +115,14 @@
             "patterns": [
                 "iPad","iPhone","Android"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 0,
                 "min_matches_period": "Day",
                 "min_report_count": 0,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
             "type": "Alert",
             "name": "OK Pass",
@@ -136,14 +136,14 @@
             "patterns": [
                 "status=200"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 0,
                 "min_matches_period": "Day",
                 "min_report_count": 0,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
             "type": "AlertNotify",
             "sub_type": "InactivityAlert",
@@ -154,32 +154,31 @@
             ],
             "timeframe_value": 24,
             "timeframe_period": "Hour",
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 1,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
             "type": "AlertNotify",
             "sub_type": "AnomalyAlert",
             "name": "Larger than 1MB",
             "description": "20 percent increase in a download of files larger than 1MB",
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
             },
-            "scheduled_query": {
+            {"scheduled_query": {
                 "query": "where size>1000000",
                 "function": "COUNT",
                 "threshold_value": "+20",
                 "threshold_type": "%",
                 "time_period": "Hour",
                 "time_value": 1
-            }
+            }}]
         }
-       
     ],
     "widgets": [
         {
@@ -237,6 +236,56 @@
             "search_name":"Total Downloaded",
             "show_tooltip": true,
             "type": "TimelineLineChart"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Device Detection",
+            "description": "Detection of different devices used for requests",
+            "queries": [{ "leql" : {"where(devicetype) groupby(devicetype)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Unique IP count",
+            "description": "Count of unique IPs",
+            "queries": [{ "leql" : {"where(client_ip) calculate(UNIQUE:client_ip)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Requests by country",
+            "description": "Requests sorted by country",
+            "queries": [{ "leql" : {"where(country) groupby(country) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Status codes received",
+            "description": "Status codes received",
+            "queries": [{ "leql" : {"where(status) groupby(status)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Requests by Fastly datacenters",
+            "description": "Requests by Fastly datacenters",
+            "queries": [{ "leql" : {"where(POP) groupby(POP) calculate(COUNT)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Number of hits over time",
+            "description": "Number of hits over time",
+            "queries": [{ "leql" : {"where(numberOfHits) calculate(SUM:numberOfHits)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Average Request Size",
+            "description": "Average Request Size",
+            "queries": [{ "leql" : {"where(size>=0 AND size) calculate(AVERAGE:size)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Total Downloaded",
+            "description": "Total Data Downloaded",
+            "queries": [{ "leql" : {"where(size) calculate(SUM:size)"}}],
+            "visualization": "LINE"
         }
     ]
 }

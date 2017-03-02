@@ -14,13 +14,13 @@
                 "CreateSecurityGroup",
                 "DeleteSecurityGroup"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -38,13 +38,13 @@
                 "StopInstances",
                 "TerminateInstances"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -60,13 +60,13 @@
                 "PutRolePolicy",
                 "PutUserPolicy"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -83,13 +83,13 @@
                 "CreateUserProfile",
                 "DeleteUser"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -105,13 +105,13 @@
                 "CreateGroup",
                 "DeleteGroup"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -126,13 +126,13 @@
             "patterns": [
                 "UpdateAccountPasswordPolicy"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "searches": [
@@ -187,37 +187,37 @@
     "cards": [
         {
             "name": "Event Type Breakdown",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(eventName) groupby(eventName) calculate(COUNT)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Event Type Breakdown By IAMUser",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(eventName AND IAMUser) groupby(eventName) calculate(COUNT)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Event Count Breakdown By IAMUser",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(eventName AND IAMUser) groupby(userName) calculate(COUNT)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Number of Instance Stops",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(StopInstances) calculate(COUNT)"
-            },
+            }}],
             "visualization": "COUNT"
         },
         {
             "name": "Number of Instance Starts",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(StartInstances) calculate(COUNT)"
-            },
+            }}],
             "visualization": "COUNT"
         }
     ]
