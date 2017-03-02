@@ -406,90 +406,112 @@
     {
       "name": "Docker: Create events",
       "description": "Docker: Create events",
-      "leql": {
+      "queries": [{
               "statement": "where(type='create') calculate(count)"
-            },
+            }],
       "visualization": "COUNT"
     },
     {
       "name": "Docker: Start events",
       "description": "Docker: Start events",
-      "leql": {
+      "queries": [{
               "statement": "where(type='start') calculate(count)"
-            },
+            }],
       "visualization": "COUNT"
     },
     {
       "name": "Docker: Stop events",
       "description": "Docker: Stop events",
-      "leql": {
+      "queries": [{
               "statement": "where(type='stop') calculate(count)"
-            },
+            }],
       "visualization": "COUNT"
     },
     {
       "name": "Docker: Die events",
       "description": "Docker: Die events",
-      "leql": {
+      "queries": [{
               "statement": "where(type='die') calculate(count)"
-            },
+            }],
       "visualization": "COUNT"
     },
     {
       "name": "Most intensive memory by image",
       "description": "Most intensive memory by image",
-      "leql": {
+      "queries": [{
               "statement": "where(stats.memory_stats.usage!=null) groupby(image) calculate(average:stats.memory_stats.usage) sort(desc)"
-            },
+            }],
       "visualization": "BAR"
     },
     {
       "name": "Most intensive CPU by image",
       "description": "Most intensive CPU by image",
-      "leql": {
+      "queries": [{
               "statement": "where(stats.cpu_stats.cpu_usage.total_usage!=null) groupby(image) calculate(average:stats.cpu_stats.cpu_usage.total_usage) sort(desc)"
-            },
+            }],
       "visualization": "BAR"
     },
     {
       "name": "Most intensive memory by container",
       "description": "Most intensive memory by container",
-      "leql": {
+      "queries": [{
               "statement": "where(stats.memory_stats.usage!=null) groupby(name) calculate(average:stats.memory_stats.usage) sort(desc)"
-            },
+            }],
       "visualization": "BAR"
     },
     {
       "name": "Most intensive CPU by container",
       "description": "Most intensive CPU by container",
-      "leql": {
+      "queries": [{
               "statement": "where(stats.cpu_stats.cpu_usage.total_usage!=null) groupby(name) calculate(average:stats.cpu_stats.cpu_usage.total_usage) sort(desc)"
-            },
+            }],
       "visualization": "BAR"
     },
     {
       "name": "Total memory",
       "description": "Total average memory",
-      "leql": {
+      "queries": [{
               "statement": "where(stats.memory_stats.usage!=null) calculate(average:stats.memory_stats.usage) timeSlice(50)"
-            },
+            }],
       "visualization": "BAR"
     },
     {
       "name": "Total CPU",
       "description": "Total average CPU",
-      "leql": {
+      "queries": [{
               "statement": "where(stats.cpu_stats.cpu_usage.total_usage!=null) calculate(average:stats.cpu_stats.cpu_usage.total_usage) timeSlice(50)"
-            },
+            }],
       "visualization": "BAR"
     },
     {
       "name": "Container events by type",
       "description": "Container events by type",
-      "leql": {
+      "queries": [{
               "statement": "where(type) groupby(type) calculate(count)"
-            },
+            }],
       "visualization": "PIE"
+    },
+        {
+      "name": "Traffic received",
+      "description": "Traffic received",
+      "queries": [
+        {"statement": "where(stats.networks.eth0.rx_bytes!=null) calculate(average:stats.networks.eth0.rx_bytes)"},
+        {"statement": "where(stats.networks.eth0.rx_packets!=null) calculate(average:stats.networks.eth0.rx_packets)"},
+        {"statement": "where(stats.networks.eth0.rx_errors!=null) calculate(average:stats.networks.eth0.rx_errors)"},
+        {"statement": "where(stats.networks.eth0.rx_dropped!=null) calculate(average:stats.networks.eth0.rx_dropped)"}
+      ],
+      "visualization": "MULTILINE"
+    },
+    {
+      "name": "Traffic transferred",
+      "description": "Traffic transferred",
+      "queries": [
+        {"statement": "where(stats.networks.eth0.rx_bytes!=null) calculate(average:stats.networks.eth0.rx_bytes)"},
+        {"statement": "where(stats.networks.eth0.rx_packets!=null) calculate(average:stats.networks.eth0.rx_packets)"},
+        {"statement": "where(stats.networks.eth0.rx_errors!=null) calculate(average:stats.networks.eth0.rx_errors)"},
+        {"statement": "where(stats.networks.eth0.rx_dropped!=null) calculate(average:stats.networks.eth0.rx_dropped)"}
+      ],
+      "visualization": "MULTILINE"
     }
   ]
 }
