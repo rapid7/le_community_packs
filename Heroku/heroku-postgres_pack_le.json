@@ -13,13 +13,13 @@
             "patterns": [
                 "duration"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -35,13 +35,13 @@
             "patterns": [
                 "unexpected EOF on client connection"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -57,13 +57,13 @@
             "patterns": [
                 "could not receive data from client"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -79,13 +79,13 @@
             "patterns": [
                 "too many connections for role"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -101,13 +101,13 @@
             "patterns": [
                 "could not receive data from WAL"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
          ,
         {
@@ -123,13 +123,13 @@
             "patterns": [
                 "is not permitted to log in"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -145,13 +145,13 @@
             "patterns": [
                 "terminating connection due to administrator command"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -167,13 +167,13 @@
             "patterns": [
                 "remaining connection slots are reserved"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
          ,
         {
@@ -189,13 +189,13 @@
             "patterns": [
                 "temporary file"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
          ,
         {
@@ -211,13 +211,13 @@
             "patterns": [
                 "permission denied for relation"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -233,13 +233,13 @@
             "patterns": [
                 "operator does not exist"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -255,13 +255,13 @@
             "patterns": [
                 "relation AND does not exist"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -277,13 +277,13 @@
             "patterns": [
                 "cannot be cast to type"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -299,13 +299,13 @@
             "patterns": [
                 "no connection to the server"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
         ,
         {
@@ -321,13 +321,13 @@
             "patterns": [
                 "value too long for type character"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "searches": [
@@ -356,6 +356,20 @@
             "search_name": "severity_levels",
             "type": "BarChart",
             "show_tooltip": true
+        }
+    ],
+    "cards": [
+        {
+            "name": "Slow Query Average Time",
+            "description": "Average time of slow queries",
+            "queries": [{ "leql" : {"statement": "where(/duration: (?P<time>\\d+\\.\\d+) ms/) calculate(AVERAGE:time)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Log Severity Levels",
+            "description": "Distribution of Log Severity Levels",
+            "queries": [{ "leql" : {"statement": "where(/(?P<severity>LOG|DEBUG|INFO|NOTICE|WARNING|FATAL|ERROR|PANIC)/) groupby(severity) calculate(COUNT)"}}],
+            "visualization": "BAR"
         }
     ]
 }

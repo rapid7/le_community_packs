@@ -17,13 +17,13 @@
                 "code=H13",
                 "code=H15"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -43,13 +43,13 @@
                 "code=H14",
                 "code=H99"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -77,13 +77,13 @@
                 "code=H22",
                 "code=H80"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -99,13 +99,13 @@
                 "service>2000",
                 "connect>2000"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "searches": [
@@ -158,6 +158,35 @@
             "description": "Avg Size of Requests",
             "search_name": "request_size",
             "type": "BarChart"
+        }
+    ],
+    "cards": [
+        {
+            "name": "ConnectServiceTime",
+            "description": "Total time for pageload",
+            "queries": [
+                { "leql" : {"statement": "where(service>0) calculate(AVERAGE:service)"}},
+                { "leql" : {"statement": "where(connect>0) calculate(AVERAGE:connect)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "ServiceByDyno",
+            "description": "Service Time Per Dyno",
+            "queries": [{ "leql" : {"statement": "where(service>0) groupby(dyno) calculate(AVERAGE:service)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "ConnectByDyno",
+            "description": "Connect Time Per Dyno",
+            "queries": [{ "leql" : {"statement": "where(connect>0) groupby(dyno) calculate(AVERAGE:connect)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "RequestSize",
+            "description": "Avg Size of Requests",
+            "queries": [{ "leql" : {"statement": "where(bytes>0) calculate(AVERAGE:bytes)"}}],
+            "visualization": "BAR"
         }
     ]
 }
