@@ -1,7 +1,6 @@
 {
-	"name": "Mosquitto Community Pack",
-	"description": "Mosquitto message broker community pack",
-   
+    "name": "Mosquitto Community Pack",
+    "description": "Mosquitto message broker community pack",
     "searches": [
         {
             "name": "Stopped",
@@ -89,13 +88,13 @@
             "patterns": [
                 "Stopping network daemon"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         
         {
@@ -111,13 +110,13 @@
             "patterns": [
                 "Starting network daemon"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         
         {
@@ -133,13 +132,13 @@
             "patterns": [
                 "listen socket"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         
         {
@@ -155,13 +154,13 @@
             "patterns": [
                 "/on port (?P<port>\\d{4})/ port=8883"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         
         {
@@ -177,13 +176,13 @@
             "patterns": [
                 "/on port (?P<port>\\d{4})/ port!=8883"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         
         {
@@ -199,13 +198,13 @@
             "patterns": [
                 "Cannot assign requested address"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         
         {
@@ -221,13 +220,13 @@
             "patterns": [
                 "New connection"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -242,15 +241,14 @@
             "patterns": [
                 "New client connected"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         }
-        
     ],
     "widgets": [
         {
@@ -263,7 +261,7 @@
         {
 			"name": "PUBLISH and SUBSCRIBE",
 			"description": "Multiline Graph for PUBLISH and SUBSCRIBE",
-			"searches_names": ["publish", "subscribe"],
+			"queries": ["publish", "subscribe"],
 			"show_tooltip": true,
 			"type": "Multiline"
 		},
@@ -285,5 +283,41 @@
 			"search_name": "publishByTopic",
 			"type": "BarChart"
 		}		
-        ]
+    ],
+    "cards": [
+        {
+            "name": "New connections over time",
+            "description": "New connections over time",
+            "queries": [{ "leql" : {"statement": "where(New connection) calculate(count)"}}],
+            "visualization": "LINE"
+        },
+        {
+            
+            "name": "PUBLISH and SUBSCRIBE",
+            "description": "Multiline Graph for PUBLISH and SUBSCRIBE",
+            "queries": [
+                { "leql" : {"statement": "where(PUBLISH) calculate(count)"}},
+                { "leql" : {"statement": "where(SUBSCRIBE) calculate(count)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "Publish messages by device ID",
+            "description": "Publish messages by device ID",
+            "queries": [{ "leql" : {"statement": "where(/(Sending|Received) PUBLISH \\w* \\w*\\/(?P<deviceID>\\S*)/) groupby(deviceID) calculate(count)"}}],
+            "type": "BAR"
+        },
+        {
+            "name": "Subscribe messages by device ID",
+            "description": "Subscribe messages by device ID",
+            "queries": [{ "leql" : {"statement": "where(/(Sending|Received) SUBSCRIBE \\w* \\w*\\/(?P<deviceID>\\S*)/) groupby(deviceID) calculate(count)"}}],
+            "type": "BAR"
+        },
+        {
+            "name": "Publish by topic",
+            "description": "Publish by topic",
+            "queries": [{ "leql" : {"statement": "where(/PUBLISH \\S{2,4} \\S* \\(\\S*, \\S*, \\S*, \\S*, '(?P<topic>.*)'/) groupby(topic) calculate(count)"}}],
+            "type": "BAR"
+        }
+    ]
 }
