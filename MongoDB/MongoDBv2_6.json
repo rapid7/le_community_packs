@@ -16,7 +16,7 @@
         {
             "name": "ResLen",
             "description": "Query Result Length in Bytes",
-            "query": "where(reslen) calculate(AVERAGE)" 
+            "query": "where(reslen) calculate(AVERAGE:reslen)" 
         },
         {
             "name": "Module",
@@ -318,7 +318,7 @@
         {
             "name": "Average Query Result Length in Bytes",
             "description": "Average Query Result Length in Bytes",
-            "queries": [{ "leql" : { "statement":"where(reslen) calculate(AVERAGE)"}}],
+            "queries": [{ "leql" : { "statement":"where(reslen) calculate(AVERAGE:reslen)"}}],
             "visualization": "LINE"
         },
         {

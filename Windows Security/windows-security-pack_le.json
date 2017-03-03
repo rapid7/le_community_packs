@@ -13,13 +13,13 @@
             "patterns": [
                 "invalid user"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -35,13 +35,13 @@
                 "/642 EVENT/",
                 "/4738 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -58,13 +58,13 @@
                 "/681 EVENT/",
                 "/4771 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -80,13 +80,13 @@
                 "/644 EVENT/",
                 "/4740 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -102,13 +102,13 @@
                 "/628 EVENT/",
                 "/4724 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -126,13 +126,13 @@
                 "/4772 EVENT/",
                 "/4768 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -148,13 +148,13 @@
                 "/517 EVENT/",
                 "/1102 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -170,13 +170,13 @@
                 "/612 EVENT/",
                 "/4719 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -192,13 +192,13 @@
                 "/627 EVENT/",
                 "/4723 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -214,13 +214,13 @@
                 "/645 EVENT/",
                 "/4741 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -236,13 +236,13 @@
                 "/647 EVENT/",
                 "/4743 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -258,13 +258,13 @@
                 "/643 EVENT/",
                 "/4739 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -280,13 +280,13 @@
                 "/538 EVENT/",
                 "/4634 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -303,13 +303,13 @@
                 "/4624 EVENT/",
                 "/540 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -333,13 +333,13 @@
                 "/539 EVENT/",
                 "/4625 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -361,13 +361,13 @@
                 "/4661 EVENT/",
                 "/4662 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -383,13 +383,13 @@
                 "/683 EVENT/",
                 "/4779 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -405,13 +405,13 @@
                 "/682 EVENT/",
                 "/4778 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -427,13 +427,13 @@
                 "/513 EVENT/",
                 "/4608 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -449,13 +449,13 @@
                 "/512 EVENT/",
                 "/4608 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -471,13 +471,13 @@
                 "/624  EVENT/",
                 "/4720 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -493,13 +493,13 @@
                 "/630 EVENT/",
                 "/4726 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -515,13 +515,13 @@
                 "/629 EVENT/",
                 "/4725 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -537,13 +537,13 @@
                 "/626 EVENT/",
                 "/4722 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ]
 }

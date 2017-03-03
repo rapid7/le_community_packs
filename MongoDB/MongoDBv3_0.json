@@ -16,7 +16,7 @@
         {
             "name": "ResLen",
             "description": "Query Result Length in Bytes",
-            "query": "where(reslen) calculate(AVERAGE)" 
+            "query": "where(reslen) calculate(AVERAGE:reslen)" 
         },
         {
             "name": "Component",

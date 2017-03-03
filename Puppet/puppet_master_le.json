@@ -22,13 +22,13 @@
             "patterns": [
                 "Failed to generate additional resources"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -43,13 +43,13 @@
             "patterns": [
                 "Could not retrieve plugin"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -64,13 +64,13 @@
             "patterns": [
                 "Could not request certificate"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -85,13 +85,13 @@
             "patterns": [
                 "Name or service not known"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -106,13 +106,13 @@
             "patterns": [
                 "already initialized constant argv"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -128,6 +128,20 @@
             "search_name": "MasterErrors",
             "type": "TimelineBarChart",
             "show_tooltip": true
+        }
+    ],
+    "cards": [
+        {
+            "name": "Master Errors ",
+            "description": "Puppet Master Errors",
+            "queries": [{ "leql" : {"statement": "where(Failed to generate additional resources OR Could not retrieve plugin OR Could not request certificate OR Name or service not known OR already initialized constant argv) calculate(count)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Master Errors Timeline",
+            "description": "Master Errors Timeline",
+            "queries": [{ "leql" : {"statement": "where(Failed to generate additional resources OR Could not retrieve plugin OR Could not request certificate OR Name or service not known OR already initialized constant argv) calculate(count)"}}],
+            "visualization": "AREA"
         }
     ]
 }

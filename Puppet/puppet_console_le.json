@@ -22,13 +22,13 @@
             "patterns": [
                 "Certificate Verification: Error"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -43,13 +43,13 @@
             "patterns": [
                 "Invalid credentials"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -59,8 +59,13 @@
             "search_name": "ConsoleErrors",
             "type": "Count"
         }
+    ],
+    "cards": [
+        {
+            "name": "Console Errors ",
+            "description": "Puppet Console Errors",
+            "queries": [{ "leql" : {"statement": "where(Invalid credentials OR Certificate Verification: Error) calculate(count)"}}],
+            "visualization": "COUNT"
+        }
     ]
-
-
-
 }

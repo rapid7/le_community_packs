@@ -3,57 +3,57 @@
         {
             "name": "Total System CPU Average",
             "description": "Total System CPU Average Over Time",
-            "query": "where(system>0) calculate(AVERAGE)"
+            "query": "where(system>0) calculate(AVERAGE:system)"
         },
         {
             "name": "Total User CPU Average",
             "description": "Total User CPU Average over Time",
-            "query": "where(user>0) calculate(AVERAGE)"
+            "query": "where(user>0) calculate(AVERAGE:user)"
         },
         {
             "name": "Total Available Memory",
             "description": "Total Available Memory Over Time",
-            "query": "where(total>0) calculate(AVERAGE)"
+            "query": "where(total>0) calculate(AVERAGE:total)"
         },
         {
             "name": "Memory Free",
             "description": "Memory Free over Time",
-            "query": "where(free>0) calculate(AVERAGE)"
+            "query": "where(free>0) calculate(AVERAGE:free)"
         },
         {
             "name": "Memory Active",
             "description": "Memory Active over Time",
-            "query": "where(active>0) calculate(AVERAGE)"
+            "query": "where(active>0) calculate(AVERAGE:active)"
         },
         {
             "name": "Memory Cached",
             "description": "Memory Cached over Time",
-            "query": "where(cached>0) calculate(AVERAGE)"
+            "query": "where(cached>0) calculate(AVERAGE:cached)"
         },
         {
             "name": "Disk Reads Per Second",
             "description": "Disk Reads in Bytes Per Second",
-            "query": "where(reads>0) calculate(AVERAGE)"
+            "query": "where(reads>0) calculate(AVERAGE:reads)"
         },
         {
             "name": "Disk Writes Per Second",
             "description": "Disk Writes in Bytes Per Second",
-            "query": "where(writes>0) calculate(AVERAGE)"
+            "query": "where(writes>0) calculate(AVERAGE:writes)"
         },
         {
             "name": "Disk Size",
             "description": "Disk Size in Bytes",
-            "query": "where(size>0) calculate(AVERAGE)"
+            "query": "where(size>0) calculate(AVERAGE:size)"
         },
         {
             "name": "Used Disk",
             "description": "Disk Used in Bytes",
-            "query": "where(used>0) calculate(AVERAGE)"
+            "query": "where(used>0) calculate(AVERAGE:used)"
         },
         {
             "name": "Free Disk",
             "description": "Disk Free in Bytes",
-            "query": "where(free>0) calculate(AVERAGE)"
+            "query": "where(free>0) calculate(AVERAGE:free)"
         },
         {
             "name": "Logins",
@@ -80,13 +80,13 @@
             "patterns": [
                 "invalid user"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -102,13 +102,13 @@
                 "system>90",
                 "user>90"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "AlertNotify",
@@ -120,11 +120,11 @@
             ],
             "timeframe_value": 1,
             "timeframe_period": "Hour",
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "AlertNotify",
@@ -139,18 +139,18 @@
                 "time_period": "Week",
                 "time_value": 5
             },
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
         {
             "name": "CPU Usage",
             "description": "System and User CPU",
-            "searches_names": [
+            "queries": [
                 "Total System CPU Average",
                 "Total User CPU Average"
             ],
@@ -160,7 +160,7 @@
         {
             "name": "Memory Usage",
             "description": "Total, Used and Cached Memory",
-            "searches_names": [
+            "queries": [
                 "Total Available Memory",
                 "Memory Active",
                 "Memory Cached",
@@ -172,7 +172,7 @@
         {
             "name": "Disk Activity",
             "description": "Disk Read and Write in Bytes",
-            "searches_names": [
+            "queries": [
                 "Disk Reads Per Second",
                 "Disk Writes Per Second"
             ],
@@ -182,7 +182,7 @@
         {
             "name": "Disk Usage",
             "description": "Total and Free Disk",
-            "searches_names": [
+            "queries": [
                 "Used Disk",
                 "Free Disk"
             ],
@@ -198,6 +198,56 @@
             "name": "Failed Logins",
             "search_name": "Failed Logins",
             "type": "Count"
+        }
+    ],
+    "cards": [
+        {
+            "name": "CPU Usage",
+            "description": "System and User CPU",
+            "queries": [
+                { "leql" : {"statement": "where(system>0) calculate(AVERAGE:system)"}},
+                { "leql" : {"statement": "where(user>0) calculate(AVERAGE:user)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "Memory Usage",
+            "description": "Total, Used and Cached Memory",
+            "queries": [
+                { "leql" : {"statement": "where(total>0) calculate(AVERAGE:total)"}},
+                { "leql" : {"statement": "where(free>0) calculate(AVERAGE:free)"}},
+                { "leql" : {"statement": "where(active>0) calculate(AVERAGE:active)"}},
+                { "leql" : {"statement": "where(cached>0) calculate(AVERAGE:cached)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "Disk Activity",
+            "description": "Disk Read and Write in Bytes",
+            "queries": [
+                { "leql" : {"statement": "where(reads>0) calculate(AVERAGE:reads)"}},
+                { "leql" : {"statement": "where(writes>0) calculate(AVERAGE:writes)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "Disk Usage",
+            "description": "Total and Free Disk",
+            "queries": [
+                { "leql" : {"statement": "where(used>0) calculate(AVERAGE:used)"}},
+                { "leql" : {"statement": "where(free>0) calculate(AVERAGE:free)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "SSH Access",
+            "queries": [{ "leql" : {"statement": "where(session opened for user) calculate(COUNT)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Failed Logins",
+            "queries": [{ "leql" : {"statement": "where(invalid user) calculate(COUNT)"}}],
+            "visualization": "COUNT"
         }
     ]
 }

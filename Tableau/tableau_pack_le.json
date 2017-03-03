@@ -65,13 +65,13 @@
              "patterns":[
                 "/successfully imported/i"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":10,
                     "min_report_count":10,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         },
         {
              "type":"Alert",
@@ -85,13 +85,13 @@
              "patterns":[
                 "/Invalid user:/i"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":10,
                     "min_report_count":10,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         },
         {
              "type":"Alert",
@@ -105,13 +105,13 @@
              "patterns":[
                 "k=end-query AND elapsed>60"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":10,
                     "min_report_count":10,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         },
         {
              "type":"Alert",
@@ -125,13 +125,13 @@
              "patterns":[
                 "/uptime/i"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":1,
                     "min_report_count":1,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         },
         {
              "type":"Alert",
@@ -145,13 +145,13 @@
              "patterns":[
                 "where(/download=true/i)"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":10,
                     "min_report_count":10,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         },
         {
              "type":"Alert",
@@ -165,13 +165,13 @@
              "patterns":[
                 "Mem.active>=50"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":1,
                     "min_report_count":1,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         },
         {
              "type":"Alert",
@@ -185,19 +185,14 @@
              "patterns":[
                 "Mem.active>=70"
              ],
-             "action": {
+             "actions": [{
                     "type": "Alert",
                     "min_matches_count":1,
                     "min_report_count":1,
                     "min_matches_period":"Day",
                     "min_report_period":"Day"
-            }
+            }]
         }
-
-
-
-
-
     ],
     "widgets": [
         {
@@ -229,6 +224,38 @@
             "description": "CPU usage",
             "search_name": "CPU usage",
             "type": "TimelineLineChart"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Running Jobs",
+            "description": "Running jobs",
+            "queries": [{ "leql" : {"statement": "where(/Running job of type :(?P<TsJob>\\w+)/) groupby(TsJob)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Slow response time",
+            "description": "Slow response time",
+            "queries": [{ "leql" : {"statement": "where(k=end-query AND elapsed >=10) groupby(site)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Elapsed time by site",
+            "description": "Elapsed time by site",
+            "queries": [{ "leql" : {"statement": "where(k=\"end-update-sheet\") groupby(site) calculate(average:elapsed) sort(asc)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Active memory",
+            "description": "Active memory",
+            "queries": [{ "leql" : {"statement": "where(Mem.active) calculate(average:Mem.active)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "CPU usage",
+            "description": "CPU usage",
+            "queries": [{ "leql" : {"statement": "where(CPU.system) calculate(average:CPU.system)"}}],
+            "visualization": "LINE"
         }
     ]
 }

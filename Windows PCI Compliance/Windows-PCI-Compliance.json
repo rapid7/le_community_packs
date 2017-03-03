@@ -64,13 +64,13 @@
         "patterns": [
             "/4625 EVENT/ OR /\\s529/"
         ],
-        "action": {
+        "actions": [{
             "type": "Alert",
             "min_matches_count": 1,
             "min_report_count": 1,
             "min_matches_period": "Hour",
             "min_report_period": "Hour"
-        }
+        }]
     }, {
         "type": "Alert",
         "name": "Admin Account Created",
@@ -82,13 +82,13 @@
         "patterns": [
             "/4732 EVENT/ OR /\\s636 EVENT/"
         ],
-        "action": {
+        "actions": [{
             "type": "Alert",
             "min_matches_count": 1,
             "min_report_count": 1,
             "min_matches_period": "Hour",
             "min_report_period": "Hour"
-        }
+        }]
     }, {
         "type": "Alert",
         "name": "Account Locked Out",
@@ -100,13 +100,13 @@
         "patterns": [
             "/4740 EVENT/ OR /\\s644 EVENT/"
         ],
-        "action": {
+        "actions": [{
             "type": "Alert",
             "min_matches_count": 1,
             "min_report_count": 1,
             "min_matches_period": "Hour",
             "min_report_period": "Hour"
-        }
+        }]
     }, {
         "type": "Alert",
         "name": "Audit Log Cleared",
@@ -118,13 +118,13 @@
         "patterns": [
             "/1102 EVENT/ OR /\\s517 EVENT/"
         ],
-        "action": {
+        "actions": [{
             "type": "Alert",
             "min_matches_count": 1,
             "min_report_count": 1,
             "min_matches_period": "Hour",
             "min_report_period": "Hour"
-        }
+        }]
     }, {
         "type": "Alert",
         "name": "Audit Policy Changed",
@@ -136,13 +136,13 @@
         "patterns": [
             "/4719 EVENT/ OR /\\s612 EVENT/"
         ],
-        "action": {
+        "actions": [{
             "type": "Alert",
             "min_matches_count": 1,
             "min_report_count": 1,
             "min_matches_period": "Hour",
             "min_report_period": "Hour"
-        }
+        }]
     }
     ],
     "widgets": [
@@ -180,6 +180,38 @@
             "search_name":"Audit Log Cleared",
             "show_tooltip": true,
             "type": "Count"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Invalid Logins",
+            "description":"Invalid Logins",
+            "queries": [{ "leql" : {"statement": "where(/4625 EVENT/ OR /\\s529 EVENT/) CALCULATE(COUNT)"}}],
+            "visualization": "COUNT"
+        },                                    
+        {
+            "name": "Admin Account Created",
+            "description": "Admin Account Created",
+            "queries": [{ "leql" : {"statement": "where(/4732 EVENT/ OR /\\s636 EVENT/) CALCULATE(COUNT)"}}],
+            "visualization": "COUNT"
+        },                 
+        {
+            "name": "Account Locked Out",
+            "description": "Account Locked Out",
+            "queries": [{ "leql" : {"statement": "where(/4740 EVENT/ OR /\\s644 EVENT/) CALCULATE(COUNT)"}}],
+            "visualization": "COUNT"
+        },                 
+        {
+            "name": "Audit Policy Changed",
+            "description": "Audit Policy Changed",
+            "queries": [{ "leql" : {"statement": "where(/4719 EVENT/ OR /\\s612 EVENT/) CALCULATE(COUNT)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Audit Log Cleared",
+            "description": "Audit Log Cleared",
+            "queries": [{ "leql" : {"statement": "where(/1102 EVENT/ OR /\\s517 EVENT/) CALCULATE(COUNT)"}}],
+            "visualization": "COUNT"
         }
     ]
 }
