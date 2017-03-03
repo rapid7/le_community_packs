@@ -292,25 +292,25 @@
         {
             "name": "User Distribution",
             "description": "User Distribution",
-            "queries": [{ "leql" : {"where(/session opened for user (?P<user>.*) by/) groupby(user) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/session opened for user (?P<user>.*) by/) groupby(user) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Authentication Failure",
             "description": "Authentication Failure",
-            "queries": [{ "leql" : {"where(authentication failure) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(authentication failure) calculate(COUNT)"}}],
             "visualization": "AREA"
         },
         {
             "name": "Processes Running",
             "description": "Total of unique processes",
-            "queries": [{ "leql" : {"where(pid) calculate(UNIQUE:pid)"}}],
+            "queries": [{ "leql" : { "statement": "where(pid) calculate(UNIQUE:pid)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "Distribution of user processes",
             "description": "Distribution of user processes",
-            "queries": [{ "leql" : {"where(pid) groupby(pid) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(pid) groupby(pid) calculate(COUNT)"}}],
             "visualization": "BAR"
         }
     ]

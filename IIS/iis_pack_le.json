@@ -174,43 +174,43 @@
         {
             "name": "Unique User Count",
             "description": "A counter for unique user count",
-            "queries": [{ "leql" : {"where(sc_status>0) Calculate(unique:c_ip)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status>0) Calculate(unique:c_ip)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "Average Response Time",
             "description": "Time line Line Chart key by second",
-            "queries": [{ "leql" : {"where(sc_status>0) calculate(average:time_taken)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status>0) calculate(average:time_taken)"}}],
             "visualization": "LINE"
         },
         {
             "name": "Requested Page Distribution",
             "description": "Requested Page Distribution",
-            "queries": [{ "leql" : {"where(sc_status!=404) GroupBy(c_ip) Calculate(count)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status!=404) GroupBy(c_ip) Calculate(count)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Status Type Distribution",
             "description": "Status distribution",
-            "queries": [{ "leql" : {"where(sc_status>0) groupby(sc_status) calculate(count)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status>0) groupby(sc_status) calculate(count)"}}],
             "visualization": "BAR"
         },
         {
             "name": "User Agent Distribution",
             "description": "The distribution of user agents",
-            "queries": [{ "leql" : {"where(sc_status > 0) groupby(cs_User_Agent) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status > 0) groupby(cs_User_Agent) calculate(COUNT)"}}],
             "visualization": "PIE"
         },
         {
             "name": "404 Error Count",
             "description": "A counter for 404 errors",
-            "queries": [{ "leql" : {"where(sc_status=404) Calculate(count)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status=404) Calculate(count)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "404 Distribution",
             "description": "The distribution of 404 errors over requests",
-            "queries": [{ "leql" : {"where(sc_status=404) Groupby(cs_uri_stem) Calculate(count)"}}],
+            "queries": [{ "leql" : { "statement": "where(sc_status=404) Groupby(cs_uri_stem) Calculate(count)"}}],
             "visualization": "BAR"
         }
     ]

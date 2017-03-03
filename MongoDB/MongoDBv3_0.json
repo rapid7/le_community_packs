@@ -90,7 +90,7 @@
         }
     ],
     "tags": [
-    {
+        {
             "type": "Alert",
             "name": "Server Restarted",
             "description": "Triggers when MongoDB server restarts",
@@ -103,17 +103,15 @@
             "patterns": [
                 "SERVER RESTARTED" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Connection Accepted",
             "description": "Connection Accepted",
@@ -126,15 +124,15 @@
             "patterns": [
                 "connection accepted" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "DR102",
             "description": "Too much data written uncommitted",
@@ -147,16 +145,15 @@
             "patterns": [
                 "DR102" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-     {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Server Slow",
             "description": "Server Status was very slow",
@@ -169,16 +166,15 @@
             "patterns": [
                 "serverStatus was very slow" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Write Operation Tag",
             "description": "Tags for insert, update and delete operations",
@@ -194,16 +190,15 @@
                 "command: delete"
                  
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Aggregation Command Tag",
             "description": "Tags for aggregate, count, distinct, group and mapReduce",
@@ -221,16 +216,15 @@
                 "command: mapReduce"
                  
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Geospatial Command",
             "description": "Tags for geoNear, geoSearch and geoWalk",
@@ -245,16 +239,15 @@
                 "command: geoSearch",
                 "command: geoWalk"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Query Operation",
             "description": "Tag for findAndModify",
@@ -267,16 +260,15 @@
             "patterns": [
                 "command: findAndModify"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Authentication Command",
             "description": "Tags for logout and authenticate",
@@ -290,16 +282,15 @@
                 "command: logout",
                 "command: authenticate"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "User Management Command",
             "description": "Tags for createUser, updateUser, dropUser, dropAllUsersFromDatabase, grantRolesToUser and revokeRolesFromUser",
@@ -317,16 +308,15 @@
                 "command: grantRolesToUser",
                 "command: revokeRolesFromUser"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    {
+            }]
+        },
+        {
             "type": "Alert",
             "name": "Role Management Command",
             "description": "Tags for createRole, updateRole and dropRole",
@@ -341,62 +331,110 @@
                 "command: updateRole",
                 "command: dropRole"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    }
-    
-
+            }]
+        }
     ],
     "widgets": [
-    {
-    	"name": "Command vs Query",
-    	"description": "Command and Query Separation",
-    	"search_name": "CommandType",
-    	"type": "PieChart"
-	},
-	{
-		"name": "Database Commands Executed",
-		"description": "Database Command Executed",
-		"search_name": "DatabaseCommand",
-		"type": "BarChart"
-	},
-	{
-    	"name": "Average Query Result Length in Bytes",
-    	"description": "Average Query Result Length in Bytes",
-    	"search_name": "ResLen",
-    	"type": "TimelineLineChart",
-    	"show_tooltip": true
-	},
-	{
-		"name": "Component",
-		"description": "Components for functional categorization of the messages",
-		"search_name": "Component",
-		"type": "BarChart"
-	},
-	{
-    	"name": "Severity Levels",
-    	"description": "Severity Levels",
-    	"search_name": "Severity",
-    	"type": "PieChart"
-	},
-	{
-    	"name": "Write Operations Over Time",
-    	"description": "Write Operations Over Time",
-    	"search_name": "Write",
-    	"type": "TimelineLineChart",
-    	"show_tooltip": true
-	},
-	{
-    "name": "Messages by category",
-    "description": "Messages by category",
-    "searches_names": ["Command","Network", "Query", "Storage", "Write" ],
-    "show_tooltip": true,
-    "type": "Multiline"
-}
+        {
+        	"name": "Command vs Query",
+        	"description": "Command and Query Separation",
+        	"search_name": "CommandType",
+        	"type": "PieChart"
+    	},
+    	{
+    		"name": "Database Commands Executed",
+    		"description": "Database Command Executed",
+    		"search_name": "DatabaseCommand",
+    		"type": "BarChart"
+    	},
+    	{
+        	"name": "Average Query Result Length in Bytes",
+        	"description": "Average Query Result Length in Bytes",
+        	"search_name": "ResLen",
+        	"type": "TimelineLineChart",
+        	"show_tooltip": true
+    	},
+    	{
+    		"name": "Component",
+    		"description": "Components for functional categorization of the messages",
+    		"search_name": "Component",
+    		"type": "BarChart"
+    	},
+    	{
+        	"name": "Severity Levels",
+        	"description": "Severity Levels",
+        	"search_name": "Severity",
+        	"type": "PieChart"
+    	},
+    	{
+        	"name": "Write Operations Over Time",
+        	"description": "Write Operations Over Time",
+        	"search_name": "Write",
+        	"type": "TimelineLineChart",
+        	"show_tooltip": true
+    	},
+    	{
+            "name": "Messages by category",
+            "description": "Messages by category",
+            "queries": ["Command","Network", "Query", "Storage", "Write" ],
+            "show_tooltip": true,
+            "type": "Multiline"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Command vs Query",
+            "description": "Command and Query Separation",
+            "queries": [{ "leql" : { "statement":"where(/\\[\\w+\\] (?P<databaseCommand>\\w+)/i databaseCommand=query OR databaseCommand=command) groupby(databaseCommand) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Database Commands Executed",
+            "description": "Database Command Executed",
+            "queries": [{ "leql" : { "statement":"where(/command: (?P<command>\\w+)/i AND command!=isMaster AND command!=whatsmyuri) groupby(command) calculate(COUNT)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Average Query Result Length in Bytes",
+            "description": "Average Query Result Length in Bytes",
+            "queries": [{ "leql" : { "statement":"where(reslen) calculate(AVERAGE:reslen)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Component",
+            "description": "Components for functional categorization of the messages",
+            "queries": [{ "leql" : { "statement":"where(/(?P<component>[A-Z]{3,8})/) groupby(component) calculate(COUNT)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Severity Levels",
+            "description": "Severity Levels",
+            "queries": [{ "leql" : { "statement":"where(/(?P<sl> F | E | W | I | D )/) groupby(sl) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Write Operations Over Time",
+            "description": "Write Operations Over Time",
+            "queries": [{ "leql" : { "statement":"where(/(?P<component>[A-Z]{3,8})/ component=WRITE) calculate(COUNT)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Messages by category",
+            "description": "Messages by category",
+            "queries": [
+                { "leql" : { "statement":"where(/(?P<component>[A-Z]{3,8})/ component=COMMAND) calculate(COUNT)"}},
+                { "leql" : { "statement":"where(/(?P<component>[A-Z]{3,8})/ component=NETWORK) calculate(COUNT)"}},
+                { "leql" : { "statement": "where(/(?P<component>[A-Z]{3,8})/ component=QUERY) calculate(COUNT)"}},
+                { "leql" : { "statement": "where(/(?P<component>[A-Z]{3,8})/ component=STORAGE) calculate(COUNT)"}},
+                { "leql" : { "statement": "where(/(?P<component>[A-Z]{3,8})/ component=WRITE) calculate(COUNT)" }}
+                ],
+            "visualization": "MULTILINE"
+        }
     ]
 }

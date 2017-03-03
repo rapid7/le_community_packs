@@ -242,49 +242,49 @@
         {
             "name": "Device Detection",
             "description": "Detection of different devices used for requests",
-            "queries": [{ "leql" : {"where(devicetype) groupby(devicetype)"}}],
+            "queries": [{ "leql" : { "statement": "where(devicetype) groupby(devicetype)"}}],
             "visualization": "PIE"
         },
         {
             "name": "Unique IP count",
             "description": "Count of unique IPs",
-            "queries": [{ "leql" : {"where(client_ip) calculate(UNIQUE:client_ip)"}}],
+            "queries": [{ "leql" : { "statement": "where(client_ip) calculate(UNIQUE:client_ip)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "Requests by country",
             "description": "Requests sorted by country",
-            "queries": [{ "leql" : {"where(country) groupby(country) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(country) groupby(country) calculate(COUNT)"}}],
             "visualization": "PIE"
         },
         {
             "name": "Status codes received",
             "description": "Status codes received",
-            "queries": [{ "leql" : {"where(status) groupby(status)"}}],
+            "queries": [{ "leql" : { "statement": "where(status) groupby(status)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Requests by Fastly datacenters",
             "description": "Requests by Fastly datacenters",
-            "queries": [{ "leql" : {"where(POP) groupby(POP) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(POP) groupby(POP) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Number of hits over time",
             "description": "Number of hits over time",
-            "queries": [{ "leql" : {"where(numberOfHits) calculate(SUM:numberOfHits)"}}],
+            "queries": [{ "leql" : { "statement": "where(numberOfHits) calculate(SUM:numberOfHits)"}}],
             "visualization": "LINE"
         },
         {
             "name": "Average Request Size",
             "description": "Average Request Size",
-            "queries": [{ "leql" : {"where(size>=0 AND size) calculate(AVERAGE:size)"}}],
+            "queries": [{ "leql" : { "statement": "where(size>=0 AND size) calculate(AVERAGE:size)"}}],
             "visualization": "LINE"
         },
         {
             "name": "Total Downloaded",
             "description": "Total Data Downloaded",
-            "queries": [{ "leql" : {"where(size) calculate(SUM:size)"}}],
+            "queries": [{ "leql" : { "statement": "where(size) calculate(SUM:size)"}}],
             "visualization": "LINE"
         }
     ]

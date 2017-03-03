@@ -402,7 +402,7 @@
         {
             "name": "Bytes Delivered by Day",
             "description": "Bytes Deivered per Day",
-            "queries": [{ "leql" : {"where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"}}],
             "visualization": "RADIAL",
             "high_threshold": 10000,
             "high_threshold_rate": "Day" 
@@ -410,69 +410,69 @@
         {
             "name": "Request Size Distribution",
             "description": "Request Size Distribution",
-            "queries": [{ "leql" : {"where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"}}],
             "visualization": "LINE"
         },
         
         {
             "name": "HTTP Status Codes",
             "description": "HTTP Codes Distribution",
-            "queries": [{ "leql" : {"where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/) groupby(status) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/) groupby(status) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         
         {
             "name": "Unique User IDs",
             "description": "Number of unique user IDs",
-            "queries": [{ "leql" : {"where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/) calculate(UNIQUE:userID)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/) calculate(UNIQUE:userID)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "Unique Zone IDs",
             "description": "Number of unique zone IDs",
-            "queries": [{ "leql" : {"where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID>\\d*)/) calculate(UNIQUE:zoneID)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID>\\d*)/) calculate(UNIQUE:zoneID)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "Cache Status Codes",
             "description": "Distribution of cache status code",
-            "queries": [{ "leql" : {"where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|\\S*\\|(?P<CacheStatus>MISS|HIT)/) groupby(CacheStatus) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|\\S*\\|(?P<CacheStatus>MISS|HIT)/) groupby(CacheStatus) calculate(COUNT)"}}],
             "visualization": "PIE"
         },
         {
             "name": "Referrers",
             "description": "Distribution of referrers",
-            "queries": [{ "leql" : {"where(/\\[.*\\]\\|\"(?P<referrer>\\S*)\"\\|/) groupby(referrer) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\[.*\\]\\|\"(?P<referrer>\\S*)\"\\|/) groupby(referrer) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "User agents",
             "description": "User agent distribution",
-            "queries": [{ "leql" : {"where(/\\[.*\\]\\|\"\\S*\"\\|\"(?P<userAgent>.*)\"\\|/) groupby(userAgent) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\[.*\\]\\|\"\\S*\"\\|\"(?P<userAgent>.*)\"\\|/) groupby(userAgent) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "POP distribution",
             "description": "POP distribution",
-            "queries": [{ "leql" : {"where(/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/) groupby(POP)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/) groupby(POP)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Requests by Country Code",
             "description": "Requests by Country Code",
-            "queries": [{ "leql" : {"where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|(?P<CountryCode>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryCode) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|(?P<CountryCode>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryCode) calculate(COUNT)"}}],
             "visualization": "PIE"
         },
         {
             "name": "Requests by Country Name",
             "description": "Requests by Country Name",
-            "queries": [{ "leql" : {"where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|(?P<CountryName>.*)\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryName) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|(?P<CountryName>.*)\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryName) calculate(COUNT)"}}],
             "visualization": "PIE"
         },
         {
             "name": "Requests by City Name",
             "description": "Requests by City Name",
-            "queries": [{ "leql" : {"where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|(?P<CityName>.*)\\|.*\\|.*\\|.*\\|/) groupby(CityName) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|(?P<CityName>.*)\\|.*\\|.*\\|.*\\|/) groupby(CityName) calculate(COUNT)"}}],
             "visualization": "PIE"
         }
     ]

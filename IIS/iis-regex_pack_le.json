@@ -166,56 +166,56 @@
         {
             "name": "Average Time Taken",
             "description": "Average Time Taken in milliseconds",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/) calculate(AVERAGE:time)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/) calculate(AVERAGE:time)"}}],
             "visualization": "LINE"
         },
         {
             "name": "Average Bytes",
             "description": "The average number of bytes sent from the client to the server",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/) calculate(AVERAGE:bytes)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, (?P<bytes>\\d{1,}),/) calculate(AVERAGE:bytes)"}}],
             "visualization": "LINE"
         },
         {
             "name": "Status Codes",
             "description": "Distribution of status codes",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/) groupby(status) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, (?P<status>\\d{3})/) groupby(status) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Windows Status Codes",
             "description": "Distribution of Windows Status Codes – zero means that the request was fulfilled successfully",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, (?P<windows_status>\\d{1,})/) groupby(windows_status) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, (?P<windows_status>\\d{1,})/) groupby(windows_status) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Request Types",
             "description": "Distribution of Request Types – GET or POST",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, (?P<request_type>\\w{1,4})/) groupby(request_type) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, (?P<request_type>\\w{1,4})/) groupby(request_type) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
         {
             "name": "Urls Accessed",
             "description": "Distribution of URLs accessed",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, \\w{1,4}, (?P<url>\\D{1,}),/) groupby(url) calculate(COUNT)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, \\d{1,}, \\d{1,}, \\d{1,}, \\d{3}, \\d{1,}, \\w{1,4}, (?P<url>\\D{1,}),/) groupby(url) calculate(COUNT)"}}],
             "visualization": "BAR"
         },
          {
             "name": "The average time taken for JPG file",
             "description": "The average time taken for JPG file",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg) calculate(AVERAGE:time)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.jpg) calculate(AVERAGE:time)"}}],
             "visualization": "LINE"
         },
         {
             "name": "The average time taken for GIF file",
             "description": "The average time taken for GIF file",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif) calculate(AVERAGE:time)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.gif) calculate(AVERAGE:time)"}}],
 
             "visualization": "LINE"
         },
         {
             "name": "The average time taken for PDF file",
             "description": "The average time taken for PDF file",
-            "queries": [{ "leql" : {"where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf) calculate(AVERAGE:time)"}}],
+            "queries": [{ "leql" : { "statement": "where(/\\d{3}\\.\\d{1,}\\.\\d{1,}\\.\\d{1,}\\, (?P<time>\\d{1,})/ AND /.pdf) calculate(AVERAGE:time)"}}],
             "visualization": "LINE"
         }
     ]
