@@ -159,26 +159,7 @@
                 "min_report_count": 1,
                 "min_report_period": "Day"
             }
-        ]},
-        {
-            "type": "AlertNotify",
-            "sub_type": "AnomalyAlert",
-            "name": "Larger than 1MB",
-            "description": "20 percent increase in a download of files larger than 1MB",
-            "actions": [{
-                "type": "Alert",
-                "min_report_count": 1,
-                "min_report_period": "Hour"
-            },
-            {"scheduled_query": {
-                "query": "where size>1000000",
-                "function": "COUNT",
-                "threshold_value": "+20",
-                "threshold_type": "%",
-                "time_period": "Hour",
-                "time_value": 1
-            }}]
-        }
+        ]}
     ],
     "widgets": [
         {
