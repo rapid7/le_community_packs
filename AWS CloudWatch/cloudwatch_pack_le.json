@@ -13,13 +13,13 @@
             "patterns": [
                 "invalid user"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -34,13 +34,13 @@
             "patterns": [
                 "CPUUtilization AND average>90"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "AlertNotify",
@@ -52,11 +52,11 @@
             ],
             "timeframe_value": 5,
             "timeframe_period": "Hour",
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 10,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "searches": [
@@ -166,42 +166,64 @@
         {
             "name": "CPU Load",
             "description": "Avg System CPU",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(CPUUtilization AND average>0) calculate(AVERAGE:average)"
-            },
+            }}],
             "visualization": "LINE",
         },
         {
             "name": "CPU Load per Instance",
             "description": "CPU per Server",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(CPUUtilization AND average>0) GroupBy(target) calculate(AVERAGE:average)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "NetworkOut Per Instance",
             "description": "NetworkOut per Server",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(NetworkOut AND average>0) GroupBy(target) calculate(AVERAGE:average)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Number of Logins",
             "description": "SSH access",
-            "leql": {
+            "queries": [{
+                "leql": {
               "statement": "where(session opened for user) calculate(COUNT)"
-            },
+            }}],
             "visualization": "COUNT"
         },
         {
             "name": "Number of Failed Logins",
             "description": "Failed SSH access",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(invalid user) calculate(COUNT)"
-            },
+            }}],
             "visualization": "COUNT"
-        }
+        },
+        {
+            "name": "NetworkInOut",
+            "description": "Network Activity",
+            "queries": [
+                {"leql": {
+              "statement": "where(NetworkIn AND average>0) calculate(AVERAGE:average)"
+            }},{"leql": {
+              "statement": "where(NetworkOut AND average>0) calculate(AVERAGE:average)"
+            }}],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "Disk Activity",
+            "description": "Disk Read and Writes",
+            "queries": [{"leql": {
+              "statement": "where(DiskReadBytes AND average>0) calculate(AVERAGE:average)"
+            }},{"leql": {
+              "statement": "where(DiskWriteBytes AND average>0) calculate(AVERAGE:average)"
+            }}],
+            "visualization": "MULTILINE"
+        },
     ]
 }

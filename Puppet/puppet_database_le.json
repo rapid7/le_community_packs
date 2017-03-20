@@ -22,13 +22,13 @@
             "patterns": [
                 "Could not retrieve catalog"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -43,13 +43,13 @@
             "patterns": [
                 "OutOfMemoryError"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -58,6 +58,14 @@
             "description": "Puppet Database Errors",
             "search_name": "DatabaseErrors",
             "type": "Count"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Database Errors ",
+            "description": "Puppet Database Errors",
+            "queries": [{ "leql" : {"statement": "where(Could not retrieve catalog OR OutOfMemoryError) calculate(count)"}}],
+            "visualization": "COUNT"
         }
     ]
 }

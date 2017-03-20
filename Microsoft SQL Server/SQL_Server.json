@@ -1,8 +1,7 @@
 {
     "name": "Microsoft SQL Server Pack",
     "description": "For Logentries account subscribers using Microsoft SQL Server",        
-		
-		"searches": [
+    "searches": [
         {
             "name": "Most Frequent Event Codes",
             "description": "Commonly occuring event codes",
@@ -57,11 +56,6 @@
             "name": "Backup Failed",
             "description": "A backup failed to complete",
             "query": "where(/3041 EVENT/)"
-        },
-        {
-            "name": "Count Backup Failed",
-            "description": "Count of failed backups",
-            "query": "where(/3041 EVENT/) calculate(count)"
         },
         {
             "name": "Tranaction Log Full",
@@ -153,9 +147,8 @@
             "description": "MSSQLSERVER service terminated",
             "query": "where(/19019 EVENT/)"
         }		
-	],
-	
-	"tags": [
+    ],
+    "tags": [
         {
             "type": "Alert",
             "name": "SQLVDI process aborted",
@@ -169,13 +162,13 @@
             "patterns": [
                 "/1 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -190,13 +183,13 @@
             "patterns": [
                 "/101 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -211,13 +204,13 @@
             "patterns": [
                 "/102 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -232,13 +225,13 @@
             "patterns": [
                 "/103 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -253,13 +246,13 @@
             "patterns": [
                 "/53 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -274,13 +267,13 @@
             "patterns": [
                 "/208 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -295,13 +288,13 @@
             "patterns": [
                 "/324 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -316,13 +309,13 @@
             "patterns": [
                 "/1105 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -337,13 +330,13 @@
             "patterns": [
                 "/3041 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -358,13 +351,13 @@
             "patterns": [
                 "/9002 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -379,13 +372,13 @@
             "patterns": [
                 "/9003 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -400,13 +393,13 @@
             "patterns": [
                 "/12291 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
 		{
             "type": "Alert",
@@ -421,13 +414,13 @@
             "patterns": [
                 "/14151 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
 		{
             "type": "Alert",
@@ -442,13 +435,13 @@
             "patterns": [
                 "/14152 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -463,13 +456,13 @@
             "patterns": [
                 "/17053 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -484,13 +477,13 @@
             "patterns": [
                 "/17113 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -505,13 +498,13 @@
             "patterns": [
                 "/17187 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -526,13 +519,13 @@
             "patterns": [
                 "/17207 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -547,13 +540,13 @@
             "patterns": [
                 "/17806 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -568,13 +561,13 @@
             "patterns": [
                 "/17832 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -589,13 +582,13 @@
             "patterns": [
                 "/17836 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -610,13 +603,13 @@
             "patterns": [
                 "/18056 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -631,13 +624,13 @@
             "patterns": [
                 "/18204 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -652,13 +645,13 @@
             "patterns": [
                 "/18210 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -673,13 +666,13 @@
             "patterns": [
                 "/18452 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -694,13 +687,13 @@
             "patterns": [
                 "/18456 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -715,13 +708,13 @@
             "patterns": [
                 "/18483 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -736,13 +729,13 @@
             "patterns": [
                 "/19019 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -766,6 +759,29 @@
                 "search_name": "Most Active Hosts",
                 "type": "BarChart"
             }
+        ],
+    "cards": [
+            {
+                "name": "Failed backups",
+                "description": "Count of failed backups",
+                "queries": [{ "leql" : { "statement": "where(/3041 EVENT/) calculate(count)"}}],
+                "visualization": "RADIAL",
+                "high_threshold": 20,
+                "high_threshold_rate": "Day"
+            },
+            {
+                "name": "Most Frequent Event Codes",
+                "description": "Most Frequent Event Codes",
+                "queries": [{ "leql" : { "statement": "where(/\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\s(?P<hostname>.{1,15})\\s\\d{1}\\s(?P<eventcode>\\d{5})\\s/) groupby(eventcode)"}}],
+                "visualization": "BAR"
+            },
+            {
+                "name": "Most Active Hosts",
+                "description": "Most Active Hosts",
+                "queries": [{ "leql" : { "statement": "where(/\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\s(?P<hostname>.{1,15})\\s\\d{1}\\s(?P<eventcode>\\d{5})\\s/) groupby(hostname)"}}],
+                "visualization": "BAR"
+            }
         ]
+    
     
 }

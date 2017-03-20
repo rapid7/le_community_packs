@@ -32,13 +32,13 @@
             "patterns": [
                 "/(?P<level>[A-Z]{4,5})/ level=WARN" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -53,13 +53,13 @@
             "patterns": [
                 "/(?P<level>[A-Z]{4,5})/ level=FATAL" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -74,13 +74,13 @@
             "patterns": [
                 "messages dropped" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -95,13 +95,13 @@
             "patterns": [
                 "Create new ColumnFamily" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -116,13 +116,13 @@
             "patterns": [
                 "Create new Key Space" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -137,13 +137,13 @@
             "patterns": [
                 "Keys must not be empty" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -158,13 +158,13 @@
             "patterns": [
                 "Unable to lock JVM memory" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -179,13 +179,13 @@
             "patterns": [
                 "Fatal configuration error" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -200,13 +200,13 @@
             "patterns": [
                 "Unable to create hard link" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -221,13 +221,13 @@
             "patterns": [
                 "Corrupt sstable" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
      }
     ],
     "widgets": [
@@ -261,26 +261,36 @@
         {
             "name": "Severity Level",
             "description": "Distribution of severity levels: DEBUG, TRACE, WARN, INFO, FATAL",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(/(?P<level>[A-Z]{4,5}) \\[)/ groupby(level) calculate(COUNT)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Estimated Memory Usage",
             "description": "Average Estimated Memory Usage",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(/memory usage is (?P<MemUsage>\\d*)/) calculate(AVERAGE:MemUsage)"
-            },
+            }}],
             "visualization": "LINE"
         },
         {
             "name": "Actual Memory Usage",
             "description": "Average Actual Memory Usage",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(/actual usage (?P<MemUsage>\\d*)/) calculate(AVERAGE:MemUsage)"
-            },
+            }}],
             "visualization": "LINE"
+        },
+        {
+            "name": "Actual vs Estimated Memory",
+            "description": "Actual vs Estimated Memory",
+            "queries": [{"leql": {
+              "statement": "where(/memory usage is (?P<MemUsage>\\d*)/) calculate(AVERAGE:MemUsage)"
+            }},{"leql": {
+              "statement": "where(/actual usage (?P<MemUsage>\\d*)/) calculate(AVERAGE:MemUsage)"
+            }}],
+            "visualization": "MULTILINE"
         }
     ]
 }

@@ -47,14 +47,14 @@
             "patterns": [
                 "http.status=404"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 5,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
         
             "type": "Alert",
@@ -69,14 +69,14 @@
             "patterns": [
                 "http.status=200"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 0,
                 "min_matches_period": "Day",
                 "min_report_count": 0,
                 "min_report_period": "Day"
             }
-        },
+        ]},
         {
             "type": "Alert",
             "name": "401 - unauthorized",
@@ -90,13 +90,13 @@
             "patterns": [
                 "http.status=401"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 5,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -146,44 +146,44 @@
     "cards": [
         {
             "name": "HTTP Codes",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "groupby(http.status) calculate(COUNT:http.status)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "URLs Distribution",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "groupby(http.path) calculate(COUNT:http.path)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Total Bytes Requested",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "calculate(AVERAGE:http.bytes)"
-            },
+            }}],
             "visualization": "LINE"
         },
         {
             "name": "URLs vs 401 errors",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(http.status=401) groupby(http.path) calculate(COUNT:http.status)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "URLs vs 404 errors",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(http.status=404) groupby(http.path) calculate(COUNT:http.status)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "URLs vs 200 http codes",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(http.status=200) groupby(http.path) calculate(COUNT:http.status)"
-            },
+            }}],
             "visualization": "BAR"
         }
     ]

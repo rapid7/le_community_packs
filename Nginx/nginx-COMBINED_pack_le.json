@@ -54,13 +54,13 @@
             "patterns": [
                 "http.status=404"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 5,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
     },
     {
         
@@ -76,13 +76,13 @@
             "patterns": [
                 "http.status=200"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 0,
                 "min_matches_period": "Day",
                 "min_report_count": 0,
                 "min_report_period": "Day"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -97,13 +97,13 @@
             "patterns": [
                 "http.status=401"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 5,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
+            }]
         }
        
     ],
@@ -157,7 +157,49 @@
             "show_tooltip": true,
             "type": "BarChart"
         }
-        
-        
+    ],
+    "cards": [
+        {
+            "name": "HTTP Codes",
+            "description": "HTTP Codes Distribution",
+            "queries": [{ "leql" : {"statement": "groupby(http.status) calculate(COUNT:http.status)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "URLs Distribution",
+            "description": "Individual URLs accessed",
+            "queries": [{ "leql" : {"statement": "groupby(http.path) calculate(COUNT:http.path)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Total Bytes Requested",
+            "description": "Total bytes requested in average",
+            "queries": [{ "leql" : {"statement": "calculate(AVERAGE:http.bytes)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Total number of .php request",
+            "description": "Number of request for php pages",
+            "queries": [{ "leql" : {"statement": "where(/\"GET .{1,}\\.php/i) calculate(COUNT)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Total number of .jpg request",
+            "description": "Number of request for jpg pages",
+            "queries": [{ "leql" : {"statement": "where(/\"GET .{1,}\\.jpg/i) calculate(COUNT)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Distribution of referers",
+            "description": "Distribution of referers",
+            "queries": [{ "leql" : {"statement": "where(http.status) groupby(http.referer) calculate(COUNT:http.referer)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "User-Agent Distribution",
+            "description": "User-Agent Distribution",
+            "queries": [{ "leql" : {"statement": "groupby(http.agent) calculate(COUNT:http.agent)"}}],
+            "visualization": "BAR"
+        }
     ]
 }

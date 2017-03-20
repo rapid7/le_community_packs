@@ -13,13 +13,13 @@
             "patterns": [
                 "LOGIN_EVENT"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -34,13 +34,13 @@
             "patterns": [
                 "LOGOUT_EVENT"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -55,13 +55,13 @@
             "patterns": [
                 "LOGIN_AS_EVENT"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "searches": [
@@ -93,6 +93,23 @@
             "name": "Number of LoginAs Events",
             "search_name": "login_as",
             "type": "Count"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Number of Logins",
+            "queries": [{ "leql" : {"statement": "where(LOGIN_EVENT) calculate(COUNT)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Number of Failed Logins",
+            "queries": [{ "leql" : {"statement": "where(LOGOUT_EVENT) calculate(COUNT)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Number of LoginAs Events",
+            "queries": [{ "leql" : {"statement": "where(LOGIN_AS_EVENT) calculate(COUNT)"}}],
+            "visualization": "COUNT"
         }
     ]
 }

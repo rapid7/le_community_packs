@@ -70,13 +70,13 @@
             "patterns": [
                 "request=404"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -91,13 +91,13 @@
             "patterns": [
                 "request_time>1000"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 15,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "AlertNotify",
@@ -109,11 +109,11 @@
             ],
             "timeframe_value": 1,
             "timeframe_period": "Hour",
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "AlertNotify",
@@ -128,11 +128,11 @@
                 "time_period": "Week",
                 "time_value": 60
             },
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -190,39 +190,39 @@
         {
             "name": "Unique User Count",
             "description": "A counter for unique user count",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status>0) Calculate(unique:remote_addr)"
-            },
+            }}],
             "visualization": "COUNT"
         },
         {
             "name": "Average Respsone Time",
             "description": "Time line Line Chart key by second",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status>0) calculate(average:request_time)"
-            },
+            }}],
             "visualization": "LINE"
         },
         {
             "name": "Requested Page Distribution",
             "description": "Requested Page Distribution",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status!=404) GroupBy(request) Calculate(count)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Status type Distribution",
             "description": "Status distribution",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status>0) groupby(status) calculate(count)"
-            },
+            }}],
             "visualization": "BAR"
         },
         {
             "name": "Bytes Sent Distribution",
             "description": "The average size of the pages being returned to the users",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status>0) groupby(request) calculate(average:body_bytes_sent)"
             },
             "visualization": "BAR"
@@ -230,25 +230,25 @@
         {
             "name": "User Agent Distribution",
             "description": "The distribution of user agents",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status>0) Groupby(http_user_agent) Calculate(count)"
-            },
+            }}],
             "visualization": "PIE"
         },
         {
             "name": "404 Error Count",
             "description": "A counter for 404 errors",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status=404) Calculate(count)"
-            },
+            }}],
             "visualization": "COUNT"
         },
         {
             "name": "404 Distribution",
             "description": "The distribution of 404 errors over requests",
-            "leql": {
+            "queries": [{"leql": {
               "statement": "where(status=404) Groupby(request) Calculate(count)"
-            },
+            }}],
             "visualization": "BAR"
         }
     ]

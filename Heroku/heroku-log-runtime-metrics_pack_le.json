@@ -82,5 +82,41 @@
             "search_name": "memory_total_per_dyno",
             "type": "BarChart"
         }
+    ],
+    "cards": [
+        {
+            "name": "Memory Usage",
+            "description": "Breakdown of Memory Usage",
+            "queries": [
+                { "leql" : {"statement": "where(memory_total>0) calculate(average:memory_total)"}},
+                { "leql" : {"statement": "where(memory_cache>0) calculate(average:memory_cache)"}},
+                { "leql" : {"statement": "where(memory_swap>0) calculate(average:memory_swap)"}},
+                { "leql" : {"statement": "where(memory_pgpgin>0) calculate(average:memory_pgpgin)"}},
+                { "leql" : {"statement": "where(memory_pgpgout>0) calculate(average:memory_pgpgout)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "CPU Load Average",
+            "description": "1m 5m and 15m",
+            "queries": [
+                { "leql" : {"statement": "where(load_avg_1m>0) calculate(average:load_avg_1m)"}},
+                { "leql" : {"statement": "where(load_avg_5m>0) calculate(average:load_avg_5m)"}},
+                { "leql" : {"statement": "where(load_avg_5m>0) calculate(average:load_avg_15m)"}}
+            ],
+            "visualization": "MULTILINE"
+        },
+        {
+            "name": "Load AVG by Dyno",
+            "description": "load_avg_1m Per Dyno",
+            "queries": [{ "leql" : {"statement": "where(load_avg_1m>0) groupby(dyno) calculate(average:memory_total)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Total Memory by Dyno",
+            "description": "Total Mem Per Dyno",
+            "queries": [{ "leql" : {"statement": "where(memory_total>0) groupby(dyno) calculate(average:memory_total)"}}],
+            "visualization": "BAR"
+        }
     ]
 }

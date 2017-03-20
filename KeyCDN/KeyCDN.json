@@ -95,11 +95,9 @@
             "description": "Distribution of POP",
             "query": "where(/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/) groupby(POP)" 
         }
-
-
     ],
     "tags": [
-    {
+        {
             "type": "Alert",
             "name": "404 Not Found",
             "description": "404 Not Found",
@@ -112,15 +110,14 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=404" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 10,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
+            }]
+        },
         {
     
             "type": "Alert",
@@ -135,23 +132,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=206" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-    
-    
-   
-    
-    
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "400 Bad Request",
             "description": "400 Bad Request",
@@ -164,24 +153,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=400" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-    
-    
-    
-    
-    
-    
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "401 Unauthorized",
             "description": "401 Unauthorized",
@@ -194,16 +174,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=401" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "403 Forbidden",
             "description": "403 Forbidden",
@@ -216,18 +195,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=403" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "404 File Not Found",
             "description": "404 File Not Found",
@@ -240,18 +216,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=404" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "410 Gone",
             "description": "The secure token has expired.",
@@ -264,18 +237,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=410" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-     {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "500 Not Reachable",
             "description": "500 Origin Not Reachable",
@@ -288,16 +258,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=500" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "503 Zone Not Found",
             "description": "503 Zone Not Found",
@@ -310,21 +279,15 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=503" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    },
-    
-    
-    
-    
-    
-    {
-    
+            }]
+        },
+        {
             "type": "Alert",
             "name": "502 Bad Gateway",
             "description": "502 Bad Gateway",
@@ -337,25 +300,25 @@
             "patterns": [
                 "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/ status=502" 
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 10,
                 "min_matches_period": "Day",
                 "min_report_count": 1,
                 "min_report_period": "Day"
-            }
-    }
+            }]
+        }
     ],
     "widgets": [
-       {
-    	"name": "Bytes Delivered by Day",
-    	"description": "Bytes Deivered per Day",
-    	"search_name": "BytesDelivered",
-    	"type": "Radial",
-    	"high_threshold": 10000,
-    	"high_threshold_rate": "Day" 
-    	},
-    	{
+        {
+            "name": "Bytes Delivered by Day",
+            "description": "Bytes Deivered per Day",
+            "search_name": "BytesDelivered",
+            "type": "Radial",
+            "high_threshold": 10000,
+            "high_threshold_rate": "Day" 
+        },
+        {
             "name": "Request Size Distribution",
             "description": "Request Size Distribution",
             "search_name":"BytesDelivered",
@@ -434,8 +397,83 @@
             "show_tooltip": true,
             "type": "PieChart"
         }
+    ],
+    "cards": [
+        {
+            "name": "Bytes Delivered by Day",
+            "description": "Bytes Deivered per Day",
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"}}],
+            "visualization": "RADIAL",
+            "high_threshold": 10000,
+            "high_threshold_rate": "Day" 
+        },
+        {
+            "name": "Request Size Distribution",
+            "description": "Request Size Distribution",
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|(?P<bytesDelivered>\\d*)/) calculate(COUNT)"}}],
+            "visualization": "LINE"
+        },
         
-    	
-    	
+        {
+            "name": "HTTP Status Codes",
+            "description": "HTTP Codes Distribution",
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|(?P<status>\\d{3})/) groupby(status) calculate(COUNT)"}}],
+            "visualization": "BAR"
+        },
+        
+        {
+            "name": "Unique User IDs",
+            "description": "Number of unique user IDs",
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|(?P<userID>\\d*)/) calculate(UNIQUE:userID)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Unique Zone IDs",
+            "description": "Number of unique zone IDs",
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|(?P<zoneID>\\d*)/) calculate(UNIQUE:zoneID)"}}],
+            "visualization": "COUNT"
+        },
+        {
+            "name": "Cache Status Codes",
+            "description": "Distribution of cache status code",
+            "queries": [{ "leql" : { "statement": "where(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}\\|\\d*\\|\\d*\\|\\d*\\|\\S*\\|(?P<CacheStatus>MISS|HIT)/) groupby(CacheStatus) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Referrers",
+            "description": "Distribution of referrers",
+            "queries": [{ "leql" : { "statement": "where(/\\[.*\\]\\|\"(?P<referrer>\\S*)\"\\|/) groupby(referrer) calculate(COUNT)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "User agents",
+            "description": "User agent distribution",
+            "queries": [{ "leql" : { "statement": "where(/\\[.*\\]\\|\"\\S*\"\\|\"(?P<userAgent>.*)\"\\|/) groupby(userAgent) calculate(COUNT)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "POP distribution",
+            "description": "POP distribution",
+            "queries": [{ "leql" : { "statement": "where(/\\|(?P<POP>.*)\\|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\|\\d{3}/) groupby(POP)"}}],
+            "visualization": "BAR"
+        },
+        {
+            "name": "Requests by Country Code",
+            "description": "Requests by Country Code",
+            "queries": [{ "leql" : { "statement": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|(?P<CountryCode>.*)\\|.*\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryCode) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Requests by Country Name",
+            "description": "Requests by Country Name",
+            "queries": [{ "leql" : { "statement": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|(?P<CountryName>.*)\\|.*\\|.*\\|.*\\|.*\\|/) groupby(CountryName) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        },
+        {
+            "name": "Requests by City Name",
+            "description": "Requests by City Name",
+            "queries": [{ "leql" : { "statement": "where( /\\[.*\\]\\|\"\\S*\"\\|\".*\"\\|.*\\|.*\\|.*\\|(?P<CityName>.*)\\|.*\\|.*\\|.*\\|/) groupby(CityName) calculate(COUNT)"}}],
+            "visualization": "PIE"
+        }
     ]
 }

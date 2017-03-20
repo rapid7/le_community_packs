@@ -21,13 +21,13 @@
             "patterns": [
                 "No MCollective servers responded"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -42,13 +42,13 @@
             "patterns": [
                 "password is invalid"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -63,13 +63,13 @@
             "patterns": [
                 "Remote host closed connection"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 20,
                 "min_matches_period": "Hour",
                 "min_report_count": 1,
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
     "widgets": [
@@ -78,6 +78,14 @@
             "description": "Puppet Live Management Errors",
             "search_name": "LiveManagementErrors",
             "type": "Count"
+        }
+    ],
+    "cards": [
+        {
+            "name": "Live Management Errors",
+            "description": "Puppet Live Management Errors",
+            "queries": [{ "leql" : {"statement": "where(No MCollective servers responded OR password is invalid OR Remote host closed connection) calculate(count)"}}],
+            "visualization": "Count"
         }
     ]
 }

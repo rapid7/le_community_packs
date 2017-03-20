@@ -1,8 +1,7 @@
 {
     "name": "DHCP Pack for MS Server 2008",
     "description": "For Logentries account subscribers using Microsoft DHCP Server under Windows Server 2008 or later",        
-		
-		"searches": [
+    "searches": [
         {
             "name": "Scope Configured",
             "description": "Scope Configured",
@@ -48,9 +47,8 @@
             "description": "Added Exclusion Range",
             "query": "where /119 EVENT/"
         }		
-	],
-	
-	"tags": [
+    ],
+    "tags": [
         {
             "type": "Alert",
             "name": "Scope Configured",
@@ -64,13 +62,13 @@
             "patterns": [
                 "/70 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -85,13 +83,13 @@
             "patterns": [
                 "/71 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -106,13 +104,13 @@
             "patterns": [
                 "/72 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -127,13 +125,13 @@
             "patterns": [
                 "/74 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -148,13 +146,13 @@
             "patterns": [
                 "/75 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -169,13 +167,13 @@
             "patterns": [
                 "/76 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -190,13 +188,13 @@
             "patterns": [
                 "/106 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -211,13 +209,13 @@
             "patterns": [
                 "/107 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         },
         {
             "type": "Alert",
@@ -232,16 +230,15 @@
             "patterns": [
                 "/119 EVENT/"
             ],
-            "action": {
+            "actions": [{
                 "type": "Alert",
                 "min_matches_count": 1,
                 "min_report_count": 1,
                 "min_matches_period": "Hour",
                 "min_report_period": "Hour"
-            }
+            }]
         }
     ],
-	
     "widgets": [
         {
             "name": "Scope Modified",
@@ -269,6 +266,31 @@
             "search_name": "Reservation Configured",
             "type": "Count"
         }
-    ]	
-    
+    ],
+    "cards": [
+        {
+            "name": "Scope Modified",
+            "description": "Scope Modified",
+            "queries": [{ "leql" : { "statement": "where(/71 EVENT/) calculate(count)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Scope Configured",
+            "description": "Scope Configured",
+            "queries": [{ "leql" : { "statement": "where(/70 EVENT/) calculate(count)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Reservation Deleted",
+            "description": "Reservation Deleted",
+            "queries": [{ "leql" : { "statement": "where(/107 EVENT/) calculate(count)"}}],
+            "visualization": "LINE"
+        },
+        {
+            "name": "Reservation Configured",
+            "description": "Reservation Configured",
+            "queries": [{ "leql" : { "statement": "where(/106 EVENT/) calculate(count)"}}],
+            "visualization": "COUNT"
+        }
+    ]
 }
