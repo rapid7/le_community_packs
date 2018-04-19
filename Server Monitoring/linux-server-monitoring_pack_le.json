@@ -150,7 +150,7 @@
         {
             "name": "CPU Usage",
             "description": "System and User CPU",
-            "queries": [
+            "searches_names": [
                 "Total System CPU Average",
                 "Total User CPU Average"
             ],
@@ -160,7 +160,7 @@
         {
             "name": "Memory Usage",
             "description": "Total, Used and Cached Memory",
-            "queries": [
+            "searches_names": [
                 "Total Available Memory",
                 "Memory Active",
                 "Memory Cached",
@@ -172,7 +172,7 @@
         {
             "name": "Disk Activity",
             "description": "Disk Read and Write in Bytes",
-            "queries": [
+            "searches_names": [
                 "Disk Reads Per Second",
                 "Disk Writes Per Second"
             ],
@@ -182,7 +182,7 @@
         {
             "name": "Disk Usage",
             "description": "Total and Free Disk",
-            "queries": [
+            "searches_names": [
                 "Used Disk",
                 "Free Disk"
             ],
@@ -198,56 +198,6 @@
             "name": "Failed Logins",
             "search_name": "Failed Logins",
             "type": "Count"
-        }
-    ],
-    "cards": [
-        {
-            "name": "CPU Usage",
-            "description": "System and User CPU",
-            "queries": [
-                { "leql" : {"statement": "where(system>0) calculate(AVERAGE:system)"}},
-                { "leql" : {"statement": "where(user>0) calculate(AVERAGE:user)"}}
-            ],
-            "visualization": "MULTILINE"
-        },
-        {
-            "name": "Memory Usage",
-            "description": "Total, Used and Cached Memory",
-            "queries": [
-                { "leql" : {"statement": "where(total>0) calculate(AVERAGE:total)"}},
-                { "leql" : {"statement": "where(free>0) calculate(AVERAGE:free)"}},
-                { "leql" : {"statement": "where(active>0) calculate(AVERAGE:active)"}},
-                { "leql" : {"statement": "where(cached>0) calculate(AVERAGE:cached)"}}
-            ],
-            "visualization": "MULTILINE"
-        },
-        {
-            "name": "Disk Activity",
-            "description": "Disk Read and Write in Bytes",
-            "queries": [
-                { "leql" : {"statement": "where(reads>0) calculate(AVERAGE:reads)"}},
-                { "leql" : {"statement": "where(writes>0) calculate(AVERAGE:writes)"}}
-            ],
-            "visualization": "MULTILINE"
-        },
-        {
-            "name": "Disk Usage",
-            "description": "Total and Free Disk",
-            "queries": [
-                { "leql" : {"statement": "where(used>0) calculate(AVERAGE:used)"}},
-                { "leql" : {"statement": "where(free>0) calculate(AVERAGE:free)"}}
-            ],
-            "visualization": "MULTILINE"
-        },
-        {
-            "name": "SSH Access",
-            "queries": [{ "leql" : {"statement": "where(session opened for user) calculate(COUNT)"}}],
-            "visualization": "COUNT"
-        },
-        {
-            "name": "Failed Logins",
-            "queries": [{ "leql" : {"statement": "where(invalid user) calculate(COUNT)"}}],
-            "visualization": "COUNT"
         }
     ]
 }
