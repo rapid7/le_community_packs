@@ -80,7 +80,7 @@ sub vcl_deliver {
     #syslog Test
  	#Replace ACCOUNT_KEY place holder with your Factly Account Key
  
-log {"syslog ACCOUNT_KEY LE :: client_ip="} req.http.Fastly-Client-IP {" "} {""-""} {" "} {""-""} {" timestamp="} now {" request="} req.request {" url=""} req.url {"" grace="} req.grace {" status="} resp.status {" response="} resp.response {" size="} req.bytes_read {" header_size="} req.header_bytes_read {" body_size="} req.body_bytes_read {" city="} client.geo.city {" continent="} client.geo.continent_code {" postalcode="} client.geo.postal_code {" POP="}server.datacenter {" server_region="} server.region {" region="} client.geo.region {" country="} geoip.country_code {" countryName="} client.geo.country_code {" referrer="} req.http.referer {" devicetype="} req.http.X-Device {" numberOfHits="} obj.hits {" restarts="} req.restarts;
+log {"syslog ACCOUNT_KEY LE :: client_ip="} req.http.Fastly-Client-IP {" "} {""-""} {" "} {""-""} {" timestamp="} now {" request="} req.request {" url=""} req.url {"" grace="} req.grace {" status="} resp.status {" response="} resp.response {" size="} req.bytes_read {" header_size="} req.header_bytes_read {" body_size="} req.body_bytes_read {" city="} client.geo.city {" continent="} client.geo.continent_code {" postalcode="} client.geo.postal_code {" POP="}server.datacenter {" server_region="} server.region {" region="} client.geo.region {" country="} geoip.country_code {" countryName="} client.geo.country_name {" referrer="} req.http.referer {" devicetype="} req.http.X-Device {" numberOfHits="} obj.hits {" restarts="} req.restarts;
 
   return(deliver);
 }
