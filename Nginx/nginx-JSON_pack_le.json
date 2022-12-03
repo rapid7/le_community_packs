@@ -197,7 +197,7 @@
             "name": "Average Respsone Time",
             "description": "Time line Line Chart key by second",
             "queries": [{ "leql" : {"statement": "where(status>0) calculate(average:request_time)"}}],
-            "visualization": "LINE",
+            "visualization": "LINE"
         },
         {
             "name": "Requested Page Distribution",
@@ -208,7 +208,7 @@
         {
             "name": "Status Type Distribution",
             "description": "Status distribution",
-            "queries": [{ "leql" : {"where(status>0) groupby(status) calculate(count)"}}],
+            "queries": [{ "leql" : {"statement":"where(status>0) groupby(status) calculate(count)"}}],
             "visualization": "BAR"
         },
         {
@@ -226,13 +226,13 @@
         {
             "name": "404 Error Count",
             "description": "A counter for 404 errors",
-            "queries": [{ "leql" : {"where(status=404) Calculate(count)"}}],
+            "queries": [{ "leql" : {"statement": "where(status=404) Calculate(count)"}}],
             "visualization": "COUNT"
         },
         {
             "name": "404 Distribution",
             "description": "The distribution of 404 errors over requests",
-            "queries": [{ "leql" : {"where(status=404) Groupby(request) calculate(count)"}}],
+            "queries": [{ "leql" : {"statement": "where(status=404) Groupby(request) calculate(count)"}}],
             "visualization": "BAR"
         }
     ]
